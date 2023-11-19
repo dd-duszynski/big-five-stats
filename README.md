@@ -32,3 +32,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+---
+
+API docs: https://www.api-football.com/documentation-v3#tag/Leagues/operation/get-leagues
+API blog: https://www.api-football.com/news/post/how-to-get-standings-for-all-current-seasons
+API league ids: https://dashboard.api-football.com/soccer/ids
+
+---
+
+Example fetch url:
+standings:
+https://v3.football.api-sports.io/standings?league=39&season=2023
