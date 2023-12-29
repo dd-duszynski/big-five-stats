@@ -1,4 +1,4 @@
-import { LeagueCard } from '@/components';
+import { LeagueCard, Navigation } from '@/components';
 import { LEAGUES_ID } from '@/enums/league';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponse } from '@/models/league.model';

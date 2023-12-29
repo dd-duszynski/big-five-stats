@@ -17,7 +17,6 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: 'team.logo',
     header: 'Name',
     cell: ({ row }) => {
-      console.log('row: ', row);
       return (
         <div className="flex items-center gap-2">
           <Crest

@@ -1,4 +1,5 @@
 'use client';
+// TODO only for logs
 
 import React from 'react';
 import {
@@ -31,7 +32,7 @@ export function LeagueCard({
   console.log('league: ', league);
 
   return (
-    <Card className="w-[400px]">
+    <Card className="w-full">
       <CardHeader className="flex flex-row items-center gap-3">
         <Crest
           alt={name}

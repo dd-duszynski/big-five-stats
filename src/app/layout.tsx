@@ -1,7 +1,11 @@
-import { Inter } from 'next/font/google';
+import { Noto_Sans } from 'next/font/google';
 import './globals.css';
+import { Navigation } from '@/components';
 
-const inter = Inter({ subsets: ['latin'] });
+const noto_sans = Noto_Sans({
+  weight: ['300', '500', '700'],
+  subsets: ['latin'],
+});
 
 export default function RootLayout({
   children,
@@ -11,9 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={inter.className}
+        className={noto_sans.className}
         suppressHydrationWarning={true}
       >
+        <Navigation />
         {children}
       </body>
     </html>
