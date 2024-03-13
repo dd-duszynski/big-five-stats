@@ -26,9 +26,7 @@ export const PlayerBasicInfoPanel = ({
   player,
   statistics,
 }: IPlayerBasicInfoPanelProps) => {
-  useEffect(() => {
-    // console.log(statistics);
-  }, [statistics]);
+  useEffect(() => {}, [statistics]);
   return (
     <div className="ml-2 flex flex-row text-white">
       <div className="mr-4 flex flex-col">

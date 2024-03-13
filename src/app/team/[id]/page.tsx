@@ -20,7 +20,6 @@ async function getData(teamId) {
 export default async function TeamPage({ params }: any) {
   const data = await getData(params.id);
 
-  console.log('data: ', data);
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24 ">
       <p>{data?.response?.team?.name}</p>

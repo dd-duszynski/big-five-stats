@@ -14,65 +14,41 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 
-const components: { title: string; href: string; description: string }[] = [
+const leagues: { title: string; href: string }[] = [
   {
-    title: 'Alert Dialog',
+    title: 'Premier League',
     href: '/docs/primitives/alert-dialog',
-    description:
-      'A modal dialog that interrupts the user with important content and expects a response.',
   },
   {
-    title: 'Hover Card',
+    title: 'La Liga',
     href: '/docs/primitives/hover-card',
-    description:
-      'For sighted users to preview content available behind a link.',
   },
   {
-    title: 'Progress',
+    title: 'Ligue 1',
     href: '/docs/primitives/progress',
-    description:
-      'Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.',
   },
   {
-    title: 'Scroll-area',
+    title: 'Bundesliga',
     href: '/docs/primitives/scroll-area',
-    description: 'Visually or semantically separates content.',
   },
   {
-    title: 'Tabs',
+    title: 'Serie A',
     href: '/docs/primitives/tabs',
-    description:
-      'A set of layered sections of content—known as tab panels—that are displayed one at a time.',
   },
   {
-    title: 'Tooltip',
+    title: 'Primeira Liga',
     href: '/docs/primitives/tooltip',
-    description:
-      'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
+  },
+  {
+    title: 'Ekstraklasa',
+    href: '/docs/primitives/tooltip',
   },
 ];
 
 export function Navigation() {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="fixed w-full max-w-none justify-start bg-white">
       <NavigationMenuList>
-        {/* <NavigationMenuItem>
-          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem> */}
-
         <NavigationMenuItem>
           <Link
             href="/"
@@ -86,15 +62,33 @@ export function Navigation() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link
-            href="/scorers"
-            legacyBehavior
-            passHref
-          >
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Scorers
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuTrigger>Leagues</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] grid-cols-2 grid-rows-2 gap-1 bg-white p-4 md:w-[500px] lg:w-[600px]">
+              {leagues.map((component) => (
+                <ListItem
+                  key={component.title}
+                  title={component.title}
+                  href={component.href}
+                />
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Top Players</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] grid-cols-2 grid-rows-2 gap-1 bg-white p-4 md:w-[500px] lg:w-[600px]">
+              {leagues.map((component) => (
+                <ListItem
+                  key={component.title}
+                  title={component.title}
+                  href={component.href}
+                />
+              ))}
+            </ul>
+          </NavigationMenuContent>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
@@ -104,7 +98,7 @@ export function Navigation() {
             passHref
           >
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Scorers
+              Statistics
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

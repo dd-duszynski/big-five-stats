@@ -60,3 +60,35 @@ export const columns: ColumnDef<Payment>[] = [
     header: 'Loses',
   },
 ];
+export const topPlayerColumns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: 'player.name',
+    header: 'Name',
+  },
+  {
+    accessorKey: 'statistics.0.goals.total',
+    header: 'Goals',
+  },
+  // {
+  //   accessorKey: 'statistics[0].team.logo',
+  //   header: 'Logo',
+  //   cell: ({ row }) => {
+  //     return (
+  //       <div className="flex items-center gap-2">
+  //         <Crest
+  //           alt={row.original.team.name}
+  //           size="sm"
+  //           src={row.original.team.logo}
+  //         />
+  //         <Link href={`/team/${row.original.team.id}`}>
+  //           {row.original.team.name}
+  //         </Link>
+  //       </div>
+  //     );
+  //   },
+  // },
+  {
+    accessorKey: 'statistics.0.team.name',
+    header: 'Team',
+  },
+];

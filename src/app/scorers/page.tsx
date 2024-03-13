@@ -24,7 +24,7 @@ async function getData<T>(key: T, host: T) {
   };
 
   const res = await fetch(
-    'https://v3.football.api-sports.io/players/topscorers?league=135&season=2022',
+    'https://v3.football.api-sports.io/players/topscorers?league=135&season=202',
     requestOptions
   );
 
