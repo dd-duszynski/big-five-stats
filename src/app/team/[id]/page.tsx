@@ -1,7 +1,7 @@
 import { LeagueCard } from '@/components';
 import { LEAGUES_ID } from '@/enums/league';
 import { fetchAPISports } from '@/lib/utils';
-import { APIResponse } from '@/models/league.model';
+import { APIResponse } from '@/models/Standings.model';
 import { Metadata } from 'next';
 import Link from 'next/link';
 

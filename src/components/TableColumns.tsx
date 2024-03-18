@@ -18,16 +18,16 @@ export const columns: ColumnDef<Payment>[] = [
     header: 'Name',
     cell: ({ row }) => {
       return (
-        <div className="flex items-center gap-2">
-          <Crest
-            alt={row.original.team.name}
-            size="sm"
-            src={row.original.team.logo}
-          />
-          <Link href={`/team/${row.original.team.id}`}>
+        <Link href={`/team/${row.original.team.id}`}>
+          <div className="flex items-center gap-2">
+            <Crest
+              alt={row.original.team.name}
+              size="sm"
+              src={row.original.team.logo}
+            />
             {row.original.team.name}
-          </Link>
-        </div>
+          </div>
+        </Link>
       );
     },
   },
@@ -60,10 +60,18 @@ export const columns: ColumnDef<Payment>[] = [
     header: 'Loses',
   },
 ];
+
 export const topPlayerColumns: ColumnDef<Payment>[] = [
   {
     accessorKey: 'player.name',
     header: 'Name',
+    cell: ({ row }) => {
+      return (
+        <Link href={`/player/${row.original.player.id}`}>
+          {row.original.player.name}
+        </Link>
+      );
+    },
   },
   {
     accessorKey: 'statistics.0.goals.total',
@@ -91,4 +99,77 @@ export const topPlayerColumns: ColumnDef<Payment>[] = [
     accessorKey: 'statistics.0.team.name',
     header: 'Team',
   },
+];
+
+export const topAssistsColumns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: 'player.name',
+    header: 'Name',
+    cell: ({ row }) => {
+      console.log('row: ', row);
+      return (
+        <Link href={`/player/${row.original.player.id}`}>
+          {row.original.player.name}
+        </Link>
+      );
+    },
+  },
+  {
+    accessorKey: 'statistics.0.goals.assists',
+    header: 'Assists',
+  },
+  // {
+  //   accessorKey: 'statistics[0].team.logo',
+  //   header: 'Logo',
+  //   cell: ({ row }) => {
+  //     return (
+  //       <div className="flex items-center gap-2">
+  //         <Crest
+  //           alt={row.original.team.name}
+  //           size="sm"
+  //           src={row.original.team.logo}
+  //         />
+  //         <Link href={`/team/${row.original.team.id}`}>
+  //           {row.original.team.name}
+  //         </Link>
+  //       </div>
+  //     );
+  //   },
+  // },
+  {
+    accessorKey: 'statistics.0.team.name',
+    header: 'Team',
+    cell: ({ row }) => {
+      return (
+        <Link href={`/team/${row.original.statistics[0].team.id}`}>
+          <div className="flex items-center gap-2">
+            <Crest
+              alt={row.original.statistics[0].team.name}
+              size="sm"
+              src={row.original.statistics[0].team.logo}
+            />
+            {row.original.statistics[0].team.name}
+          </div>
+        </Link>
+      );
+    },
+  },
+  // {
+  //   accessorKey: 'team.logo',
+  //   header: 'Name',
+  //   cell: ({ row }) => {
+  //     return (
+  //       <Link href={`/team/${row.original.team.id}`}>
+  //         <div className="flex items-center gap-2">
+  //           <Crest
+  //             alt={row.original.team.name}
+  //             size="sm"
+  //             src={row.original.team.logo}
+  //           />
+  //           {row.original.team.name}
+  //         </div>
+  //       </Link>
+  //     );
+  //   },
+  // },
 ];

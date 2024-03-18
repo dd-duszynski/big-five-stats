@@ -1,7 +1,7 @@
 import { LeagueCard, Navigation } from '@/components';
 import { LEAGUES_ID } from '@/enums/league';
 import { fetchAPISports } from '@/lib/utils';
-import { APIResponse } from '@/models/league.model';
+import { APIResponse } from '@/models/Standings.model';
 import { cx } from 'class-variance-authority';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -19,13 +19,26 @@ async function getTablesData() {
   return results;
 }
 
-async function getTopPlayersData() {
+async function getTopScorersData() {
   const leaguesId = Object.values(LEAGUES_ID).filter(
     (league) => typeof league === 'number'
   );
   const leaguesPromises = leaguesId.map((league) => {
     return fetchAPISports<APIResponse>(
       `players/topscorers?league=${league}&season=2023`
+    );
+  });
+  const results = await Promise.all(leaguesPromises);
+  return results;
+}
+
+async function getTopAssistsData() {
+  const leaguesId = Object.values(LEAGUES_ID).filter(
+    (league) => typeof league === 'number'
+  );
+  const leaguesPromises = leaguesId.map((league) => {
+    return fetchAPISports<APIResponse>(
+      `players/topassists?league=${league}&season=2023`
     );
   });
   const results = await Promise.all(leaguesPromises);
@@ -39,15 +52,18 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const tablesData = await getTablesData();
-  const topPlayersData = await getTopPlayersData();
-  console.log('tablesData: ', tablesData);
-  console.log('topPlayersData: ', topPlayersData);
+  const topPlayersData = await getTopScorersData();
+  const topAssistsData = await getTopAssistsData();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 ">
       <div className="flex flex-row flex-wrap gap-5">
         {tablesData.map((league) => {
           if (!league) return null;
-          const topPlayers = topPlayersData.find(
+          const topScorers = topPlayersData.find(
+            (element) =>
+              element.parameters.league == league.response[0].league.id
+          );
+          const topAssists = topAssistsData.find(
             (element) =>
               element.parameters.league == league.response[0].league.id
           );
@@ -58,7 +74,8 @@ export default async function Home() {
               league={league.response[0].league}
               name={league.response[0].league.name}
               standings={league.response[0].league.standings[0]}
-              topPlayers={topPlayers?.response}
+              topScorers={topScorers?.response}
+              topAssists={topAssists?.response}
             />
           );
         })}

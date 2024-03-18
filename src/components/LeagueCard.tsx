@@ -2,10 +2,10 @@
 // TODO only for logs
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Standing } from '@/models/league.model';
+import { Standing } from '@/models/Standings.model';
 import { Crest } from './Crest';
 import { LeagueTable } from './Table';
-import { columns, topPlayerColumns } from './TableColumns';
+import { columns, topAssistsColumns, topPlayerColumns } from './TableColumns';
 import { Button } from './ui/button';
 import {
   Card,
@@ -21,7 +21,7 @@ type LeagueCardProps = {
   crestSrc: string;
   name: string;
   standings: Standing[];
-  topPlayers: any[];
+  topScorers: any[];
 };
 
 export function LeagueCard({
@@ -29,9 +29,9 @@ export function LeagueCard({
   crestSrc,
   name,
   standings,
-  topPlayers,
+  topScorers,
+  topAssists,
 }: LeagueCardProps) {
-  console.log('topPlayers: ', topPlayers);
   return (
     <Card className="w-full">
       <CardHeader className="flex flex-row items-center gap-3">
@@ -53,10 +53,16 @@ export function LeagueCard({
               Table
             </TabsTrigger>
             <TabsTrigger
-              value="top-players"
+              value="top-scorers"
               className="w-[200px]"
             >
-              Top Players
+              Top Scorers
+            </TabsTrigger>
+            <TabsTrigger
+              value="top-assists"
+              className="w-[200px]"
+            >
+              Top Asists
             </TabsTrigger>
           </TabsList>
           <TabsContent value="table">
@@ -66,14 +72,22 @@ export function LeagueCard({
             />
           </TabsContent>
 
-          <TabsContent value="top-players">
+          <TabsContent value="top-scorers">
             <LeagueTable
               columns={topPlayerColumns}
-              data={topPlayers.slice(0, 5)}
+              data={topScorers.slice(0, 5)}
+            />
+          </TabsContent>
+
+          <TabsContent value="top-assists">
+            <LeagueTable
+              columns={topAssistsColumns}
+              data={topAssists.slice(0, 5)}
             />
           </TabsContent>
         </Tabs>
       </CardContent>
+
       <CardFooter className="flex justify-end">
         <Button>Show more</Button>
       </CardFooter>
