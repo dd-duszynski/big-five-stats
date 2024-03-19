@@ -6,4 +6,7 @@ export enum LEAGUES_ID {
   ITA_Serie_A = 135,
   POR_Primeira_Liga = 94,
   POL_Ekstraklasa = 106,
+  TUR_SuperLig = 203,
+  NET_Eredivisie = 88,
+  SAU_ProLeague = 307,
 }

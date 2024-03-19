@@ -38,6 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 API docs: https://www.api-football.com/documentation-v3#tag/Leagues/operation/get-leagues
 API blog: https://www.api-football.com/news/post/how-to-get-standings-for-all-current-seasons
 API league ids: https://dashboard.api-football.com/soccer/ids
+JSON to TS: https://transform.tools/json-to-typescript
 
 ---
 

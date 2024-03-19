@@ -29,11 +29,3 @@ export async function fetchAPISports<T>(url: string): Promise<T | undefined> {
     console.error(error);
   }
 }
-
-// ENG 39
-// ESP 140
-// FRA 61
-// GER 78
-// ITA 135
-// POL 16
-// POR 94

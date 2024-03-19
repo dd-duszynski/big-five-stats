@@ -1,86 +1,71 @@
-import { LeagueCard, Navigation } from '@/components';
+import { LeagueCard } from '@/components';
 import { LEAGUES_ID } from '@/enums/league';
 import { fetchAPISports } from '@/lib/utils';
-import { APIResponse } from '@/models/Standings.model';
-import { cx } from 'class-variance-authority';
+import { APIResponse, StandingsResponse } from '@/models/Standings.model';
+import { TopAssistsResponse } from '@/models/TopAssists.model';
+import { TopScorerResponse } from '@/models/TopScorer.model';
 import { Metadata } from 'next';
-import Link from 'next/link';
 
-async function getTablesData() {
+async function getData() {
   const leaguesId = Object.values(LEAGUES_ID).filter(
     (league) => typeof league === 'number'
   );
-  const leaguesPromises = leaguesId.map((league) => {
-    return fetchAPISports<APIResponse>(
+  const standingsPromises = leaguesId.map((league) => {
+    return fetchAPISports<APIResponse<StandingsResponse[]>>(
       `standings?league=${league}&season=2023`
     );
   });
-  const results = await Promise.all(leaguesPromises);
-  return results;
-}
-
-async function getTopScorersData() {
-  const leaguesId = Object.values(LEAGUES_ID).filter(
-    (league) => typeof league === 'number'
-  );
-  const leaguesPromises = leaguesId.map((league) => {
-    return fetchAPISports<APIResponse>(
+  const topScorersPromises = leaguesId.map((league) => {
+    return fetchAPISports<APIResponse<TopScorerResponse[]>>(
       `players/topscorers?league=${league}&season=2023`
     );
   });
-  const results = await Promise.all(leaguesPromises);
-  return results;
-}
-
-async function getTopAssistsData() {
-  const leaguesId = Object.values(LEAGUES_ID).filter(
-    (league) => typeof league === 'number'
-  );
-  const leaguesPromises = leaguesId.map((league) => {
-    return fetchAPISports<APIResponse>(
+  const topAssistsResponsePromises = leaguesId.map((league) => {
+    return fetchAPISports<APIResponse<TopAssistsResponse[]>>(
       `players/topassists?league=${league}&season=2023`
     );
   });
-  const results = await Promise.all(leaguesPromises);
-  return results;
+  const standings = await Promise.all(standingsPromises);
+  const topScorers = await Promise.all(topScorersPromises);
+  const topAssists = await Promise.all(topAssistsResponsePromises);
+  return {
+    standings,
+    topScorers,
+    topAssists,
+  };
 }
 
 export const metadata: Metadata = {
   description: 'Football stats for the big five leagues.',
-  title: 'Big Five',
+  title: 'Big Five - Football stats',
 };
 
 export default async function Home() {
-  const tablesData = await getTablesData();
-  const topPlayersData = await getTopScorersData();
-  const topAssistsData = await getTopAssistsData();
+  const data = await getData();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 ">
       <div className="flex flex-row flex-wrap gap-5">
-        {tablesData.map((league) => {
+        {data.standings.map((league) => {
           if (!league) return null;
-          const topScorers = topPlayersData.find(
-            (element) =>
-              element.parameters.league == league.response[0].league.id
+          const leagueId = league.response[0].league.id;
+          const topScorers = data.topScorers.find(
+            (topScorersItem) =>
+              Number(topScorersItem?.parameters.league) === leagueId
           );
-          const topAssists = topAssistsData.find(
-            (element) =>
-              element.parameters.league == league.response[0].league.id
+          const topAssists = data.topAssists.find(
+            (topAssistsItem) =>
+              Number(topAssistsItem?.parameters.league) === leagueId
           );
           return (
             <LeagueCard
-              crestSrc={league.response[0].league.logo}
-              key={league.response[0].league.id}
+              key={leagueId}
               league={league.response[0].league}
-              name={league.response[0].league.name}
-              standings={league.response[0].league.standings[0]}
-              topScorers={topScorers?.response}
               topAssists={topAssists?.response}
+              topScorers={topScorers?.response}
             />
           );
         })}
       </div>
-      <Link href="/settings">Settings</Link>
     </main>
   );
 }

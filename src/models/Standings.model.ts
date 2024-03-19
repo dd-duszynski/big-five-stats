@@ -1,8 +1,14 @@
-export interface APIResponse {
-  response: Response[];
+export interface APIResponse<T> {
+  response: T;
+  parameters: ResponseParameters;
 }
 
-export interface Response {
+export interface ResponseParameters {
+  league: string;
+  season: string;
+}
+
+export interface StandingsResponse {
   league: League;
 }
 

@@ -1,4 +1,4 @@
-export interface PlayerResponse {
+export interface TopAssistsResponse {
   player: Player;
   statistics: Statistic[];
 }
@@ -12,14 +12,14 @@ export interface Player {
   birth: Birth;
   nationality: string;
   height: string;
-  weight: string;
+  weight?: string;
   injured: boolean;
   photo: string;
 }
 
 export interface Birth {
   date: string;
-  place: string;
+  place?: string;
   country: string;
 }
 
@@ -50,7 +50,7 @@ export interface League {
   name: string;
   country: string;
   logo: string;
-  flag?: string;
+  flag: string;
   season: number;
 }
 
@@ -60,7 +60,7 @@ export interface Games {
   minutes: number;
   number: any;
   position: string;
-  rating?: string;
+  rating: string;
   captain: boolean;
 }
 
@@ -71,43 +71,43 @@ export interface Substitutes {
 }
 
 export interface Shots {
-  total?: number;
-  on?: number;
+  total: number;
+  on: number;
 }
 
 export interface Goals {
   total: number;
-  conceded?: number;
-  assists?: number;
+  conceded: number;
+  assists: number;
   saves: any;
 }
 
 export interface Passes {
-  total?: number;
-  key?: number;
-  accuracy?: number;
+  total: number;
+  key: number;
+  accuracy: number;
 }
 
 export interface Tackles {
-  total?: number;
+  total: number;
   blocks?: number;
-  interceptions?: number;
+  interceptions: number;
 }
 
 export interface Duels {
-  total?: number;
-  won?: number;
+  total: number;
+  won: number;
 }
 
 export interface Dribbles {
-  attempts?: number;
-  success?: number;
+  attempts: number;
+  success: number;
   past: any;
 }
 
 export interface Fouls {
-  drawn?: number;
-  committed?: number;
+  drawn: number;
+  committed: number;
 }
 
 export interface Cards {
@@ -119,7 +119,7 @@ export interface Cards {
 export interface Penalty {
   won: any;
   commited: any;
-  scored?: number;
-  missed?: number;
+  scored: number;
+  missed: number;
   saved: any;
 }

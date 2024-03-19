@@ -61,7 +61,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export const topPlayerColumns: ColumnDef<Payment>[] = [
+export const topScorersColumns: ColumnDef<Payment>[] = [
   {
     accessorKey: 'player.name',
     header: 'Name',
@@ -106,7 +106,6 @@ export const topAssistsColumns: ColumnDef<Payment>[] = [
     accessorKey: 'player.name',
     header: 'Name',
     cell: ({ row }) => {
-      console.log('row: ', row);
       return (
         <Link href={`/player/${row.original.player.id}`}>
           {row.original.player.name}

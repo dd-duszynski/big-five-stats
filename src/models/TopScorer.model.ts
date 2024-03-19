@@ -18,9 +18,9 @@ export interface Player {
 }
 
 export interface Birth {
+  country: string;
   date: string;
   place: string;
-  country: string;
 }
 
 export interface Statistic {
