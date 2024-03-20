@@ -2,20 +2,13 @@
 // TODO only for logs
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { League, Standing } from '@/models/Standings.model';
+import { League } from '@/models/Standings.model';
+import { TopAssistsResponse } from '@/models/TopAssists.model';
+import { TopScorerResponse } from '@/models/TopScorer.model';
 import { Crest } from '../Crest';
 import { LeagueTable } from '../Table';
 import { columns, topAssistsColumns, topScorersColumns } from '../TableColumns';
-import { Button } from '../ui/button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../ui/card';
-import { TopAssistsResponse } from '@/models/TopAssists.model';
-import { TopScorerResponse } from '@/models/TopScorer.model';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 type LeagueCardProps = {
   league: League;
@@ -31,9 +24,7 @@ export function LeagueCard({
   const standingsData = league.standings[0];
   const topAssistsData = topAssists ? topAssists : [];
   const topScorersData = topScorers ? topScorers : [];
-  // console.log('standingsData: ', standingsData);
-  // console.log('topAssistsData: ', topAssistsData);
-  // console.log('topScorersData: ', topScorersData);
+
   return (
     <Card className="w-full">
       <CardHeader className="flex flex-row items-center gap-3">
