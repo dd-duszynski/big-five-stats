@@ -1,9 +1,8 @@
 'use client';
 
-import * as React from 'react';
 import Link from 'next/link';
+import * as React from 'react';
 
-import { cn } from '@/lib/utils';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,35 +12,48 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import { cn } from '@/lib/utils';
 
 const leagues: { title: string; href: string }[] = [
   {
     title: 'Premier League',
-    href: '/docs/primitives/alert-dialog',
+    href: '/league/39',
   },
   {
     title: 'La Liga',
-    href: '/docs/primitives/hover-card',
+    href: '/league/140',
   },
   {
     title: 'Ligue 1',
-    href: '/docs/primitives/progress',
+    href: '/league/61',
   },
   {
     title: 'Bundesliga',
-    href: '/docs/primitives/scroll-area',
+    href: '/league/78',
   },
   {
     title: 'Serie A',
-    href: '/docs/primitives/tabs',
+    href: '/league/135',
   },
   {
     title: 'Primeira Liga',
-    href: '/docs/primitives/tooltip',
+    href: '/league/94',
   },
   {
     title: 'Ekstraklasa',
-    href: '/docs/primitives/tooltip',
+    href: '/league/106',
+  },
+  {
+    title: 'SuperLig',
+    href: '/league/203',
+  },
+  {
+    title: 'Eredivisie',
+    href: '/league/88',
+  },
+  {
+    title: 'ProLeague',
+    href: '/league/307',
   },
 ];
 
@@ -77,28 +89,25 @@ export function Navigation() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Top Players</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] grid-cols-2 grid-rows-2 gap-1 bg-white p-4 md:w-[500px] lg:w-[600px]">
-              {leagues.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                />
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
           <Link
-            href="/scorers"
+            href="/statistics"
             legacyBehavior
             passHref
           >
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Statistics
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <Link
+            href="/top-form"
+            legacyBehavior
+            passHref
+          >
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Top Form
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
