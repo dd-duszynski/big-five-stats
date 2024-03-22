@@ -5,7 +5,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export async function fetchAPISports<T>(url: string): Promise<T | undefined> {
+export async function fetchAPISports<T>(
+  url: string,
+  next?: NextFetchRequestConfig
+): Promise<T | undefined> {
   const apiKey = process.env.X_APISPORTS_KEY;
   const myHeaders = new Headers();
   if (typeof apiKey === 'string') {
@@ -15,6 +18,7 @@ export async function fetchAPISports<T>(url: string): Promise<T | undefined> {
     method: 'GET',
     headers: myHeaders,
     redirect: 'follow',
+    next: next,
   };
   try {
     const response = await fetch(

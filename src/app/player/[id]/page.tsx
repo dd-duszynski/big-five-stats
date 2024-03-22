@@ -6,7 +6,8 @@ import { APIResponse } from '@/models/Standings.model';
 
 async function getData(playerId: number) {
   const playerResponse = await fetchAPISports<APIResponse<PlayerResponse[]>>(
-    `players/?id=${playerId}&season=2023`
+    `players/?id=${playerId}&season=2023`,
+    { revalidate: 3600 }
   );
   return playerResponse;
 }
