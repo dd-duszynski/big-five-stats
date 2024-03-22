@@ -25,9 +25,11 @@ async function getData() {
       `players/topassists?league=${league}&season=2023`
     );
   });
+
   const standings = await Promise.all(standingsPromises);
   const topScorers = await Promise.all(topScorersPromises);
   const topAssists = await Promise.all(topAssistsResponsePromises);
+
   return {
     standings,
     topScorers,

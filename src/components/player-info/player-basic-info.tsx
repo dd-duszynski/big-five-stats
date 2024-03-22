@@ -1,6 +1,3 @@
-'use client';
-
-import React, { useEffect } from 'react';
 import Image from 'next/image';
 
 interface IPlayerBasicInfo {
@@ -17,16 +14,15 @@ interface IPlayerBasicInfo {
   photo: string;
 }
 
-interface IPlayerBasicInfoPanelProps {
+interface IPlayerBasicInfoProps {
   player: IPlayerBasicInfo;
   statistics: any;
 }
 
-export const PlayerBasicInfoPanel = ({
+export const PlayerBasicInfo = ({
   player,
   statistics,
-}: IPlayerBasicInfoPanelProps) => {
-  useEffect(() => {}, [statistics]);
+}: IPlayerBasicInfoProps) => {
   return (
     <div className="ml-2 flex flex-row text-white">
       <div className="mr-4 flex flex-col">
@@ -49,16 +45,6 @@ export const PlayerBasicInfoPanel = ({
           />
         </div>
         <p className="mr-1">{`G: ${statistics[0].goals.total} | A: ${statistics[0].goals.assists}`}</p>
-        {/* <div className="flex flex-row">
-          <p className="mr-1">{statistics[0].league.name}</p>
-          <Image
-            src={statistics[0].league.logo}
-            alt={statistics[0].league.name}
-            width={24}
-            height={20}
-            className="rounded-sm bg-white"
-          />
-        </div> */}
       </div>
     </div>
   );

@@ -10,10 +10,13 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { Button } from '../ui/button';
+import { useState } from 'react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -24,6 +27,8 @@ export function LeagueTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [isCollapse, setIsCollapse] = useState(true);
+
   const table = useReactTable({
     data,
     columns,
@@ -79,6 +84,19 @@ export function LeagueTable<TData, TValue>({
             </TableRow>
           )}
         </TableBody>
+        <TableFooter>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              setIsCollapse(!isCollapse);
+            }}
+            disabled={false}
+          >
+            {/* Show More */}
+            {isCollapse ? 'Show More' : 'Show Less'}
+          </Button>
+        </TableFooter>
       </Table>
     </div>
   );

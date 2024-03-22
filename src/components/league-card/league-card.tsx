@@ -5,9 +5,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { League } from '@/models/Standings.model';
 import { TopAssistsResponse } from '@/models/TopAssists.model';
 import { TopScorerResponse } from '@/models/TopScorer.model';
-import { Crest } from '../Crest';
-import { LeagueTable } from '../Table';
-import { columns, topAssistsColumns, topScorersColumns } from '../TableColumns';
+import { Crest } from '../crest/crest';
+import { LeagueTable } from '../table/table';
+import {
+  standingsColumns,
+  topAssistsColumns,
+  topScorersColumns,
+} from '../table/table-columns';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 type LeagueCardProps = {
@@ -22,8 +26,18 @@ export function LeagueCard({
   topScorers,
 }: LeagueCardProps) {
   const standingsData = league.standings[0];
-  const topAssistsData = topAssists ? topAssists : [];
-  const topScorersData = topScorers ? topScorers : [];
+  const topAssistsData = topAssists
+    ? topAssists.map((player, index) => ({
+        ...player,
+        rank: index + 1,
+      }))
+    : [];
+  const topScorersData = topScorers
+    ? topScorers.map((player, index) => ({
+        ...player,
+        rank: index + 1,
+      }))
+    : [];
 
   return (
     <Card className="w-full">
@@ -61,7 +75,7 @@ export function LeagueCard({
 
           <TabsContent value="table">
             <LeagueTable
-              columns={columns}
+              columns={standingsColumns}
               data={standingsData}
             />
           </TabsContent>
