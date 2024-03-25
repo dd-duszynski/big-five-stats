@@ -1,18 +1,21 @@
-'use client';
-// TODO only for logs
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { League } from '@/models/Standings.model';
 import { TopAssistsResponse } from '@/models/TopAssists.model';
 import { TopScorerResponse } from '@/models/TopScorer.model';
+import Link from 'next/link';
 import { Crest } from '../crest/crest';
-import { LeagueTable } from '../table/table';
+import { LeagueTable } from '../league-table/league-table';
+import { standingsColumns } from '../league-table/standings-columns';
+import { topAssistsColumns } from '../league-table/top-assists-columns';
+import { topScorersColumns } from '../league-table/top-scorers-columns';
+import { Button } from '../ui/button';
 import {
-  standingsColumns,
-  topAssistsColumns,
-  topScorersColumns,
-} from '../table/table-columns';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '../ui/card';
 
 type LeagueCardProps = {
   league: League;
@@ -95,6 +98,18 @@ export function LeagueCard({
           </TabsContent>
         </Tabs>
       </CardContent>
+
+      <CardFooter className="justify-end">
+        <Link href={`/league/${league.id}`}>
+          <Button
+            variant="outline"
+            size="sm"
+            disabled={false}
+          >
+            Show more
+          </Button>
+        </Link>
+      </CardFooter>
     </Card>
   );
 }

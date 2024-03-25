@@ -77,11 +77,11 @@ export function Navigation() {
           <NavigationMenuTrigger>Leagues</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] grid-cols-2 grid-rows-2 gap-1 bg-white p-4 md:w-[500px] lg:w-[600px]">
-              {leagues.map((component) => (
+              {leagues.map((league) => (
                 <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={league.title}
+                  title={league.title}
+                  href={league.href}
                 />
               ))}
             </ul>
