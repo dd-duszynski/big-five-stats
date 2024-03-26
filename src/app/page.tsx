@@ -47,7 +47,7 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 ">
       <div className="flex flex-row flex-wrap gap-5">
-        {data.standings.map((league) => {
+        {data.standings.map((league, index) => {
           if (!league || league.response.length === 0) return <p>No League</p>;
           const leagueId = league.response[0].league.id;
           const topScorers = data.topScorers.find(
@@ -60,6 +60,7 @@ export default async function Home() {
           );
           return (
             <LeagueCard
+              isInitialyCollapsed={index !== 0}
               key={leagueId}
               league={league.response[0].league}
               topAssists={topAssists?.response}
