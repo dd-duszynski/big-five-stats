@@ -29,6 +29,12 @@ export function LeagueTable<TData, TValue>({
     data: collapsedData,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    defaultColumn: {
+      // TODO: size dosn't work (?)
+      size: 200, //starting column size
+      minSize: 50, //enforced during column resizing
+      maxSize: 500, //enforced during column resizing
+    },
   });
 
   return (
@@ -53,22 +59,26 @@ export function LeagueTable<TData, TValue>({
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => {
+              console.log('row: ', row);
               return (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
                 >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell
-                      key={cell.id}
-                      className="max-w-[180px] overflow-hidden text-ellipsis whitespace-nowrap"
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
+                  {row.getVisibleCells().map((cell) => {
+                    console.log('cell: ', cell);
+                    return (
+                      <TableCell
+                        key={cell.id}
+                        className="overflow-hidden text-ellipsis whitespace-nowrap"
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    );
+                  })}
                 </TableRow>
               );
             })

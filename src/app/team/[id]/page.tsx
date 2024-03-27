@@ -33,7 +33,7 @@ export default async function TeamPage({ params }: any) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24 ">
       <p>{teamInfo.team.name}</p>
-      <p>{teamStatistics.league.name}</p>
+      <p>{teamStatistics.league?.name || ''}</p>
     </div>
   );
 }

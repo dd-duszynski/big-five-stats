@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import * as React from 'react';
-
+import Image from 'next/image';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,46 +14,56 @@ import {
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 
-const leagues: { title: string; href: string }[] = [
+const leagues: { title: string; href: string; flag: string }[] = [
   {
     title: 'Premier League',
     href: '/league/39',
+    flag: 'https://media.api-sports.io/flags/gb.svg',
   },
   {
     title: 'La Liga',
     href: '/league/140',
+    flag: 'https://media.api-sports.io/flags/es.svg',
   },
   {
     title: 'Ligue 1',
     href: '/league/61',
+    flag: 'https://media.api-sports.io/flags/fr.svg',
   },
   {
     title: 'Bundesliga',
     href: '/league/78',
+    flag: 'https://media.api-sports.io/flags/de.svg',
   },
   {
     title: 'Serie A',
     href: '/league/135',
+    flag: 'https://media.api-sports.io/flags/it.svg',
   },
   {
     title: 'Primeira Liga',
     href: '/league/94',
+    flag: 'https://media.api-sports.io/flags/pt.svg',
   },
   {
     title: 'Ekstraklasa',
     href: '/league/106',
+    flag: 'https://media.api-sports.io/flags/pl.svg',
   },
   {
     title: 'SuperLig',
     href: '/league/203',
+    flag: 'https://media.api-sports.io/flags/tr.svg',
   },
   {
     title: 'Eredivisie',
     href: '/league/88',
+    flag: 'https://media.api-sports.io/flags/nl.svg',
   },
   {
     title: 'ProLeague',
     href: '/league/307',
+    flag: 'https://media.api-sports.io/flags/sa.svg',
   },
 ];
 
@@ -76,13 +86,25 @@ export function Navigation() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Leagues</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] grid-cols-2 grid-rows-2 gap-1 bg-white p-4 md:w-[500px] lg:w-[600px]">
+            <ul className="grid w-[350px] grid-cols-2 grid-rows-2 gap-1 bg-white p-3 md:w-[500px] lg:w-[600px]">
               {leagues.map((league) => (
                 <ListItem
                   key={league.title}
-                  title={league.title}
+                  // title={league.title}
                   href={league.href}
-                />
+                  className="hover:underline"
+                >
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src={league.flag}
+                      alt={league.title}
+                      className="h-6 w-6"
+                      width={22}
+                      height={22}
+                    />
+                    <p>{league.title}</p>
+                  </div>
+                </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>

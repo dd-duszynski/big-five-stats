@@ -6,7 +6,7 @@ type CrestProps = {
   alt?: string;
   height?: number;
   width?: number;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 };
 
 export const Crest = ({ src, alt, height, width, size = 'md' }: CrestProps) => {
@@ -18,6 +18,8 @@ export const Crest = ({ src, alt, height, width, size = 'md' }: CrestProps) => {
     imgSize = 'h-[50px] w-[50px]';
   } else if (size === 'lg') {
     imgSize = 'h-[60px] w-[60px]';
+  } else if (size === 'xs') {
+    imgSize = 'h-[22px] w-[22px]';
   }
 
   return (

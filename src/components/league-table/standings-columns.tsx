@@ -14,7 +14,10 @@ export const standingsColumns: ColumnDef<any>[] = [
     header: 'Name',
     cell: ({ row }) => {
       return (
-        <Link href={`/team/${row.original.team.id}`}>
+        <Link
+          className="hover:underline"
+          href={`/team/${row.original.team.id}`}
+        >
           <div className="flex items-center gap-2">
             <Crest
               alt={row.original.team.name}

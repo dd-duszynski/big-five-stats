@@ -48,9 +48,34 @@ export function LeagueCard({
       }))
     : [];
 
+  const leagueCrestWithName = (
+    <div
+      className={`flex flex-row items-center gap-6 ${
+        !isCollapsed ? 'hover:underline' : ''
+      }`}
+    >
+      <Crest
+        alt={league.name}
+        src={league.logo}
+        size="md"
+      />
+      <div className="flex flex-col gap-1">
+        <CardTitle>{league.name}</CardTitle>
+        <div className="flex flex-row items-center">
+          <Crest
+            alt={league.name}
+            src={league.flag}
+            size="xs"
+          />
+          <p className="ml-2">{league.country}</p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <Card
-      className={`w-full transition delay-150 ease-in-out hover:scale-[1.01] hover:shadow-md ${
+      className={`w-full transition delay-150 ease-in-out hover:scale-[1.003] hover:shadow-md ${
         isCollapsed && 'cursor-pointer'
       }`}
       onClick={() => {
@@ -58,22 +83,22 @@ export function LeagueCard({
       }}
     >
       <CardHeader className="flex flex-row items-center justify-between gap-3">
-        <Link href={`/league/${league.id}`}>
-          <div className="flex flex-row items-center gap-6">
-            <Crest
-              alt={league.name}
-              src={league.logo}
-              size="md"
-            />
-            <CardTitle>{league.name}</CardTitle>
-          </div>
-        </Link>
-        <div
-          className={`cursor-pointer rounded-lg bg-slate-100 p-3 text-2xl hover:bg-slate-300 ${
-            isCollapsed ? 'rotate-90' : 'rotate-[270deg]'
+        {isCollapsed ? (
+          leagueCrestWithName
+        ) : (
+          <Link href={isCollapsed ? '' : `/league/${league.id}`}>
+            {leagueCrestWithName}
+          </Link>
+        )}
+        <Button
+          size="lg"
+          className={`cursor-pointer rounded-lg bg-slate-100 text-xl hover:bg-slate-300 ${
+            isCollapsed ? 'hidden' : 'rotate-[270deg]'
           }`}
           onClick={() => setIsCollapsed(!isCollapsed)}
-        >{`>`}</div>
+        >
+          {`>`}
+        </Button>
       </CardHeader>
       {!isCollapsed && (
         <>
@@ -82,19 +107,19 @@ export function LeagueCard({
               <TabsList>
                 <TabsTrigger
                   value="table"
-                  className="w-[200px]"
+                  className="mr-2 w-[160px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
                 >
-                  Table
+                  Standings
                 </TabsTrigger>
                 <TabsTrigger
                   value="top-scorers"
-                  className="w-[200px]"
+                  className="mr-2 w-[160px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
                 >
                   Top Scorers
                 </TabsTrigger>
                 <TabsTrigger
                   value="top-assists"
-                  className="w-[200px]"
+                  className="w-[160px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
                 >
                   Top Asists
                 </TabsTrigger>
@@ -123,11 +148,10 @@ export function LeagueCard({
             </Tabs>
           </CardContent>
           <CardFooter className="justify-end">
-            <Link href={isCollapsed ? '' : `/league/${league.id}`}>
+            <Link href={`/league/${league.id}`}>
               <Button
-                variant="outline"
-                size="sm"
-                disabled={false}
+                size="lg"
+                className={`cursor-pointer rounded-lg bg-slate-100 hover:bg-slate-300`}
               >
                 Show more
               </Button>
