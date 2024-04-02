@@ -6,19 +6,13 @@ import { TopAssistsResponse } from '@/models/TopAssists.model';
 import { TopScorerResponse } from '@/models/TopScorer.model';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Crest } from '../crest/crest';
+import { LeagueCrest } from '../league-crest/league-crest';
 import { LeagueTable } from '../league-table/league-table';
-import { standingsColumns } from '../league-table/standings-columns';
+import { standingsColumns } from '../../app/standings-columns';
 import { topAssistsColumns } from '../league-table/top-assists-columns';
 import { topScorersColumns } from '../league-table/top-scorers-columns';
 import { Button } from '../ui/button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 
 type LeagueCardProps = {
   isInitialyCollapsed?: boolean;
@@ -49,33 +43,17 @@ export function LeagueCard({
     : [];
 
   const leagueCrestWithName = (
-    <div
-      className={`flex flex-row items-center gap-6 ${
-        !isCollapsed ? 'hover:underline' : ''
-      }`}
-    >
-      <Crest
-        alt={league.name}
-        src={league.logo}
-        size="md"
-      />
-      <div className="flex flex-col gap-1">
-        <CardTitle>{league.name}</CardTitle>
-        <div className="flex flex-row items-center">
-          <Crest
-            alt={league.name}
-            src={league.flag}
-            size="xs"
-          />
-          <p className="ml-2">{league.country}</p>
-        </div>
-      </div>
-    </div>
+    <LeagueCrest
+      country={league.country}
+      flag={league.flag}
+      logo={league.logo}
+      name={league.name}
+    />
   );
 
   return (
     <Card
-      className={`w-full transition delay-150 ease-in-out hover:scale-[1.003] hover:shadow-md ${
+      className={`w-full transition delay-75 ease-in-out hover:scale-[1.003] hover:shadow-md ${
         isCollapsed && 'cursor-pointer'
       }`}
       onClick={() => {
@@ -129,6 +107,7 @@ export function LeagueCard({
                 <LeagueTable
                   columns={standingsColumns}
                   data={standingsData}
+                  onlyFive
                 />
               </TabsContent>
 
@@ -136,6 +115,7 @@ export function LeagueCard({
                 <LeagueTable
                   columns={topScorersColumns}
                   data={topScorersData}
+                  onlyFive
                 />
               </TabsContent>
 
@@ -143,6 +123,7 @@ export function LeagueCard({
                 <LeagueTable
                   columns={topAssistsColumns}
                   data={topAssistsData}
+                  onlyFive
                 />
               </TabsContent>
             </Tabs>

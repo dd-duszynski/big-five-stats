@@ -18,15 +18,17 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  onlyFive?: boolean;
 }
 
 export function LeagueTable<TData, TValue>({
   columns,
   data,
+  onlyFive,
 }: DataTableProps<TData, TValue>) {
-  const collapsedData = data.slice(0, 5);
+  // const collapsedData = data.slice(0, 5);
   const table = useReactTable({
-    data: collapsedData,
+    data: onlyFive ? data.slice(0, 5) : data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     defaultColumn: {
