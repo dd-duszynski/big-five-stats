@@ -16,7 +16,7 @@ export function LeagueCrest({ country, flag, logo, name }: LeagueCardProps) {
       <Crest
         alt={name}
         src={logo}
-        size="md"
+        size="sm"
       />
       <div className="flex flex-col gap-1">
         <CardTitle>{name}</CardTitle>

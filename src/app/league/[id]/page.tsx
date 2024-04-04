@@ -1,7 +1,7 @@
-import { standingsColumns } from '@/app/standings-columns';
-import { LeagueCrest, LeagueTable } from '@/components';
-import { topAssistsColumns } from '@/components/league-table/top-assists-columns';
-import { topScorersColumns } from '@/components/league-table/top-scorers-columns';
+import { LeagueCrest, DataTable } from '@/components';
+import { standingsColumns } from '@/components/data-table/columns/standings-columns';
+import { topAssistsColumns } from '@/components/data-table/columns/top-assists-columns';
+import { topScorersColumns } from '@/components/data-table/columns/top-scorers-columns';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponse, StandingsResponse } from '@/models/Standings.model';
 import { TopAssistsResponse } from '@/models/TopAssists.model';
@@ -46,21 +46,21 @@ export default async function LeaguePage({ params }: any) {
       )}
       <h1 className="mb-2 mt-3">Standings</h1>
       {data.standings && data.standings.response.length > 0 && (
-        <LeagueTable
+        <DataTable
           columns={standingsColumns}
           data={data.standings.response[0].league.standings[0]}
         />
       )}
       <h1 className="mb-2 mt-3">Top Scorers</h1>
       {data.topScorers && (
-        <LeagueTable
+        <DataTable
           columns={topScorersColumns}
           data={data.topScorers.response}
         />
       )}
       <h1 className="mb-2 mt-3">Top Asists</h1>
       {data.topAssists && (
-        <LeagueTable
+        <DataTable
           columns={topAssistsColumns}
           data={data.topAssists.response}
         />

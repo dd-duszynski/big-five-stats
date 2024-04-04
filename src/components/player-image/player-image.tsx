@@ -3,18 +3,29 @@ import Image from 'next/image';
 interface IPlayerImageProps {
   photo: string;
   name: string;
+  size?: 'sm' | 'md' | 'lg';
 }
 
-export const PlayerImage = ({ photo, name }: IPlayerImageProps) => {
+export const PlayerImage = ({
+  photo,
+  name,
+  size = 'lg',
+}: IPlayerImageProps) => {
+  const sizeMap = {
+    sm: 50,
+    md: 75,
+    lg: 100,
+  };
+
   return (
-    <div className="h-24 w-24">
+    <div className={`h-[${sizeMap[size]}px] w-[${sizeMap[size]}px]`}>
       <Image
         alt={name}
-        className="min-h-full min-w-full rounded-2xl"
-        height={100}
+        className="min-h-full min-w-full rounded-md"
+        height={sizeMap[size]}
         priority
         src={photo}
-        width={100}
+        width={sizeMap[size]}
       />
     </div>
   );

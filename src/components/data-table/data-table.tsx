@@ -21,7 +21,7 @@ interface DataTableProps<TData, TValue> {
   onlyFive?: boolean;
 }
 
-export function LeagueTable<TData, TValue>({
+export function DataTable<TData, TValue>({
   columns,
   data,
   onlyFive,

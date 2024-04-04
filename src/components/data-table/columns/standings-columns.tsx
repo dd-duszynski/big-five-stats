@@ -1,8 +1,8 @@
 'use client';
 
+import { Crest } from '@/components';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
-import { Crest } from '../components/crest/crest';
 
 export const standingsColumns: ColumnDef<any>[] = [
   {

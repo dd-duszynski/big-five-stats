@@ -1,14 +1,16 @@
 'use client';
 
+import { Crest, PlayerImage } from '@/components';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
-import { Crest } from '../crest/crest';
 
-export const topScorersColumns: ColumnDef<any>[] = [
+export const topAssistsColumns: ColumnDef<any>[] = [
   {
     accessorKey: 'rank',
     header: '#',
+    // TODO: size dosn't work (?)
     size: 200,
+    maxSize: 200,
     enableResizing: true,
   },
   {
@@ -18,13 +20,25 @@ export const topScorersColumns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       return (
         <Link
+          className="w hover:underline"
           href={`/player/${row.original.player.id}`}
-          className="hover:underline"
         >
-          {row.original.player.name}
+          <div className="flex items-center gap-2">
+            <PlayerImage
+              photo={row.original.player.photo}
+              name={row.original.player.name}
+              size="sm"
+            />
+            {row.original.player.name}
+          </div>
         </Link>
       );
     },
+  },
+  {
+    accessorKey: 'statistics.0.goals.assists',
+    header: 'Assists',
+    size: 50,
   },
   {
     accessorKey: 'statistics.0.goals.total',
@@ -32,9 +46,13 @@ export const topScorersColumns: ColumnDef<any>[] = [
     size: 50,
   },
   {
-    accessorKey: 'statistics.0.goals.assists',
-    header: 'Assists',
+    accessorKey: 'statistics.0.games.rating',
+    header: 'Ratings',
     size: 50,
+    cell: ({ row }) => {
+      const rating = row.original.statistics[0].games.rating;
+      return <span>{rating.substring(0, 3)}</span>;
+    },
   },
   {
     accessorKey: 'statistics.0.team.name',
@@ -43,8 +61,8 @@ export const topScorersColumns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       return (
         <Link
-          href={`/team/${row.original.statistics[0].team.id}`}
           className="hover:underline"
+          href={`/team/${row.original.statistics[0].team.id}`}
         >
           <div className="flex items-center gap-2">
             <Crest

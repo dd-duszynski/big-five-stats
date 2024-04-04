@@ -6,11 +6,11 @@ import { TopAssistsResponse } from '@/models/TopAssists.model';
 import { TopScorerResponse } from '@/models/TopScorer.model';
 import Link from 'next/link';
 import { useState } from 'react';
+import { standingsColumns } from '../data-table/columns/standings-columns';
+import { topAssistsColumns } from '../data-table/columns/top-assists-columns';
+import { topScorersColumns } from '../data-table/columns/top-scorers-columns';
+import { DataTable } from '../data-table/data-table';
 import { LeagueCrest } from '../league-crest/league-crest';
-import { LeagueTable } from '../league-table/league-table';
-import { standingsColumns } from '../../app/standings-columns';
-import { topAssistsColumns } from '../league-table/top-assists-columns';
-import { topScorersColumns } from '../league-table/top-scorers-columns';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 
@@ -78,6 +78,7 @@ export function LeagueCard({
           {`>`}
         </Button>
       </CardHeader>
+
       {!isCollapsed && (
         <>
           <CardContent>
@@ -104,23 +105,21 @@ export function LeagueCard({
               </TabsList>
 
               <TabsContent value="table">
-                <LeagueTable
+                <DataTable
                   columns={standingsColumns}
                   data={standingsData}
                   onlyFive
                 />
               </TabsContent>
-
               <TabsContent value="top-scorers">
-                <LeagueTable
+                <DataTable
                   columns={topScorersColumns}
                   data={topScorersData}
                   onlyFive
                 />
               </TabsContent>
-
               <TabsContent value="top-assists">
-                <LeagueTable
+                <DataTable
                   columns={topAssistsColumns}
                   data={topAssistsData}
                   onlyFive
@@ -128,6 +127,7 @@ export function LeagueCard({
               </TabsContent>
             </Tabs>
           </CardContent>
+
           <CardFooter className="justify-end">
             <Link href={`/league/${league.id}`}>
               <Button

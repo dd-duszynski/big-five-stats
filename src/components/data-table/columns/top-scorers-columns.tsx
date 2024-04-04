@@ -1,16 +1,14 @@
 'use client';
 
+import { Crest, PlayerImage } from '@/components';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
-import { Crest } from '../crest/crest';
 
-export const topAssistsColumns: ColumnDef<any>[] = [
+export const topScorersColumns: ColumnDef<any>[] = [
   {
     accessorKey: 'rank',
     header: '#',
-    // TODO: size dosn't work (?)
     size: 200,
-    maxSize: 200,
     enableResizing: true,
   },
   {
@@ -20,13 +18,25 @@ export const topAssistsColumns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       return (
         <Link
-          className="w hover:underline"
+          className="hover:underline"
           href={`/player/${row.original.player.id}`}
         >
-          {row.original.player.name}
+          <div className="flex items-center gap-2">
+            <PlayerImage
+              photo={row.original.player.photo}
+              name={row.original.player.name}
+              size="sm"
+            />
+            {row.original.player.name}
+          </div>
         </Link>
       );
     },
+  },
+  {
+    accessorKey: 'statistics.0.goals.total',
+    header: 'Goals',
+    size: 50,
   },
   {
     accessorKey: 'statistics.0.goals.assists',
@@ -34,9 +44,13 @@ export const topAssistsColumns: ColumnDef<any>[] = [
     size: 50,
   },
   {
-    accessorKey: 'statistics.0.goals.total',
-    header: 'Goals',
+    accessorKey: 'statistics.0.games.rating',
+    header: 'Ratings',
     size: 50,
+    cell: ({ row }) => {
+      const rating = row.original.statistics[0].games.rating;
+      return <span>{rating.substring(0, 3)}</span>;
+    },
   },
   {
     accessorKey: 'statistics.0.team.name',
@@ -45,8 +59,8 @@ export const topAssistsColumns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       return (
         <Link
-          className="hover:underline"
           href={`/team/${row.original.statistics[0].team.id}`}
+          className="hover:underline"
         >
           <div className="flex items-center gap-2">
             <Crest
