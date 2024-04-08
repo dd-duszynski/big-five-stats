@@ -1,6 +1,7 @@
 'use client';
 
 import { Crest } from '@/components';
+import FormIcon from '@/components/form-icon/form-icon';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
@@ -11,7 +12,7 @@ export const standingsColumns: ColumnDef<any>[] = [
   },
   {
     accessorKey: 'team.logo',
-    header: 'Name',
+    header: 'Team',
     cell: ({ row }) => {
       return (
         <Link
@@ -31,27 +32,63 @@ export const standingsColumns: ColumnDef<any>[] = [
     },
   },
   {
-    accessorKey: 'points',
-    header: 'Points',
-  },
-  {
-    accessorKey: 'all.goals.for',
-    header: 'Goals For',
-  },
-  {
-    accessorKey: 'all.goals.against',
-    header: 'Goals Agains',
+    accessorKey: 'all.played',
+    header: 'MP',
   },
   {
     accessorKey: 'all.win',
-    header: 'Wins',
+    header: 'W',
   },
   {
     accessorKey: 'all.draw',
-    header: 'Draws',
+    header: 'D',
   },
   {
     accessorKey: 'all.lose',
-    header: 'Loses',
+    header: 'L',
+  },
+  {
+    accessorKey: 'all.goals.for',
+    header: 'G',
+    cell: ({ row }) => {
+      return (
+        <span>{`${row.original.all.goals.for} : ${row.original.all.goals.against}`}</span>
+      );
+    },
+  },
+  {
+    accessorKey: 'all.goals.against',
+    header: 'GD',
+    cell: ({ row }) => {
+      return (
+        <span>
+          {row.original.all.goals.for - row.original.all.goals.against}
+        </span>
+      );
+    },
+  },
+  {
+    accessorKey: 'points',
+    header: 'PTS',
+  },
+  {
+    accessorKey: 'form',
+    header: 'Form',
+    cell: ({ row }) => {
+      const formArray = row.original.form.split('');
+      if (formArray.length === 0) {
+        return null;
+      }
+      return (
+        <div className="flex gap-1">
+          {formArray.map((value: string, index: number) => (
+            <FormIcon
+              key={index}
+              value={value}
+            />
+          ))}
+        </div>
+      );
+    },
   },
 ];
