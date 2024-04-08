@@ -17,10 +17,7 @@ export const Crest = ({ src, alt, size = 'md' }: CrestProps) => {
 
   return (
     <figure
-      className={cn(
-        'relative',
-        `h-[${sizeMap[size]}px] w-[${sizeMap[size]}px]`
-      )}
+      className={`relative h-[${sizeMap[size]}px] w-[${sizeMap[size]}px]`}
     >
       <Image
         src={src}
