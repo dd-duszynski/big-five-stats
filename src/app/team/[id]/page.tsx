@@ -1,3 +1,4 @@
+import { LeagueCrest, Stadium } from '@/components';
 import { leagueIdForTeam } from '@/enums/league';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponse } from '@/models/Standings.model';
@@ -31,9 +32,20 @@ export default async function TeamPage({ params }: any) {
   if (!teamInfo || !teamStatistics) return <div>loading...</div>;
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24 ">
-      <p>{teamInfo.team.name}</p>
-      <p>{teamStatistics.league?.name || ''}</p>
-    </div>
+    <main className="flex min-h-screen flex-col gap-2 p-24 ">
+      <LeagueCrest
+        country={teamStatistics.league.country}
+        flag={teamStatistics.league.flag}
+        logo={teamStatistics.team.logo}
+        name={teamStatistics.team.name}
+      />
+      <Stadium
+        name={teamInfo.venue.name}
+        address={teamInfo.venue.address}
+        city={teamInfo.venue.city}
+        capacity={teamInfo.venue.capacity}
+        image={teamInfo.venue.image}
+      />
+    </main>
   );
 }

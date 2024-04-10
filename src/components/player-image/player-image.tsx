@@ -1,9 +1,10 @@
 import Image from 'next/image';
+import { calculateImageCssSize, calculateImageSize } from '..';
 
 interface IPlayerImageProps {
   photo: string;
   name: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
 export const PlayerImage = ({
@@ -11,22 +12,19 @@ export const PlayerImage = ({
   name,
   size = 'lg',
 }: IPlayerImageProps) => {
-  const sizeMap = {
-    sm: 50,
-    md: 75,
-    lg: 100,
-  };
+  const imageSizeCSS = calculateImageCssSize(size);
+  const imageSize = calculateImageSize(size);
 
   return (
-    <div className={`h-[${sizeMap[size]}px] w-[${sizeMap[size]}px]`}>
+    <figure className={imageSizeCSS}>
       <Image
         alt={name}
         className="min-h-full min-w-full rounded-md"
-        height={sizeMap[size]}
+        height={imageSize}
         priority
         src={photo}
-        width={sizeMap[size]}
+        width={imageSize}
       />
-    </div>
+    </figure>
   );
 };

@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { calculateImageCssSize } from '..';
 
 type CrestProps = {
   src: string;
@@ -8,23 +8,15 @@ type CrestProps = {
 };
 
 export const Crest = ({ src, alt, size = 'md' }: CrestProps) => {
-  const sizeMap = {
-    xs: 22,
-    sm: 50,
-    md: 75,
-    lg: 100,
-  };
+  const imageSizeCSS = calculateImageCssSize(size);
 
   return (
-    <figure
-      className={`relative h-[${sizeMap[size]}px] w-[${sizeMap[size]}px]`}
-    >
+    <figure className={`relative ${imageSizeCSS}`}>
       <Image
-        src={src}
         alt={alt ?? ''}
+        className={`object-contain`}
         fill
-        loading="eager"
-        className="object-contain"
+        src={src}
       />
     </figure>
   );

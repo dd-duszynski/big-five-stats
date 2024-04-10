@@ -1,4 +1,4 @@
-import { LeagueCrest, DataTable } from '@/components';
+import { DataTable, LeagueCrest } from '@/components';
 import { standingsColumns } from '@/components/data-table/columns/standings-columns';
 import { topAssistsColumns } from '@/components/data-table/columns/top-assists-columns';
 import { topScorersColumns } from '@/components/data-table/columns/top-scorers-columns';
@@ -44,27 +44,37 @@ export default async function LeaguePage({ params }: any) {
           name={data.standings.response[0].league.name}
         />
       )}
-      <h1 className="mb-2 mt-3">Standings</h1>
-      {data.standings && data.standings.response.length > 0 && (
-        <DataTable
-          columns={standingsColumns}
-          data={data.standings.response[0].league.standings[0]}
-        />
-      )}
-      <h1 className="mb-2 mt-3">Top Scorers</h1>
-      {data.topScorers && (
-        <DataTable
-          columns={topScorersColumns}
-          data={data.topScorers.response}
-        />
-      )}
-      <h1 className="mb-2 mt-3">Top Asists</h1>
-      {data.topAssists && (
-        <DataTable
-          columns={topAssistsColumns}
-          data={data.topAssists.response}
-        />
-      )}
+      <div className="flex flex-row gap-2">
+        <div>
+          <h1 className="mb-2 mt-3">Standings</h1>
+          {data.standings && data.standings.response.length > 0 && (
+            <DataTable
+              columns={standingsColumns}
+              data={data.standings.response[0].league.standings[0]}
+            />
+          )}
+        </div>
+
+        <div>
+          <h1 className="mb-2 mt-3">Top Scorers</h1>
+          {data.topScorers && (
+            <DataTable
+              columns={topScorersColumns}
+              data={data.topScorers.response}
+            />
+          )}
+        </div>
+
+        <div>
+          <h1 className="mb-2 mt-3">Top Asists</h1>
+          {data.topAssists && (
+            <DataTable
+              columns={topAssistsColumns}
+              data={data.topAssists.response}
+            />
+          )}
+        </div>
+      </div>
     </main>
   );
 }
