@@ -1,6 +1,6 @@
+import { Navigation } from '@/components';
 import { Noto_Sans } from 'next/font/google';
 import './globals.css';
-import { Navigation } from '@/components';
 
 const noto_sans = Noto_Sans({
   weight: ['300', '500', '700'],
@@ -15,11 +15,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={noto_sans.className}
+        className={`${noto_sans.className}`}
         suppressHydrationWarning={true}
       >
         <Navigation />
-        {children}
+        <main className="flex min-h-screen flex-col items-start justify-between p-6 pt-12">
+          {children}
+        </main>
       </body>
     </html>
   );

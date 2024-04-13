@@ -35,7 +35,7 @@ export default async function LeaguePage({ params }: any) {
   if (!data) return <div className="text-black">Data not found</div>;
 
   return (
-    <main className="flex min-h-screen flex-col items-start justify-between p-24 ">
+    <div>
       {data.standings && data.standings.response.length > 0 && (
         <LeagueCrest
           country={data.standings.response[0].league.country}
@@ -44,8 +44,8 @@ export default async function LeaguePage({ params }: any) {
           name={data.standings.response[0].league.name}
         />
       )}
-      <div className="flex flex-row gap-2">
-        <div>
+      <div className="flex flex-row flex-wrap gap-2">
+        <div className="w-full">
           <h1 className="mb-2 mt-3">Standings</h1>
           {data.standings && data.standings.response.length > 0 && (
             <DataTable
@@ -55,26 +55,28 @@ export default async function LeaguePage({ params }: any) {
           )}
         </div>
 
-        <div>
-          <h1 className="mb-2 mt-3">Top Scorers</h1>
-          {data.topScorers && (
-            <DataTable
-              columns={topScorersColumns}
-              data={data.topScorers.response}
-            />
-          )}
-        </div>
+        <div className="flex w-full justify-between gap-4">
+          <div className="w-1/2">
+            <h1 className="mb-2 mt-3">Top Scorers</h1>
+            {data.topScorers && (
+              <DataTable
+                columns={topScorersColumns}
+                data={data.topScorers.response}
+              />
+            )}
+          </div>
 
-        <div>
-          <h1 className="mb-2 mt-3">Top Asists</h1>
-          {data.topAssists && (
-            <DataTable
-              columns={topAssistsColumns}
-              data={data.topAssists.response}
-            />
-          )}
+          <div className="w-1/2">
+            <h1 className="mb-2 mt-3">Top Asists</h1>
+            {data.topAssists && (
+              <DataTable
+                columns={topAssistsColumns}
+                data={data.topAssists.response}
+              />
+            )}
+          </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

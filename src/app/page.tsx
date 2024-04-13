@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   const data = await getData();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 ">
+    <div>
       <div className="flex flex-row flex-wrap gap-5">
         {data.standings.map((league, index) => {
           if (!league || league.response.length === 0) return <p>No League</p>;
@@ -69,6 +69,6 @@ export default async function Home() {
           );
         })}
       </div>
-    </main>
+    </div>
   );
 }

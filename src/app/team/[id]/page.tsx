@@ -32,7 +32,7 @@ export default async function TeamPage({ params }: any) {
   if (!teamInfo || !teamStatistics) return <div>loading...</div>;
 
   return (
-    <main className="flex min-h-screen flex-col gap-2 p-24 ">
+    <div>
       <LeagueCrest
         country={teamStatistics.league.country}
         flag={teamStatistics.league.flag}
@@ -46,6 +46,6 @@ export default async function TeamPage({ params }: any) {
         capacity={teamInfo.venue.capacity}
         image={teamInfo.venue.image}
       />
-    </main>
+    </div>
   );
 }
