@@ -4,7 +4,7 @@ import { calculateImageCssSize, calculateImageSize } from '..';
 interface IPlayerImageProps {
   photo: string;
   name: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
 export const PlayerImage = ({

@@ -1,4 +1,4 @@
-import { DataTable, LeagueCrest } from '@/components';
+import { DataTable, LeagueCrest, Text } from '@/components';
 import { standingsColumns } from '@/components/data-table/columns/standings-columns';
 import { topAssistsColumns } from '@/components/data-table/columns/top-assists-columns';
 import { topScorersColumns } from '@/components/data-table/columns/top-scorers-columns';
@@ -42,11 +42,19 @@ export default async function LeaguePage({ params }: any) {
           flag={data.standings.response[0].league.flag}
           logo={data.standings.response[0].league.logo}
           name={data.standings.response[0].league.name}
+          logoSize="lg"
         />
       )}
       <div className="flex flex-row flex-wrap gap-2">
-        <div className="w-full">
-          <h1 className="mb-2 mt-3">Standings</h1>
+        <div className="mt-2 w-full">
+          <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
+            <Text
+              variant="h2"
+              className="mb-2 mt-3 text-center text-white"
+            >
+              Standings
+            </Text>
+          </div>
           {data.standings && data.standings.response.length > 0 && (
             <DataTable
               columns={standingsColumns}
@@ -57,7 +65,14 @@ export default async function LeaguePage({ params }: any) {
 
         <div className="flex w-full justify-between gap-4">
           <div className="w-1/2">
-            <h1 className="mb-2 mt-3">Top Scorers</h1>
+            <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
+              <Text
+                variant="h2"
+                className="mb-2 mt-3 text-center text-white"
+              >
+                Top Scorers
+              </Text>
+            </div>
             {data.topScorers && (
               <DataTable
                 columns={topScorersColumns}
@@ -67,7 +82,14 @@ export default async function LeaguePage({ params }: any) {
           </div>
 
           <div className="w-1/2">
-            <h1 className="mb-2 mt-3">Top Asists</h1>
+            <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
+              <Text
+                variant="h2"
+                className="mb-2 mt-3 text-center text-white"
+              >
+                Top Asists
+              </Text>
+            </div>
             {data.topAssists && (
               <DataTable
                 columns={topAssistsColumns}

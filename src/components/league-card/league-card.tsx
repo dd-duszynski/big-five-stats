@@ -48,6 +48,7 @@ export function LeagueCard({
       flag={league.flag}
       logo={league.logo}
       name={league.name}
+      logoSize="md"
     />
   );
 
@@ -64,7 +65,10 @@ export function LeagueCard({
         {isCollapsed ? (
           leagueCrestWithName
         ) : (
-          <Link href={isCollapsed ? '' : `/league/${league.id}`}>
+          <Link
+            href={isCollapsed ? '' : `/league/${league.id}`}
+            className="hover:underline"
+          >
             {leagueCrestWithName}
           </Link>
         )}

@@ -27,7 +27,7 @@ export const topAssistsColumns: ColumnDef<any>[] = [
             <PlayerImage
               photo={row.original.player.photo}
               name={row.original.player.name}
-              size="sm"
+              size="md"
             />
             {row.original.player.name}
           </div>
@@ -67,7 +67,7 @@ export const topAssistsColumns: ColumnDef<any>[] = [
           <div className="flex items-center gap-2">
             <Crest
               alt={row.original.statistics[0].team.name}
-              size="sm"
+              size="md"
               src={row.original.statistics[0].team.logo}
             />
             {row.original.statistics[0].team.name}

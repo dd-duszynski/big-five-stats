@@ -38,6 +38,7 @@ export default async function TeamPage({ params }: any) {
         flag={teamStatistics.league.flag}
         logo={teamStatistics.team.logo}
         name={teamStatistics.team.name}
+        logoSize="lg"
       />
       <Stadium
         name={teamInfo.venue.name}

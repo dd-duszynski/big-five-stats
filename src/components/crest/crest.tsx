@@ -4,7 +4,7 @@ import { calculateImageCssSize } from '..';
 type CrestProps = {
   src: string;
   alt?: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 };
 
 export const Crest = ({ src, alt, size = 'md' }: CrestProps) => {
