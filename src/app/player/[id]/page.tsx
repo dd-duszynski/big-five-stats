@@ -1,4 +1,4 @@
-import { PlayerBasicInfoPanel, PlayerImage } from '@/components';
+import { LeagueCrest, PlayerBasicInfoPanel, PlayerImage } from '@/components';
 import { Card, CardContent } from '@/components/ui/card';
 import { fetchAPISports } from '@/lib/utils';
 import { PlayerResponse } from '@/models/Player.model';
@@ -24,13 +24,16 @@ export default async function PlayerPage({ params }: any) {
   if (!playerData) return <div className="text-black">Player not found</div>;
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24 ">
-      <Card className="bg mx-3 my-3 flex flex-row items-center rounded-2xl bg-gradient-to-r from-purple-950 to-purple-900 p-2">
+    <div>
+      <LeagueCrest
+        country={playerData.statistics[0].team.name}
+        flag={playerData.statistics[0].team.logo}
+        logo={playerData.player.photo}
+        name={playerData.player.name}
+        logoSize="lg"
+      />
+      <Card className="bg mx-3 my-3 flex flex-row items-center rounded-2xl p-2">
         <CardContent className="flex">
-          <PlayerImage
-            photo={playerData.player.photo}
-            name={playerData.player.name}
-          />
           <PlayerBasicInfoPanel
             player={playerData.player}
             statistics={playerData.statistics}

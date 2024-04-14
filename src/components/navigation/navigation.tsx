@@ -69,7 +69,7 @@ const leagues: { title: string; href: string; flag: string }[] = [
 
 export function Navigation() {
   return (
-    <NavigationMenu className="fixed w-full max-w-none justify-start bg-white">
+    <NavigationMenu className="fixed w-full max-w-none justify-start bg-indigo-500">
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Text } from '../text/text';
 import { Card, CardContent, CardHeader } from '../ui/card';
 
 type StadiumProps = {
@@ -18,9 +19,17 @@ export function Stadium({
 }: StadiumProps) {
   return (
     <Card className="max-w-[640px]">
-      <CardHeader className="flex flex-row items-center justify-between gap-3 rounded-t-md bg-gradient-to-r from-indigo-500 to-emerald-500">
-        <h2 className="text-lg text-white">Stadium</h2>
+      <CardHeader className="flex items-center justify-center gap-3 rounded-t-md bg-gradient-to-r from-indigo-500 to-emerald-500">
+        <Text
+          variant="h2"
+          className="text-center text-white"
+        >
+          Stadium
+        </Text>
       </CardHeader>
+
+      <div className="mb-2 flex items-center justify-center  "></div>
+
       <CardContent>
         <div>
           <p>Name: {name} </p>

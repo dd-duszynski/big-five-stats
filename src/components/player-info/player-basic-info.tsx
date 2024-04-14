@@ -24,7 +24,7 @@ export const PlayerBasicInfo = ({
   statistics,
 }: IPlayerBasicInfoProps) => {
   return (
-    <div className="ml-2 flex flex-row text-white">
+    <div className="ml-2 flex flex-row">
       <div className="mr-4 flex flex-col">
         <p>{player.name}</p>
         <p>Age: {player.age}</p>
