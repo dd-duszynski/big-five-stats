@@ -39,11 +39,11 @@ export default async function LeaguePage({ params }: any) {
     <div>
       {data.standings && data.standings.response.length > 0 && (
         <LeagueCrest
-          subtitle={data.standings.response[0].league.country}
           flag={data.standings.response[0].league.flag}
           logo={data.standings.response[0].league.logo}
-          title={data.standings.response[0].league.name}
           logoSize="lg"
+          subtitle={data.standings.response[0].league.country}
+          title={data.standings.response[0].league.name}
         />
       )}
       <div className="flex flex-row flex-wrap gap-2">

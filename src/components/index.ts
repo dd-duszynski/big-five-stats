@@ -7,7 +7,9 @@ export {
 export { LeagueCard } from './league-card/league-card';
 export { LeagueCrest } from './league-crest/league-crest';
 export { Navigation } from './navigation/navigation';
+export { PlayerCard } from './player-card/player-card';
 export { PlayerImage } from './player-image/player-image';
 export { PlayerBasicInfo as PlayerBasicInfoPanel } from './player-info/player-basic-info';
 export { Stadium } from './stadium/stadium';
+export { TeamPlayers } from './team-players/team-players';
 export { Text } from './text/text';
