@@ -1,8 +1,9 @@
-import { LeagueCrest, PlayerBasicInfoPanel, PlayerImage } from '@/components';
+import { LeagueCrest, PlayerBasicInfoPanel } from '@/components';
 import { Card, CardContent } from '@/components/ui/card';
 import { fetchAPISports } from '@/lib/utils';
 import { PlayerResponse } from '@/models/Player.model';
 import { APIResponse } from '@/models/Standings.model';
+import { Metadata } from 'next';
 
 async function getData(playerId: number) {
   const playerResponse = await fetchAPISports<APIResponse<PlayerResponse[]>>(
@@ -12,10 +13,10 @@ async function getData(playerId: number) {
   return playerResponse;
 }
 
-// export const metadata: Metadata = {
-//   title: 'Big Five',
-//   description: 'Football stats for the big five leagues.',
-// };
+export const metadata: Metadata = {
+  title: 'Big Five - Player statistics',
+  description: 'Football stats for the big five leagues.',
+};
 
 export default async function PlayerPage({ params }: any) {
   const data = await getData(params.id);
@@ -26,11 +27,11 @@ export default async function PlayerPage({ params }: any) {
   return (
     <div>
       <LeagueCrest
-        country={playerData.statistics[0].team.name}
         flag={playerData.statistics[0].team.logo}
         logo={playerData.player.photo}
-        name={playerData.player.name}
         logoSize="lg"
+        subtitle={playerData.statistics[0].team.name}
+        title={playerData.player.name}
       />
       <Card className="bg mx-3 my-3 flex flex-row items-center rounded-2xl p-2">
         <CardContent className="flex">

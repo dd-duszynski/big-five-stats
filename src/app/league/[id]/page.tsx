@@ -6,6 +6,7 @@ import { fetchAPISports } from '@/lib/utils';
 import { APIResponse, StandingsResponse } from '@/models/Standings.model';
 import { TopAssistsResponse } from '@/models/TopAssists.model';
 import { TopScorerResponse } from '@/models/TopScorer.model';
+import { Metadata } from 'next';
 
 async function getData(id: number) {
   const standings = await fetchAPISports<APIResponse<StandingsResponse[]>>(
@@ -24,10 +25,10 @@ async function getData(id: number) {
   };
 }
 
-// export const metadata: Metadata = {
-//   title: 'Big Five',
-//   description: 'Football stats for the big five leagues.',
-// };
+export const metadata: Metadata = {
+  title: 'Big Five - League Stats',
+  description: 'Football stats for the league.',
+};
 
 export default async function LeaguePage({ params }: any) {
   const data = await getData(params.id);
@@ -38,10 +39,10 @@ export default async function LeaguePage({ params }: any) {
     <div>
       {data.standings && data.standings.response.length > 0 && (
         <LeagueCrest
-          country={data.standings.response[0].league.country}
+          subtitle={data.standings.response[0].league.country}
           flag={data.standings.response[0].league.flag}
           logo={data.standings.response[0].league.logo}
-          name={data.standings.response[0].league.name}
+          title={data.standings.response[0].league.name}
           logoSize="lg"
         />
       )}

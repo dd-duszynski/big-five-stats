@@ -44,11 +44,11 @@ export function LeagueCard({
 
   const leagueCrestWithName = (
     <LeagueCrest
-      country={league.country}
       flag={league.flag}
       logo={league.logo}
-      name={league.name}
       logoSize="md"
+      subtitle={league.country}
+      title={league.name}
     />
   );
 

@@ -4,6 +4,7 @@ import { fetchAPISports } from '@/lib/utils';
 import { APIResponse } from '@/models/Standings.model';
 import { TeamResponse } from '@/models/Team.model';
 import { TeamStatisticsResponse } from '@/models/TeamStatistics.model copy';
+import { Metadata } from 'next';
 
 async function getData(teamId: string) {
   const teamInfo = await fetchAPISports<APIResponse<TeamResponse[]>>(
@@ -19,10 +20,10 @@ async function getData(teamId: string) {
   };
 }
 
-// export const metadata: Metadata = {
-//   title: 'Big Five',
-//   description: 'Football stats for the big five leagues.',
-// };
+export const metadata: Metadata = {
+  title: 'Big Five - Team Statistics',
+  description: 'Football stats for the big five leagues.',
+};
 
 export default async function TeamPage({ params }: any) {
   const data = await getData(params.id);
@@ -34,11 +35,11 @@ export default async function TeamPage({ params }: any) {
   return (
     <div>
       <LeagueCrest
-        country={teamStatistics.league.country}
         flag={teamStatistics.league.flag}
         logo={teamStatistics.team.logo}
-        name={teamStatistics.team.name}
         logoSize="lg"
+        subtitle={`${teamStatistics.league.name} - ${teamStatistics.league.country}`}
+        title={teamStatistics.team.name}
       />
       <Stadium
         name={teamInfo.venue.name}
