@@ -1,7 +1,8 @@
-import { LeagueCrest, Stadium, TeamPlayers } from '@/components';
+import { DataTable, LeagueCrest, Stadium, TeamPlayers } from '@/components';
+import { standingsColumns } from '@/components/data-table/columns/standings-columns';
 import { leagueIdForTeam } from '@/enums/league';
 import { fetchAPISports } from '@/lib/utils';
-import { APIResponse } from '@/models/Standings.model';
+import { APIResponse, StandingsResponse } from '@/models/Standings.model';
 import { TeamResponse } from '@/models/Team.model';
 import { TeamSquadResponse } from '@/models/TeamSquad.model';
 import { TeamStatisticsResponse } from '@/models/TeamStatistics.model copy';
@@ -18,10 +19,15 @@ async function getData(teamId: string) {
   const teamSquad = await fetchAPISports<APIResponse<TeamSquadResponse[]>>(
     `players/squads?team=${teamId}`
   );
+  const standings = await fetchAPISports<APIResponse<StandingsResponse[]>>(
+    `standings?league=${teamStatistics?.response.league.id}&season=2023`
+  );
+
   return {
     teamInfo,
     teamStatistics,
     teamSquad,
+    standings,
   };
 }
 
@@ -35,6 +41,7 @@ export default async function TeamPage({ params }: any) {
   const teamInfo = data.teamInfo?.response[0];
   const teamStatistics = data.teamStatistics?.response;
   const teamSquad = data.teamSquad?.response[0];
+  const standings = data.standings?.response[0];
 
   if (!teamInfo || !teamStatistics || !teamSquad) return <div>loading...</div>;
 
@@ -47,6 +54,13 @@ export default async function TeamPage({ params }: any) {
         subtitle={`${teamStatistics.league.name} - ${teamStatistics.league.country}`}
         title={teamStatistics.team.name}
       />
+      {standings && (
+        <DataTable
+          columns={standingsColumns}
+          data={standings.league.standings[0]}
+          teamToHighlight={teamStatistics.team.id}
+        />
+      )}
       <Stadium
         name={teamInfo.venue.name}
         address={teamInfo.venue.address}

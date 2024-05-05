@@ -19,12 +19,14 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   onlyFive?: boolean;
+  teamToHighlight?: number;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   onlyFive,
+  teamToHighlight,
 }: DataTableProps<TData, TValue>) {
   // const collapsedData = data.slice(0, 5);
   const table = useReactTable({
@@ -61,10 +63,14 @@ export function DataTable<TData, TValue>({
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => {
+              console.log(row);
               return (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
+                  className={`${
+                    teamToHighlight === row.original.team.id && 'bg-gray-100'
+                  }`}
                 >
                   {row.getVisibleCells().map((cell) => {
                     return (
