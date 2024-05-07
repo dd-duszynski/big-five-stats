@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Text } from '../text/text';
+import { Text } from '@/components';
 import { Card, CardContent, CardHeader } from '../ui/card';
 
 type StadiumProps = {
@@ -27,8 +27,6 @@ export function Stadium({
           Stadium
         </Text>
       </CardHeader>
-
-      <div className="mb-2 flex items-center justify-center  "></div>
 
       <CardContent>
         <div>

@@ -1,8 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-import * as React from 'react';
-import Image from 'next/image';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,6 +10,9 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
+import Link from 'next/link';
+import * as React from 'react';
 
 const leagues: { title: string; href: string; flag: string }[] = [
   {
@@ -40,36 +40,36 @@ const leagues: { title: string; href: string; flag: string }[] = [
     href: '/league/135',
     flag: 'https://media.api-sports.io/flags/it.svg',
   },
-  {
-    title: 'Primeira Liga',
-    href: '/league/94',
-    flag: 'https://media.api-sports.io/flags/pt.svg',
-  },
-  {
-    title: 'Ekstraklasa',
-    href: '/league/106',
-    flag: 'https://media.api-sports.io/flags/pl.svg',
-  },
-  {
-    title: 'SuperLig',
-    href: '/league/203',
-    flag: 'https://media.api-sports.io/flags/tr.svg',
-  },
-  {
-    title: 'Eredivisie',
-    href: '/league/88',
-    flag: 'https://media.api-sports.io/flags/nl.svg',
-  },
-  {
-    title: 'ProLeague',
-    href: '/league/307',
-    flag: 'https://media.api-sports.io/flags/sa.svg',
-  },
+  // {
+  //   title: 'Primeira Liga',
+  //   href: '/league/94',
+  //   flag: 'https://media.api-sports.io/flags/pt.svg',
+  // },
+  // {
+  //   title: 'Ekstraklasa',
+  //   href: '/league/106',
+  //   flag: 'https://media.api-sports.io/flags/pl.svg',
+  // },
+  // {
+  //   title: 'SuperLig',
+  //   href: '/league/203',
+  //   flag: 'https://media.api-sports.io/flags/tr.svg',
+  // },
+  // {
+  //   title: 'Eredivisie',
+  //   href: '/league/88',
+  //   flag: 'https://media.api-sports.io/flags/nl.svg',
+  // },
+  // {
+  //   title: 'ProLeague',
+  //   href: '/league/307',
+  //   flag: 'https://media.api-sports.io/flags/sa.svg',
+  // },
 ];
 
 export function Navigation() {
   return (
-    <NavigationMenu className="fixed w-full max-w-none justify-start bg-indigo-500">
+    <NavigationMenu className="fixed w-full max-w-none justify-start bg-indigo-500 px-4 py-2 text-white">
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link
@@ -148,7 +148,7 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors',
+            'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none text-black no-underline outline-none transition-colors',
             className
           )}
           {...props}

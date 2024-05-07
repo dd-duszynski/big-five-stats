@@ -13,3 +13,4 @@ export { PlayerBasicInfo as PlayerBasicInfoPanel } from './player-info/player-ba
 export { Stadium } from './stadium/stadium';
 export { TeamPlayers } from './team-players/team-players';
 export { Text } from './text/text';
+export { PlayerBar } from './player-bar/player-bar';

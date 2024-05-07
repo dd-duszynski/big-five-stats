@@ -68,8 +68,11 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
+                  // TODO - highlight team
                   className={`${
-                    teamToHighlight === row.original.team.id && 'bg-gray-100'
+                    teamToHighlight &&
+                    teamToHighlight === row.original.team.id &&
+                    'bg-indigo-200'
                   }`}
                 >
                   {row.getVisibleCells().map((cell) => {

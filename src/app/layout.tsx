@@ -19,7 +19,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <Navigation />
-        <main className="flex min-h-screen flex-col items-start justify-between p-6 pt-12">
+        <main className="flex h-screen min-h-screen flex-col items-start justify-between pt-14">
           {children}
         </main>
       </body>

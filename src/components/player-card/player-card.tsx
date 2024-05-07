@@ -17,8 +17,8 @@ export const PlayerCard = ({ player }: PlayerCardProps) => {
           height={80}
           className="rounded-lg"
         />
-        <div className="border-purple absolute left-[-6px] top-0 rounded-full border bg-gray-200  p-1 text-xs">
-          <span>{player.number}</span>
+        <div className="border-purple absolute left-[-6px] top-0 rounded-full border border-white bg-slate-400  p-1 text-xs">
+          <span>{player.number || '-'}</span>
         </div>
       </div>
       <Link
