@@ -1,4 +1,11 @@
-import { DataTable, LeagueCrest, Stadium, TeamPlayers } from '@/components';
+import {
+  Breadcrumbs,
+  DataTable,
+  LeagueCrest,
+  Stadium,
+  TeamPlayers,
+  Text,
+} from '@/components';
 import { standingsColumns } from '@/components/data-table/columns/standings-columns';
 import { leagueIdForTeam } from '@/enums/league';
 import { fetchAPISports } from '@/lib/utils';
@@ -43,32 +50,67 @@ export default async function TeamPage({ params }: any) {
   const teamSquad = data.teamSquad?.response[0];
   const standings = data.standings?.response[0];
 
-  if (!teamInfo || !teamStatistics || !teamSquad) return <div>loading...</div>;
+  if (!teamInfo || !teamStatistics || !teamSquad || !standings)
+    return <div>loading...</div>;
+
+  const breadcrumbs = [
+    {
+      link: `/`,
+      text: 'Home',
+      showSeparator: true,
+    },
+    {
+      link: `/league/${teamStatistics.league.id}`,
+      text: teamStatistics.league.name,
+      showSeparator: true,
+    },
+    {
+      link: '',
+      text: teamStatistics.team.name,
+      showSeparator: false,
+    },
+  ];
+
+  const teamRank = standings.league.standings[0].find(
+    (team) => team.team.id === teamStatistics.team.id
+  )?.rank;
 
   return (
-    <div>
-      <LeagueCrest
-        flag={teamStatistics.league.flag}
-        logo={teamStatistics.team.logo}
-        logoSize="lg"
-        subtitle={`${teamStatistics.league.name} - ${teamStatistics.league.country}`}
-        title={teamStatistics.team.name}
-      />
-      {standings && (
+    <div className="h-full w-full px-6">
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
+
+      <div className="flex items-center justify-between">
+        <LeagueCrest
+          flag={teamStatistics.league.flag}
+          logo={teamStatistics.team.logo}
+          logoSize="lg"
+          subtitle={`${teamStatistics.league.name} - ${teamStatistics.league.country}`}
+          title={teamStatistics.team.name}
+        />
+        <Text
+          variant="h1"
+          className="font-4xl p-4 text-center"
+        >
+          {`Position: ${teamRank}` || '-'}
+        </Text>
+      </div>
+      <div className="flex items-start justify-between">
         <DataTable
           columns={standingsColumns}
           data={standings.league.standings[0]}
           teamToHighlight={teamStatistics.team.id}
         />
-      )}
-      <Stadium
-        name={teamInfo.venue.name}
-        address={teamInfo.venue.address}
-        city={teamInfo.venue.city}
-        capacity={teamInfo.venue.capacity}
-        image={teamInfo.venue.image}
-      />
-      <TeamPlayers players={teamSquad.players} />
+        <div>
+          <TeamPlayers players={teamSquad.players} />
+          <Stadium
+            name={teamInfo.venue.name}
+            address={teamInfo.venue.address}
+            city={teamInfo.venue.city}
+            capacity={teamInfo.venue.capacity}
+            image={teamInfo.venue.image}
+          />
+        </div>
+      </div>
     </div>
   );
 }

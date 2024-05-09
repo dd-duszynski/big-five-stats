@@ -76,9 +76,9 @@ export const leagueIdForTeam = (teamId: number): LEAGUES_ID | undefined => {
   if (FRA_TeamsId.includes(teamId)) return LEAGUES_ID.FRA_Ligue_1;
   if (GER_TeamsId.includes(teamId)) return LEAGUES_ID.GER_Bundesliga;
   if (ITA_TeamsId.includes(teamId)) return LEAGUES_ID.ITA_Serie_A;
-  if (POR_TeamsId.includes(teamId)) return LEAGUES_ID.POR_Primeira_Liga;
-  if (POL_TeamsId.includes(teamId)) return LEAGUES_ID.POL_Ekstraklasa;
-  if (TUR_TeamsId.includes(teamId)) return LEAGUES_ID.TUR_SuperLig;
-  if (NET_TeamsId.includes(teamId)) return LEAGUES_ID.NET_Eredivisie;
-  if (SAU_TeamsId.includes(teamId)) return LEAGUES_ID.SAU_ProLeague;
+  // if (POR_TeamsId.includes(teamId)) return LEAGUES_ID.POR_Primeira_Liga;
+  // if (POL_TeamsId.includes(teamId)) return LEAGUES_ID.POL_Ekstraklasa;
+  // if (TUR_TeamsId.includes(teamId)) return LEAGUES_ID.TUR_SuperLig;
+  // if (NET_TeamsId.includes(teamId)) return LEAGUES_ID.NET_Eredivisie;
+  // if (SAU_TeamsId.includes(teamId)) return LEAGUES_ID.SAU_ProLeague;
 };

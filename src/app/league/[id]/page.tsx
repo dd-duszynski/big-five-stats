@@ -1,4 +1,4 @@
-import { DataTable, LeagueCrest, Text } from '@/components';
+import { Breadcrumbs, DataTable, LeagueCrest, Text } from '@/components';
 import { standingsColumns } from '@/components/data-table/columns/standings-columns';
 import { topAssistsColumns } from '@/components/data-table/columns/top-assists-columns';
 import { topScorersColumns } from '@/components/data-table/columns/top-scorers-columns';
@@ -33,11 +33,26 @@ export const metadata: Metadata = {
 export default async function LeaguePage({ params }: any) {
   const data = await getData(params.id);
 
-  if (!data) return <div className="text-black">Data not found</div>;
+  if (!data || !data.standings || !data.standings.response.length)
+    return <div className="text-black">Data not found</div>;
+
+  const breadcrumbs = [
+    {
+      link: `/`,
+      text: 'Home',
+      showSeparator: true,
+    },
+    {
+      link: '',
+      text: data.standings.response[0].league.name,
+      showSeparator: false,
+    },
+  ];
 
   return (
-    <div>
-      {data.standings && data.standings.response.length > 0 && (
+    <div className="h-full w-full px-6">
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
+      <div className="flex items-center justify-between">
         <LeagueCrest
           flag={data.standings.response[0].league.flag}
           logo={data.standings.response[0].league.logo}
@@ -45,7 +60,14 @@ export default async function LeaguePage({ params }: any) {
           subtitle={data.standings.response[0].league.country}
           title={data.standings.response[0].league.name}
         />
-      )}
+        <Text
+          variant="h1"
+          className="text-center"
+        >
+          #14
+        </Text>
+      </div>
+
       <div className="flex flex-row flex-wrap gap-2">
         <div className="mt-2 w-full">
           <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
@@ -56,12 +78,10 @@ export default async function LeaguePage({ params }: any) {
               Standings
             </Text>
           </div>
-          {data.standings && data.standings.response.length > 0 && (
-            <DataTable
-              columns={standingsColumns}
-              data={data.standings.response[0].league.standings[0]}
-            />
-          )}
+          <DataTable
+            columns={standingsColumns}
+            data={data.standings.response[0].league.standings[0]}
+          />
         </div>
 
         <div className="flex w-full justify-between gap-4">

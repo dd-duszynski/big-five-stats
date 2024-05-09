@@ -45,30 +45,28 @@ export const metadata: Metadata = {
 export default async function Home() {
   const data = await getData();
   return (
-    <div>
-      <div className="flex flex-row flex-wrap gap-5">
-        {data.standings.map((league, index) => {
-          if (!league || league.response.length === 0) return <p>No League</p>;
-          const leagueId = league.response[0].league.id;
-          const topScorers = data.topScorers.find(
-            (topScorersItem) =>
-              Number(topScorersItem?.parameters.league) === leagueId
-          );
-          const topAssists = data.topAssists.find(
-            (topAssistsItem) =>
-              Number(topAssistsItem?.parameters.league) === leagueId
-          );
-          return (
-            <LeagueCard
-              isInitialyCollapsed={index !== 0}
-              key={leagueId}
-              league={league.response[0].league}
-              topAssists={topAssists?.response}
-              topScorers={topScorers?.response}
-            />
-          );
-        })}
-      </div>
+    <div className="flex h-full w-full flex-col items-center px-6">
+      {data.standings.map((league, index) => {
+        if (!league || league.response.length === 0) return <p>No League</p>;
+        const leagueId = league.response[0].league.id;
+        const topScorers = data.topScorers.find(
+          (topScorersItem) =>
+            Number(topScorersItem?.parameters.league) === leagueId
+        );
+        const topAssists = data.topAssists.find(
+          (topAssistsItem) =>
+            Number(topAssistsItem?.parameters.league) === leagueId
+        );
+        return (
+          <LeagueCard
+            isInitialyCollapsed={index !== 0}
+            key={leagueId}
+            league={league.response[0].league}
+            topAssists={topAssists?.response}
+            topScorers={topScorers?.response}
+          />
+        );
+      })}
     </div>
   );
 }

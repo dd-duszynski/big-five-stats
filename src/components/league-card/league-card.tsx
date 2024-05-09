@@ -54,7 +54,7 @@ export function LeagueCard({
 
   return (
     <Card
-      className={`w-full transition delay-75 ease-in-out hover:scale-[1.003] hover:shadow-md ${
+      className={`mt-4 w-full max-w-6xl transition delay-75 ease-in-out hover:scale-[1.003] hover:shadow-md ${
         isCollapsed && 'cursor-pointer'
       }`}
       onClick={() => {

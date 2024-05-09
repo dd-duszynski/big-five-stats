@@ -1,12 +1,4 @@
-import { PlayerBar, Text } from '@/components';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
+import { Breadcrumbs, PlayerBar, Text } from '@/components';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { fetchAPISports } from '@/lib/utils';
 import { PlayerResponse } from '@/models/Player.model';
@@ -32,6 +24,25 @@ export default async function PlayerPage({ params }: any) {
 
   if (!playerData) return <div className="text-black">Player not found</div>;
 
+  const breadcrumbs = [
+    {
+      link: `/`,
+      text: 'Home',
+      showSeparator: true,
+    },
+    {
+      link: `/league/${playerData.statistics[0].league.id}`,
+      text: playerData.statistics[0].league.name,
+      showSeparator: true,
+    },
+    {
+      link: `/team/${playerData.statistics[0].team.id}`,
+      text: playerData.statistics[0].team.name,
+      showSeparator: true,
+    },
+    { link: '', text: playerData.player.name, showSeparator: false },
+  ];
+
   return (
     <div className="flex h-full w-full flex-row flex-nowrap">
       <div className="w-[250px] bg-gradient-to-t from-emerald-500 to-indigo-500">
@@ -41,31 +52,7 @@ export default async function PlayerPage({ params }: any) {
         />
       </div>
       <main className="grow">
-        <div className="p-2">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink
-                  href={`/league/${playerData.statistics[0].league.id}`}
-                >
-                  {playerData.statistics[0].league.name}
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink
-                  href={`/team/${playerData.statistics[0].team.id}`}
-                >
-                  {playerData.statistics[0].team.name}
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{playerData.player.name}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="flex flex-wrap gap-4 p-1">
           <Card className="w-[300px]">
             <CardHeader className="flex items-center justify-center gap-3 rounded-t-md bg-gradient-to-r from-indigo-500 to-emerald-500">
