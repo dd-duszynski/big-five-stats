@@ -62,7 +62,7 @@ const CardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('p-6 pt-0', className)}
+    className={cn('p-6', className)}
     {...props}
   />
 ));
@@ -79,7 +79,7 @@ const CardFooter = React.forwardRef<
   />
 ));
 CardFooter.displayName = 'CardFooter';
-
+// TODO: CardWrapper and use everywhere where Card and CardHeader is used
 export {
   Card,
   CardHeader,

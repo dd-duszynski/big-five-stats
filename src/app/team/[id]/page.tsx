@@ -1,12 +1,11 @@
+import { DataTable, Stadium, TeamPlayers } from '@/components';
 import {
   Breadcrumbs,
-  DataTable,
-  LeagueCrest,
-  Stadium,
-  TeamPlayers,
-  Text,
-} from '@/components';
+  BreadcrumbsItem,
+} from '@/components/breadcrumbs/breadcrumbs';
 import { standingsColumns } from '@/components/data-table/columns/standings-columns';
+import LeagueTable from '@/components/league-table/league-table';
+import { PageHeader } from '@/components/page-header/page-header';
 import { leagueIdForTeam } from '@/enums/league';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponse, StandingsResponse } from '@/models/Standings.model';
@@ -53,7 +52,7 @@ export default async function TeamPage({ params }: any) {
   if (!teamInfo || !teamStatistics || !teamSquad || !standings)
     return <div>loading...</div>;
 
-  const breadcrumbs = [
+  const breadcrumbs: BreadcrumbsItem[] = [
     {
       link: `/`,
       text: 'Home',
@@ -76,40 +75,32 @@ export default async function TeamPage({ params }: any) {
   )?.rank;
 
   return (
-    <div className="h-full w-full px-6">
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
-
-      <div className="flex items-center justify-between">
-        <LeagueCrest
-          flag={teamStatistics.league.flag}
-          logo={teamStatistics.team.logo}
-          logoSize="lg"
-          subtitle={`${teamStatistics.league.name} - ${teamStatistics.league.country}`}
-          title={teamStatistics.team.name}
+    <div className="h-full w-full">
+      <PageHeader
+        logo={teamStatistics.team.logo}
+        logoSize="lg"
+        subLogo={teamStatistics.league.flag}
+        subtitle={`${teamStatistics.league.name} - ${teamStatistics.league.country}`}
+        title={teamStatistics.team.name}
+      />
+      <div className="px-8">
+        <Breadcrumbs
+          breadcrumbs={breadcrumbs}
+          className="mb-2 text-indigo-950"
         />
-        <Text
-          variant="h1"
-          className="font-4xl p-4 text-center"
-        >
-          {`Position: ${teamRank}` || '-'}
-        </Text>
-      </div>
-      <div className="flex items-start justify-between">
-        <DataTable
+        <LeagueTable
           columns={standingsColumns}
           data={standings.league.standings[0]}
           teamToHighlight={teamStatistics.team.id}
         />
-        <div>
-          <TeamPlayers players={teamSquad.players} />
-          <Stadium
-            name={teamInfo.venue.name}
-            address={teamInfo.venue.address}
-            city={teamInfo.venue.city}
-            capacity={teamInfo.venue.capacity}
-            image={teamInfo.venue.image}
-          />
-        </div>
+        <TeamPlayers players={teamSquad.players} />
+        <Stadium
+          name={teamInfo.venue.name}
+          address={teamInfo.venue.address}
+          city={teamInfo.venue.city}
+          capacity={teamInfo.venue.capacity}
+          image={teamInfo.venue.image}
+        />
       </div>
     </div>
   );

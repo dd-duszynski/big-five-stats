@@ -6,15 +6,18 @@ import {
   BreadcrumbSeparator,
 } from '../ui/breadcrumb';
 
-interface BreadcrumbsProps {
-  breadcrumbs: {
-    link: string;
-    text: string;
-    showSeparator: boolean;
-  }[];
+export interface BreadcrumbsItem {
+  link: string;
+  showSeparator: boolean;
+  text: string;
 }
 
-export function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
+interface BreadcrumbsProps {
+  breadcrumbs: BreadcrumbsItem[];
+  className?: string;
+}
+
+export function Breadcrumbs({ breadcrumbs, className = '' }: BreadcrumbsProps) {
   const breadcrumbItems = breadcrumbs.map((breadcrumb, index) => (
     <BreadcrumbItem key={index}>
       <BreadcrumbLink href={breadcrumb.link}>{breadcrumb.text}</BreadcrumbLink>
@@ -23,7 +26,7 @@ export function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
   ));
 
   return (
-    <Breadcrumb className="p-2">
+    <Breadcrumb className={className}>
       <BreadcrumbList>{breadcrumbItems}</BreadcrumbList>
     </Breadcrumb>
   );

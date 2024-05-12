@@ -1,7 +1,9 @@
-import { Breadcrumbs, DataTable, LeagueCrest, Text } from '@/components';
+import { Breadcrumbs, DataTable, Text } from '@/components';
 import { standingsColumns } from '@/components/data-table/columns/standings-columns';
 import { topAssistsColumns } from '@/components/data-table/columns/top-assists-columns';
 import { topScorersColumns } from '@/components/data-table/columns/top-scorers-columns';
+import LeagueTable from '@/components/league-table/league-table';
+import { PageHeader } from '@/components/page-header/page-header';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponse, StandingsResponse } from '@/models/Standings.model';
 import { TopAssistsResponse } from '@/models/TopAssists.model';
@@ -50,73 +52,59 @@ export default async function LeaguePage({ params }: any) {
   ];
 
   return (
-    <div className="h-full w-full px-6">
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
-      <div className="flex items-center justify-between">
-        <LeagueCrest
-          flag={data.standings.response[0].league.flag}
-          logo={data.standings.response[0].league.logo}
-          logoSize="lg"
-          subtitle={data.standings.response[0].league.country}
-          title={data.standings.response[0].league.name}
+    <div className="h-full w-full">
+      <PageHeader
+        logo={data.standings.response[0].league.logo}
+        logoSize="lg"
+        subLogo={data.standings.response[0].league.flag}
+        subtitle={data.standings.response[0].league.country}
+        title={data.standings.response[0].league.name}
+      />
+      <div className="px-8">
+        <Breadcrumbs
+          breadcrumbs={breadcrumbs}
+          className="mb-2 text-indigo-950"
         />
-        <Text
-          variant="h1"
-          className="text-center"
-        >
-          #14
-        </Text>
-      </div>
-
-      <div className="flex flex-row flex-wrap gap-2">
-        <div className="mt-2 w-full">
-          <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
-            <Text
-              variant="h2"
-              className="mb-2 mt-3 text-center text-white"
-            >
-              Standings
-            </Text>
-          </div>
-          <DataTable
-            columns={standingsColumns}
-            data={data.standings.response[0].league.standings[0]}
-          />
-        </div>
-
-        <div className="flex w-full justify-between gap-4">
-          <div className="w-1/2">
-            <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
-              <Text
-                variant="h2"
-                className="mb-2 mt-3 text-center text-white"
-              >
-                Top Scorers
-              </Text>
+        <LeagueTable
+          columns={standingsColumns}
+          data={data.standings.response[0].league.standings[0]}
+        />
+        {/* TODO: */}
+        <div className="flex flex-row flex-wrap gap-2">
+          <div className="flex w-full justify-between gap-4">
+            <div className="w-1/2">
+              <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
+                <Text
+                  variant="h2"
+                  className="mb-2 mt-3 text-center text-white"
+                >
+                  Top Scorers
+                </Text>
+              </div>
+              {data.topScorers && (
+                <DataTable
+                  columns={topScorersColumns}
+                  data={data.topScorers.response}
+                />
+              )}
             </div>
-            {data.topScorers && (
-              <DataTable
-                columns={topScorersColumns}
-                data={data.topScorers.response}
-              />
-            )}
-          </div>
 
-          <div className="w-1/2">
-            <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
-              <Text
-                variant="h2"
-                className="mb-2 mt-3 text-center text-white"
-              >
-                Top Asists
-              </Text>
+            <div className="w-1/2">
+              <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
+                <Text
+                  variant="h2"
+                  className="mb-2 mt-3 text-center text-white"
+                >
+                  Top Asists
+                </Text>
+              </div>
+              {data.topAssists && (
+                <DataTable
+                  columns={topAssistsColumns}
+                  data={data.topAssists.response}
+                />
+              )}
             </div>
-            {data.topAssists && (
-              <DataTable
-                columns={topAssistsColumns}
-                data={data.topAssists.response}
-              />
-            )}
           </div>
         </div>
       </div>

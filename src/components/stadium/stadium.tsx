@@ -18,7 +18,7 @@ export function Stadium({
   image,
 }: StadiumProps) {
   return (
-    <Card className="max-w-[640px]">
+    <Card className="mb-2 max-w-[640px]">
       <CardHeader className="flex items-center justify-center gap-3 rounded-t-md bg-gradient-to-r from-indigo-500 to-emerald-500">
         <Text
           variant="h2"
