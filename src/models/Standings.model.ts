@@ -13,27 +13,27 @@ export interface StandingsResponse {
 }
 
 export interface League {
-  id: number;
-  name: string;
   country: string;
-  logo: string;
   flag: string;
+  id: number;
+  logo: string;
+  name: string;
   season: number;
-  standings: Standing[][];
+  standings: IStanding[][];
 }
 
-export interface Standing {
-  rank: number;
-  team: Team;
-  points: number;
+export interface IStanding {
+  all: All;
+  away: Away;
+  description: string;
+  form: string;
   goalsDiff: number;
   group: string;
-  form: string;
-  status: string;
-  description: string;
-  all: All;
   home: Home;
-  away: Away;
+  points: number;
+  rank: number;
+  status: string;
+  team: Team;
   update: string;
 }
 

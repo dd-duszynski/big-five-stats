@@ -1,4 +1,4 @@
-import { DataTable, Stadium, TeamPlayers } from '@/components';
+import { Stadium, TeamPlayers } from '@/components';
 import {
   Breadcrumbs,
   BreadcrumbsItem,
@@ -8,7 +8,11 @@ import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
 import { leagueIdForTeam } from '@/enums/league';
 import { fetchAPISports } from '@/lib/utils';
-import { APIResponse, StandingsResponse } from '@/models/Standings.model';
+import {
+  APIResponse,
+  IStanding,
+  StandingsResponse,
+} from '@/models/Standings.model';
 import { TeamResponse } from '@/models/Team.model';
 import { TeamSquadResponse } from '@/models/TeamSquad.model';
 import { TeamStatisticsResponse } from '@/models/TeamStatistics.model copy';
@@ -69,10 +73,6 @@ export default async function TeamPage({ params }: any) {
       showSeparator: false,
     },
   ];
-
-  const teamRank = standings.league.standings[0].find(
-    (team) => team.team.id === teamStatistics.team.id
-  )?.rank;
 
   return (
     <div className="h-full w-full">

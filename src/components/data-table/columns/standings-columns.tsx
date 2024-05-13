@@ -11,7 +11,7 @@ export const standingsColumns: ColumnDef<any>[] = [
     header: '#',
   },
   {
-    accessorKey: 'team.logo',
+    accessorKey: 'team.id',
     header: 'Team',
     cell: ({ row }) => {
       return (
