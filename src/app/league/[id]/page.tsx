@@ -2,6 +2,7 @@ import { Breadcrumbs, DataTable, Text } from '@/components';
 import { standingsColumns } from '@/components/data-table/columns/standings-columns';
 import { topAssistsColumns } from '@/components/data-table/columns/top-assists-columns';
 import { topScorersColumns } from '@/components/data-table/columns/top-scorers-columns';
+import GradientCard from '@/components/gradient-card/gradient-card';
 import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
 import { fetchAPISports } from '@/lib/utils';
@@ -69,41 +70,35 @@ export default async function LeaguePage({ params }: any) {
           columns={standingsColumns}
           data={data.standings.response[0].league.standings[0]}
         />
-        {/* TODO: */}
+
         <div className="flex flex-row flex-wrap gap-2">
           <div className="flex w-full justify-between gap-4">
             <div className="w-1/2">
-              <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
-                <Text
-                  variant="h2"
-                  className="mb-2 mt-3 text-center text-white"
-                >
-                  Top Scorers
-                </Text>
-              </div>
-              {data.topScorers && (
-                <DataTable
-                  columns={topScorersColumns}
-                  data={data.topScorers.response}
-                />
-              )}
+              <GradientCard
+                headerTitle="Top Scorers"
+                className="w-full"
+              >
+                {data.topScorers && (
+                  <DataTable
+                    columns={topScorersColumns}
+                    data={data.topScorers.response}
+                  />
+                )}
+              </GradientCard>
             </div>
 
             <div className="w-1/2">
-              <div className="mb-2 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
-                <Text
-                  variant="h2"
-                  className="mb-2 mt-3 text-center text-white"
-                >
-                  Top Asists
-                </Text>
-              </div>
-              {data.topAssists && (
-                <DataTable
-                  columns={topAssistsColumns}
-                  data={data.topAssists.response}
-                />
-              )}
+              <GradientCard
+                headerTitle="Top Asists"
+                className="w-full"
+              >
+                {data.topAssists && (
+                  <DataTable
+                    columns={topAssistsColumns}
+                    data={data.topAssists.response}
+                  />
+                )}
+              </GradientCard>
             </div>
           </div>
         </div>
