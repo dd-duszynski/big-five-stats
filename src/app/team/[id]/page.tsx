@@ -8,11 +8,7 @@ import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
 import { leagueIdForTeam } from '@/enums/league';
 import { fetchAPISports } from '@/lib/utils';
-import {
-  APIResponse,
-  IStanding,
-  StandingsResponse,
-} from '@/models/Standings.model';
+import { APIResponse, StandingsResponse } from '@/models/Standings.model';
 import { TeamResponse } from '@/models/Team.model';
 import { TeamSquadResponse } from '@/models/TeamSquad.model';
 import { TeamStatisticsResponse } from '@/models/TeamStatistics.model copy';
@@ -29,8 +25,9 @@ async function getData(teamId: string) {
   const teamSquad = await fetchAPISports<APIResponse<TeamSquadResponse[]>>(
     `players/squads?team=${teamId}`
   );
+  console.log('teamStatistics:', teamStatistics);
   const standings = await fetchAPISports<APIResponse<StandingsResponse[]>>(
-    `standings?league=${teamStatistics?.response.league.id}&season=2023`
+    `standings?league=${leagueId}&season=2023`
   );
 
   return {
