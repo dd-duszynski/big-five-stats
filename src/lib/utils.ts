@@ -19,7 +19,9 @@ export async function fetchAPISports<T>(
     headers: myHeaders,
     redirect: 'follow',
     next: next,
+    // cache: 'no-cache',
   };
+
   try {
     const response = await fetch(
       'https://v3.football.api-sports.io/' + url,

@@ -1,5 +1,6 @@
 import { LeagueCard } from '@/components';
 import { LEAGUES_ID } from '@/enums/league';
+import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponse, StandingsResponse } from '@/models/Standings.model';
 import { TopAssistsResponse } from '@/models/TopAssists.model';
@@ -12,23 +13,26 @@ async function getData() {
   );
   const standingsPromises = leaguesId.map((league) => {
     return fetchAPISports<APIResponse<StandingsResponse[]>>(
-      `standings?league=${league}&season=2023`
+      `standings?league=${league}&season=2023`,
+      { revalidate: RevalidateTime.ONE_WEEK }
     );
   });
   const topScorersPromises = leaguesId.map((league) => {
     return fetchAPISports<APIResponse<TopScorerResponse[]>>(
-      `players/topscorers?league=${league}&season=2023`
+      `players/topscorers?league=${league}&season=2023`,
+      { revalidate: RevalidateTime.ONE_WEEK }
     );
   });
-  const topAssistsResponsePromises = leaguesId.map((league) => {
+  const topAssistsPromises = leaguesId.map((league) => {
     return fetchAPISports<APIResponse<TopAssistsResponse[]>>(
-      `players/topassists?league=${league}&season=2023`
+      `players/topassists?league=${league}&season=2023`,
+      { revalidate: RevalidateTime.ONE_WEEK }
     );
   });
 
   const standings = await Promise.all(standingsPromises);
   const topScorers = await Promise.all(topScorersPromises);
-  const topAssists = await Promise.all(topAssistsResponsePromises);
+  const topAssists = await Promise.all(topAssistsPromises);
 
   return {
     standings,
@@ -45,7 +49,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   const data = await getData();
   return (
-    <div className="flex h-full w-full flex-col items-center px-6">
+    <div className="flex h-full w-full flex-col items-center p-6">
       {data.standings.map((league, index) => {
         if (!league || league.response.length === 0) return <p>No League</p>;
         const leagueId = league.response[0].league.id;

@@ -7,6 +7,7 @@ import { standingsColumns } from '@/components/data-table/columns/standings-colu
 import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
 import { leagueIdForTeam } from '@/enums/league';
+import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponse, StandingsResponse } from '@/models/Standings.model';
 import { TeamResponse } from '@/models/Team.model';
@@ -15,19 +16,23 @@ import { TeamStatisticsResponse } from '@/models/TeamStatistics.model copy';
 import { Metadata } from 'next';
 
 async function getData(teamId: string) {
-  const teamInfo = await fetchAPISports<APIResponse<TeamResponse[]>>(
-    `teams?id=${teamId}`
-  );
   const leagueId = leagueIdForTeam(Number(teamId));
+  const teamInfo = await fetchAPISports<APIResponse<TeamResponse[]>>(
+    `teams?id=${teamId}`,
+    { revalidate: RevalidateTime.ONE_WEEK }
+  );
   const teamStatistics = await fetchAPISports<
     APIResponse<TeamStatisticsResponse>
-  >(`teams/statistics?season=2023&team=${teamId}&league=${leagueId}`);
+  >(`teams/statistics?season=2023&team=${teamId}&league=${leagueId}`, {
+    revalidate: RevalidateTime.ONE_WEEK,
+  });
   const teamSquad = await fetchAPISports<APIResponse<TeamSquadResponse[]>>(
-    `players/squads?team=${teamId}`
+    `players/squads?team=${teamId}`,
+    { revalidate: RevalidateTime.ONE_WEEK }
   );
-  console.log('teamStatistics:', teamStatistics);
   const standings = await fetchAPISports<APIResponse<StandingsResponse[]>>(
-    `standings?league=${leagueId}&season=2023`
+    `standings?league=${leagueId}&season=2023`,
+    { revalidate: RevalidateTime.ONE_WEEK }
   );
 
   return {

@@ -5,6 +5,7 @@ import { topScorersColumns } from '@/components/data-table/columns/top-scorers-c
 import GradientCard from '@/components/gradient-card/gradient-card';
 import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
+import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponse, StandingsResponse } from '@/models/Standings.model';
 import { TopAssistsResponse } from '@/models/TopAssists.model';
@@ -13,13 +14,16 @@ import { Metadata } from 'next';
 
 async function getData(id: number) {
   const standings = await fetchAPISports<APIResponse<StandingsResponse[]>>(
-    `standings?league=${id}&season=2023`
+    `standings?league=${id}&season=2023`,
+    { revalidate: RevalidateTime.ONE_WEEK }
   );
   const topScorers = await fetchAPISports<APIResponse<TopScorerResponse[]>>(
-    `players/topscorers?league=${id}&season=2023`
+    `players/topscorers?league=${id}&season=2023`,
+    { revalidate: RevalidateTime.ONE_WEEK }
   );
   const topAssists = await fetchAPISports<APIResponse<TopAssistsResponse[]>>(
-    `players/topassists?league=${id}&season=2023`
+    `players/topassists?league=${id}&season=2023`,
+    { revalidate: RevalidateTime.ONE_WEEK }
   );
   return {
     standings,
