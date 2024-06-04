@@ -1,15 +1,33 @@
 import { Breadcrumbs, PlayerBar } from '@/components';
 import GradientCard from '@/components/gradient-card/gradient-card';
+import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
 import { PlayerResponse } from '@/models/Player.model';
 import { APIResponse } from '@/models/Standings.model';
+import fs from 'fs';
+import path from 'path';
 import { Metadata } from 'next';
 
 async function getData(playerId: number) {
   const playerResponse = await fetchAPISports<APIResponse<PlayerResponse[]>>(
     `players/?id=${playerId}&season=2023`,
-    { revalidate: 3600 }
+    { revalidate: RevalidateTime.ONE_WEEK }
   );
+  /* TODO_DD: move this to helper function */
+  if (playerResponse && playerResponse.response.length > 0) {
+    fs.writeFile(
+      path.resolve(`./data/players/player-${playerId}.json`),
+      JSON.stringify(playerResponse.response),
+      (err) => {
+        if (err) {
+          console.error('Error writing data to file:', err);
+        } else {
+          console.log(`Data for player ${playerId} saved to file.`);
+        }
+      }
+    );
+  }
+  console.log('playerResponse:', playerResponse);
   return playerResponse;
 }
 
