@@ -14,19 +14,19 @@ async function getData(playerId: number) {
     { revalidate: RevalidateTime.ONE_WEEK }
   );
   /* TODO_DD: move this to helper function */
-  if (playerResponse && playerResponse.response.length > 0) {
-    fs.writeFile(
-      path.resolve(`./data/players/player-${playerId}.json`),
-      JSON.stringify(playerResponse.response),
-      (err) => {
-        if (err) {
-          console.error('Error writing data to file:', err);
-        } else {
-          console.log(`Data for player ${playerId} saved to file.`);
-        }
-      }
-    );
-  }
+  // if (playerResponse && playerResponse.response.length > 0) {
+  //   fs.writeFile(
+  //     path.resolve(`./data/players/player-${playerId}.json`),
+  //     JSON.stringify(playerResponse.response),
+  //     (err) => {
+  //       if (err) {
+  //         console.error('Error writing data to file:', err);
+  //       } else {
+  //         console.log(`Data for player ${playerId} saved to file.`);
+  //       }
+  //     }
+  //   );
+  // }
   console.log('playerResponse:', playerResponse);
   return playerResponse;
 }

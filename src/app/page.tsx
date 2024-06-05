@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   const data = await getData();
   return (
-    <div className="flex h-full w-full flex-col items-center p-6">
+    <div className="flex w-full flex-col items-center">
       {data.standings.map((league, index) => {
         if (!league || league.response.length === 0) return <p>No League</p>;
         const leagueId = league.response[0].league.id;

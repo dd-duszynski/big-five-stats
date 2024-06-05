@@ -1,7 +1,5 @@
-'use client';
-
-import { Crest } from '../crest/crest';
-import { Text } from '../text/text';
+import { Crest } from '../';
+import { Text } from '../';
 
 type LeagueCardProps = {
   flag: string;
