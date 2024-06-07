@@ -1,7 +1,9 @@
 import { Breadcrumbs, DataTable, Text } from '@/components';
+import { redCardsColumns } from '@/components/data-table/columns/red-cards-columns';
 import { standingsColumns } from '@/components/data-table/columns/standings-columns';
 import { topAssistsColumns } from '@/components/data-table/columns/top-assists-columns';
 import { topScorersColumns } from '@/components/data-table/columns/top-scorers-columns';
+import { yellowCardsColumns } from '@/components/data-table/columns/yellow-cards-columns';
 import GradientCard from '@/components/gradient-card/gradient-card';
 import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
@@ -25,10 +27,21 @@ async function getData(id: number) {
     `players/topassists?league=${id}&season=2023`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
+  const yellowCard = await fetchAPISports<APIResponse<TopAssistsResponse[]>>(
+    `players/topyellowcards?league=${id}&season=2023`,
+    { revalidate: RevalidateTime.ONE_WEEK }
+  );
+  const redCard = await fetchAPISports<APIResponse<TopAssistsResponse[]>>(
+    `players/topredcards?league=${id}&season=2023`,
+    { revalidate: RevalidateTime.ONE_WEEK }
+  );
+
   return {
     standings,
     topScorers,
     topAssists,
+    yellowCard,
+    redCard,
   };
 }
 
@@ -100,6 +113,38 @@ export default async function LeaguePage({ params }: any) {
                   <DataTable
                     columns={topAssistsColumns}
                     data={data.topAssists.response}
+                  />
+                )}
+              </GradientCard>
+            </div>
+          </div>
+        </div>
+        {/* TODO_DD: discipline */}
+        <div className="flex flex-row flex-wrap gap-2">
+          <div className="flex w-full justify-between gap-4">
+            <div className="w-1/2">
+              <GradientCard
+                headerTitle="Yellow Cards"
+                className="w-full"
+              >
+                {data.yellowCard && (
+                  <DataTable
+                    columns={yellowCardsColumns}
+                    data={data.yellowCard.response}
+                  />
+                )}
+              </GradientCard>
+            </div>
+
+            <div className="w-1/2">
+              <GradientCard
+                headerTitle="Red Cards"
+                className="w-full"
+              >
+                {data.redCard && (
+                  <DataTable
+                    columns={redCardsColumns}
+                    data={data.redCard.response}
                   />
                 )}
               </GradientCard>

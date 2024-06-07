@@ -130,3 +130,9 @@ export default async function PlayerPage({ params }: any) {
     </div>
   );
 }
+
+/* TODO_DD: 
+transfers:  https://www.api-football.com/documentation-v3#tag/Transfers/operation/get-transfers 
+trophies: https://www.api-football.com/documentation-v3#tag/Trophies
+sidelied: https://www.api-football.com/documentation-v3#tag/Sidelined
+*/

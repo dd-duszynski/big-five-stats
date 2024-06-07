@@ -4,11 +4,11 @@ export enum LEAGUES_ID {
   FRA_Ligue_1 = 61,
   GER_Bundesliga = 78,
   ITA_Serie_A = 135,
-  // POR_Primeira_Liga = 94,
-  // POL_Ekstraklasa = 106,
-  // TUR_SuperLig = 203,
-  // NET_Eredivisie = 88,
-  // SAU_ProLeague = 307,
+  POR_Primeira_Liga = 94,
+  POL_Ekstraklasa = 106,
+  TUR_SuperLig = 203,
+  NET_Eredivisie = 88,
+  SAU_ProLeague = 307,
 }
 
 const ENG_TeamsId = [
@@ -76,9 +76,9 @@ export const leagueIdForTeam = (teamId: number): LEAGUES_ID | undefined => {
   if (FRA_TeamsId.includes(teamId)) return LEAGUES_ID.FRA_Ligue_1;
   if (GER_TeamsId.includes(teamId)) return LEAGUES_ID.GER_Bundesliga;
   if (ITA_TeamsId.includes(teamId)) return LEAGUES_ID.ITA_Serie_A;
-  // if (POR_TeamsId.includes(teamId)) return LEAGUES_ID.POR_Primeira_Liga;
-  // if (POL_TeamsId.includes(teamId)) return LEAGUES_ID.POL_Ekstraklasa;
-  // if (TUR_TeamsId.includes(teamId)) return LEAGUES_ID.TUR_SuperLig;
-  // if (NET_TeamsId.includes(teamId)) return LEAGUES_ID.NET_Eredivisie;
-  // if (SAU_TeamsId.includes(teamId)) return LEAGUES_ID.SAU_ProLeague;
+  if (POR_TeamsId.includes(teamId)) return LEAGUES_ID.POR_Primeira_Liga;
+  if (POL_TeamsId.includes(teamId)) return LEAGUES_ID.POL_Ekstraklasa;
+  if (TUR_TeamsId.includes(teamId)) return LEAGUES_ID.TUR_SuperLig;
+  if (NET_TeamsId.includes(teamId)) return LEAGUES_ID.NET_Eredivisie;
+  if (SAU_TeamsId.includes(teamId)) return LEAGUES_ID.SAU_ProLeague;
 };
