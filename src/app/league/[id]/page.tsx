@@ -1,4 +1,4 @@
-import { Breadcrumbs, DataTable, Text } from '@/components';
+import { Breadcrumbs, DataTable } from '@/components';
 import { redCardsColumns } from '@/components/data-table/columns/red-cards-columns';
 import { standingsColumns } from '@/components/data-table/columns/standings-columns';
 import { topAssistsColumns } from '@/components/data-table/columns/top-assists-columns';
@@ -9,9 +9,8 @@ import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
+import { PlayerResponse } from '@/models/Player.model';
 import { APIResponse, StandingsResponse } from '@/models/Standings.model';
-import { TopAssistsResponse } from '@/models/TopAssists.model';
-import { TopScorerResponse } from '@/models/TopScorer.model';
 import { Metadata } from 'next';
 
 async function getData(id: number) {
@@ -19,19 +18,19 @@ async function getData(id: number) {
     `standings?league=${id}&season=2023`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
-  const topScorers = await fetchAPISports<APIResponse<TopScorerResponse[]>>(
+  const topScorers = await fetchAPISports<APIResponse<PlayerResponse[]>>(
     `players/topscorers?league=${id}&season=2023`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
-  const topAssists = await fetchAPISports<APIResponse<TopAssistsResponse[]>>(
+  const topAssists = await fetchAPISports<APIResponse<PlayerResponse[]>>(
     `players/topassists?league=${id}&season=2023`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
-  const yellowCard = await fetchAPISports<APIResponse<TopAssistsResponse[]>>(
+  const yellowCard = await fetchAPISports<APIResponse<PlayerResponse[]>>(
     `players/topyellowcards?league=${id}&season=2023`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
-  const redCard = await fetchAPISports<APIResponse<TopAssistsResponse[]>>(
+  const redCard = await fetchAPISports<APIResponse<PlayerResponse[]>>(
     `players/topredcards?league=${id}&season=2023`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );

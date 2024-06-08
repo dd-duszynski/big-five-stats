@@ -12,7 +12,7 @@ import { fetchAPISports } from '@/lib/utils';
 import { APIResponse, StandingsResponse } from '@/models/Standings.model';
 import { TeamResponse } from '@/models/Team.model';
 import { TeamSquadResponse } from '@/models/TeamSquad.model';
-import { TeamStatisticsResponse } from '@/models/TeamStatistics.model copy';
+import { TeamStatisticsResponse } from '@/models/TeamStatistics.model';
 import { Metadata } from 'next';
 
 async function getData(teamId: string) {

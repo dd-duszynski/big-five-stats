@@ -1,9 +1,8 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { PlayerResponse } from '@/models/Player.model';
 import { League } from '@/models/Standings.model';
-import { TopAssistsResponse } from '@/models/TopAssists.model';
-import { TopScorerResponse } from '@/models/TopScorer.model';
 import Link from 'next/link';
 import { useState } from 'react';
 import { standingsColumns } from '../data-table/columns/standings-columns';
@@ -17,8 +16,8 @@ import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 type LeagueCardProps = {
   isInitialyCollapsed?: boolean;
   league: League;
-  topAssists: TopAssistsResponse[] | undefined;
-  topScorers: TopScorerResponse[] | undefined;
+  topAssists: PlayerResponse[] | undefined;
+  topScorers: PlayerResponse[] | undefined;
 };
 
 export function LeagueCard({
