@@ -6,9 +6,11 @@ import {
 import { standingsColumns } from '@/components/data-table/columns/standings-columns';
 import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
+import { TeamCoach } from '@/components/team-coach/team-coach';
 import { leagueIdForTeam } from '@/enums/league';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
+import { CoachResponse } from '@/models/Coach.model';
 import { APIResponse, StandingsResponse } from '@/models/Standings.model';
 import { TeamResponse } from '@/models/Team.model';
 import { TeamSquadResponse } from '@/models/TeamSquad.model';
@@ -34,12 +36,17 @@ async function getData(teamId: string) {
     `standings?league=${leagueId}&season=2023`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
+  const coach = await fetchAPISports<APIResponse<CoachResponse[]>>(
+    `coachs?team=${teamId}`,
+    { revalidate: RevalidateTime.ONE_WEEK }
+  );
 
   return {
     teamInfo,
     teamStatistics,
     teamSquad,
     standings,
+    coach,
   };
 }
 
@@ -54,8 +61,9 @@ export default async function TeamPage({ params }: any) {
   const teamStatistics = data.teamStatistics?.response;
   const teamSquad = data.teamSquad?.response[0];
   const standings = data.standings?.response[0];
+  const coach = data.coach?.response[0];
 
-  if (!teamInfo || !teamStatistics || !teamSquad || !standings)
+  if (!teamInfo || !teamStatistics || !teamSquad || !standings || !coach)
     return <div>loading...</div>;
 
   const breadcrumbs: BreadcrumbsItem[] = [
@@ -96,6 +104,7 @@ export default async function TeamPage({ params }: any) {
           teamToHighlight={teamStatistics.team.id}
         />
         <TeamPlayers players={teamSquad.players} />
+        <TeamCoach coach={coach} />
         <Stadium
           name={teamInfo.venue.name}
           address={teamInfo.venue.address}
