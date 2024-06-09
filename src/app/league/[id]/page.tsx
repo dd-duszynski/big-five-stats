@@ -9,28 +9,33 @@ import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
+import { APIResponseType } from '@/models/api-response.model';
 import { PlayerResponseType } from '@/models/player.model';
-import { APIResponse, StandingsResponseType } from '@/models/standings.model';
+import { StandingsResponseType } from '@/models/standings.model';
 import { Metadata } from 'next';
 
 async function getData(id: number) {
-  const standings = await fetchAPISports<APIResponse<StandingsResponseType[]>>(
-    `standings?league=${id}&season=2023`,
-    { revalidate: RevalidateTime.ONE_WEEK }
-  );
-  const topScorers = await fetchAPISports<APIResponse<PlayerResponseType[]>>(
-    `players/topscorers?league=${id}&season=2023`,
-    { revalidate: RevalidateTime.ONE_WEEK }
-  );
-  const topAssists = await fetchAPISports<APIResponse<PlayerResponseType[]>>(
-    `players/topassists?league=${id}&season=2023`,
-    { revalidate: RevalidateTime.ONE_WEEK }
-  );
-  const yellowCard = await fetchAPISports<APIResponse<PlayerResponseType[]>>(
-    `players/topyellowcards?league=${id}&season=2023`,
-    { revalidate: RevalidateTime.ONE_WEEK }
-  );
-  const redCard = await fetchAPISports<APIResponse<PlayerResponseType[]>>(
+  const standings = await fetchAPISports<
+    APIResponseType<StandingsResponseType[]>
+  >(`standings?league=${id}&season=2023`, {
+    revalidate: RevalidateTime.ONE_WEEK,
+  });
+  const topScorers = await fetchAPISports<
+    APIResponseType<PlayerResponseType[]>
+  >(`players/topscorers?league=${id}&season=2023`, {
+    revalidate: RevalidateTime.ONE_WEEK,
+  });
+  const topAssists = await fetchAPISports<
+    APIResponseType<PlayerResponseType[]>
+  >(`players/topassists?league=${id}&season=2023`, {
+    revalidate: RevalidateTime.ONE_WEEK,
+  });
+  const yellowCard = await fetchAPISports<
+    APIResponseType<PlayerResponseType[]>
+  >(`players/topyellowcards?league=${id}&season=2023`, {
+    revalidate: RevalidateTime.ONE_WEEK,
+  });
+  const redCard = await fetchAPISports<APIResponseType<PlayerResponseType[]>>(
     `players/topredcards?league=${id}&season=2023`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );

@@ -10,33 +10,34 @@ import { TeamCoach } from '@/components/team-coach/team-coach';
 import { leagueIdForTeam } from '@/enums/league';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
-import { TCoach } from '@/models/Coach.model';
-import { APIResponse, StandingsResponseType } from '@/models/standings.model';
-import { TeamResponseType } from '@/models/team.model';
-import { TeamSquadResponse } from '@/models/TeamSquad.model';
-import { TeamStatisticsResponseType } from '@/models/TeamStatistics.model';
+import { APIResponseType } from '@/models/api-response.model';
+import { CoachType } from '@/models/coach.model';
+import { StandingsResponseType } from '@/models/standings.model';
+import { TeamResponseType } from '@/models/team-response.model';
+import { TeamSquadResponseType } from '@/models/team-squad-response.model';
+import { TeamStatisticsResponseType } from '@/models/team-statistics-response.model';
 import { Metadata } from 'next';
 
 async function getData(teamId: string) {
   const leagueId = leagueIdForTeam(Number(teamId));
-  const teamInfo = await fetchAPISports<APIResponse<TeamResponseType[]>>(
+  const teamInfo = await fetchAPISports<APIResponseType<TeamResponseType[]>>(
     `teams?id=${teamId}`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
   const teamStatistics = await fetchAPISports<
-    APIResponse<TeamStatisticsResponseType>
+    APIResponseType<TeamStatisticsResponseType>
   >(`teams/statistics?season=2023&team=${teamId}&league=${leagueId}`, {
     revalidate: RevalidateTime.ONE_WEEK,
   });
-  const teamSquad = await fetchAPISports<APIResponse<TeamSquadResponse[]>>(
-    `players/squads?team=${teamId}`,
-    { revalidate: RevalidateTime.ONE_WEEK }
-  );
-  const standings = await fetchAPISports<APIResponse<StandingsResponseType[]>>(
-    `standings?league=${leagueId}&season=2023`,
-    { revalidate: RevalidateTime.ONE_WEEK }
-  );
-  const coach = await fetchAPISports<APIResponse<TCoach[]>>(
+  const teamSquad = await fetchAPISports<
+    APIResponseType<TeamSquadResponseType[]>
+  >(`players/squads?team=${teamId}`, { revalidate: RevalidateTime.ONE_WEEK });
+  const standings = await fetchAPISports<
+    APIResponseType<StandingsResponseType[]>
+  >(`standings?league=${leagueId}&season=2023`, {
+    revalidate: RevalidateTime.ONE_WEEK,
+  });
+  const coach = await fetchAPISports<APIResponseType<CoachType[]>>(
     `coachs?team=${teamId}`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
@@ -63,8 +64,10 @@ export default async function TeamPage({ params }: any) {
   const standings = data.standings?.response[0];
   const coach = data.coach?.response[0];
 
-  if (!teamInfo || !teamStatistics || !teamSquad || !standings || !coach)
+  if (!teamInfo || !teamStatistics || !teamSquad || !standings || !coach) {
+    /* TODO_DD: loader component */
     return <div>loading...</div>;
+  }
 
   const breadcrumbs: BreadcrumbsItem[] = [
     {

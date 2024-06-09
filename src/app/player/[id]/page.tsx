@@ -2,15 +2,13 @@ import { Breadcrumbs, PlayerBar } from '@/components';
 import GradientCard from '@/components/gradient-card/gradient-card';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
+import { APIResponseType } from '@/models/api-response.model';
 import { PlayerResponseType } from '@/models/player.model';
-import { APIResponse } from '@/models/standings.model';
-import fs from 'fs';
-import path from 'path';
 import { Metadata } from 'next';
 
 async function getData(playerId: number) {
   const playerResponse = await fetchAPISports<
-    APIResponse<PlayerResponseType[]>
+    APIResponseType<PlayerResponseType[]>
   >(`players/?id=${playerId}&season=2023`, {
     revalidate: RevalidateTime.ONE_WEEK,
   });

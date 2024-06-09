@@ -3,17 +3,17 @@ import { CoachBar } from '@/components/coach-bar/coach-bar';
 import GradientCard from '@/components/gradient-card/gradient-card';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
-import { TCoach } from '@/models/Coach.model';
-import { APIResponse } from '@/models/standings.model';
+import { APIResponseType } from '@/models/api-response.model';
+import { CoachType } from '@/models/coach.model';
 import { Trophies } from '@/models/trophies.model';
 import Image from 'next/image';
 
 async function getData(coachId: number) {
-  const coach = await fetchAPISports<APIResponse<TCoach[]>>(
+  const coach = await fetchAPISports<APIResponseType<CoachType[]>>(
     `coachs?id=${coachId}`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
-  const trophies = await fetchAPISports<APIResponse<Trophies[]>>(
+  const trophies = await fetchAPISports<APIResponseType<Trophies[]>>(
     `trophies?coach=${coachId}`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
@@ -25,8 +25,9 @@ export default async function CoachPage({ params }: any) {
   const coachData = data.coach?.response[0] || null;
   const trophiesData = data.trophies?.response || null;
 
-  if (!coachData || !trophiesData)
+  if (!coachData || !trophiesData) {
     return <div className="text-black">Coach not found</div>;
+  }
 
   const breadcrumbs = [
     {
