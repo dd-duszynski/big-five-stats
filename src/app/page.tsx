@@ -2,8 +2,9 @@ import { LeagueCard } from '@/components';
 import { LEAGUES_ID } from '@/enums/league';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
-import { PlayerResponse } from '@/models/Player.model';
-import { APIResponse, StandingsResponse } from '@/models/Standings.model';
+import { APIResponseType } from '@/models/api-response.model';
+import { PlayerResponseType } from '@/models/player.model';
+import { StandingsResponseType } from '@/models/standings.model';
 import { Metadata } from 'next';
 
 async function getData() {
@@ -11,19 +12,19 @@ async function getData() {
     (league) => typeof league === 'number'
   );
   const standingsPromises = leaguesId.map((league) => {
-    return fetchAPISports<APIResponse<StandingsResponse[]>>(
+    return fetchAPISports<APIResponseType<StandingsResponseType[]>>(
       `standings?league=${league}&season=2023`,
       { revalidate: RevalidateTime.ONE_WEEK }
     );
   });
   const topScorersPromises = leaguesId.map((league) => {
-    return fetchAPISports<APIResponse<PlayerResponse[]>>(
+    return fetchAPISports<APIResponseType<PlayerResponseType[]>>(
       `players/topscorers?league=${league}&season=2023`,
       { revalidate: RevalidateTime.ONE_WEEK }
     );
   });
   const topAssistsPromises = leaguesId.map((league) => {
-    return fetchAPISports<APIResponse<PlayerResponse[]>>(
+    return fetchAPISports<APIResponseType<PlayerResponseType[]>>(
       `players/topassists?league=${league}&season=2023`,
       { revalidate: RevalidateTime.ONE_WEEK }
     );

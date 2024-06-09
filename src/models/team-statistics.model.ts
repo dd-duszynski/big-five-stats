@@ -1,87 +1,27 @@
-export interface TeamStatisticsResponse {
-  league: League;
-  team: Team;
-  form: string;
-  fixtures: Fixtures;
-  goals: Goals;
-  biggest: Biggest;
-  clean_sheet: CleanSheet;
-  failed_to_score: FailedToScore;
-  penalty: Penalty;
-  lineups: Lineup[];
-  cards: Cards;
-}
-
-export interface League {
-  id: number;
-  name: string;
-  country: string;
-  logo: string;
-  flag: string;
-  season: number;
-}
-
-export interface Team {
-  id: number;
-  name: string;
-  logo: string;
-}
-
-export interface Fixtures {
-  played: Played;
-  wins: Wins;
-  draws: Draws;
-  loses: Loses;
-}
-
-export interface Played {
-  home: number;
-  away: number;
-  total: number;
-}
-
-export interface Wins {
-  home: number;
-  away: number;
-  total: number;
-}
-
-export interface Draws {
-  home: number;
-  away: number;
-  total: number;
-}
-
-export interface Loses {
-  home: number;
-  away: number;
-  total: number;
-}
-
-export interface Goals {
+export type Goals = {
   for: For;
   against: Against;
-}
+};
 
-export interface For {
+export type For = {
   total: Total;
   average: Average;
   minute: Minute;
-}
+};
 
-export interface Total {
+export type Total = {
   home: number;
   away: number;
   total: number;
-}
+};
 
-export interface Average {
+export type Average = {
   home: string;
   away: string;
   total: string;
-}
+};
 
-export interface Minute {
+export type Minute = {
   '0-15': N015;
   '16-30': N1630;
   '31-45': N3145;
@@ -90,67 +30,67 @@ export interface Minute {
   '76-90': N7690;
   '91-105': N91105;
   '106-120': N106120;
-}
+};
 
-export interface N015 {
+export type N015 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N1630 {
+export type N1630 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N3145 {
+export type N3145 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N4660 {
+export type N4660 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N6175 {
+export type N6175 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N7690 {
+export type N7690 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N91105 {
+export type N91105 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N106120 {
+export type N106120 = {
   total: any;
   percentage: any;
-}
+};
 
-export interface Against {
+export type Against = {
   total: Total2;
   average: Average2;
   minute: Minute2;
-}
+};
 
-export interface Total2 {
+export type Total2 = {
   home: number;
   away: number;
   total: number;
-}
+};
 
-export interface Average2 {
+export type Average2 = {
   home: string;
   away: string;
   total: string;
-}
+};
 
-export interface Minute2 {
+export type Minute2 = {
   '0-15': N0152;
   '16-30': N16302;
   '31-45': N31452;
@@ -159,125 +99,125 @@ export interface Minute2 {
   '76-90': N76902;
   '91-105': N911052;
   '106-120': N1061202;
-}
+};
 
-export interface N0152 {
+export type N0152 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N16302 {
+export type N16302 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N31452 {
+export type N31452 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N46602 {
+export type N46602 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N61752 {
+export type N61752 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N76902 {
+export type N76902 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N911052 {
+export type N911052 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N1061202 {
+export type N1061202 = {
   total: any;
   percentage: any;
-}
+};
 
-export interface Biggest {
+export type Biggest = {
   streak: Streak;
   wins: Wins2;
   loses: Loses2;
   goals: Goals2;
-}
+};
 
-export interface Streak {
+export type Streak = {
   wins: number;
   draws: number;
   loses: number;
-}
+};
 
-export interface Wins2 {
+export type Wins2 = {
   home: string;
   away: string;
-}
+};
 
-export interface Loses2 {
+export type Loses2 = {
   home: string;
   away: string;
-}
+};
 
-export interface Goals2 {
+export type Goals2 = {
   for: For2;
   against: Against2;
-}
+};
 
-export interface For2 {
+export type For2 = {
   home: number;
   away: number;
-}
+};
 
-export interface Against2 {
+export type Against2 = {
   home: number;
   away: number;
-}
+};
 
-export interface CleanSheet {
-  home: number;
-  away: number;
-  total: number;
-}
-
-export interface FailedToScore {
+export type CleanSheet = {
   home: number;
   away: number;
   total: number;
-}
+};
 
-export interface Penalty {
+export type FailedToScore = {
+  home: number;
+  away: number;
+  total: number;
+};
+
+export type Penalty = {
   scored: Scored;
   missed: Missed;
   total: number;
-}
+};
 
-export interface Scored {
+export type Scored = {
   total: number;
   percentage: string;
-}
+};
 
-export interface Missed {
+export type Missed = {
   total: number;
   percentage: string;
-}
+};
 
-export interface Lineup {
+export type Lineup = {
   formation: string;
   played: number;
-}
+};
 
-export interface Cards {
+export type Cards = {
   yellow: Yellow;
   red: Red;
-}
+};
 
-export interface Yellow {
+export type Yellow = {
   '0-15': N0153;
   '16-30': N16303;
   '31-45': N31453;
@@ -287,54 +227,54 @@ export interface Yellow {
   '91-105': N911053;
   '106-120': N1061203;
   '': GeneratedType;
-}
+};
 
-export interface N0153 {
+export type N0153 = {
   total: any;
   percentage: any;
-}
+};
 
-export interface N16303 {
+export type N16303 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N31453 {
+export type N31453 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N46603 {
+export type N46603 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N61753 {
+export type N61753 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N76903 {
+export type N76903 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N911053 {
+export type N911053 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N1061203 {
+export type N1061203 = {
   total: any;
   percentage: any;
-}
+};
 
-export interface GeneratedType {
+export type GeneratedType = {
   total: number;
   percentage: string;
-}
+};
 
-export interface Red {
+export type Red = {
   '0-15': N0154;
   '16-30': N16304;
   '31-45': N31454;
@@ -343,44 +283,44 @@ export interface Red {
   '76-90': N76904;
   '91-105': N911054;
   '106-120': N1061204;
-}
+};
 
-export interface N0154 {
+export type N0154 = {
   total: any;
   percentage: any;
-}
+};
 
-export interface N16304 {
+export type N16304 = {
   total: any;
   percentage: any;
-}
+};
 
-export interface N31454 {
+export type N31454 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N46604 {
+export type N46604 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N61754 {
+export type N61754 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N76904 {
+export type N76904 = {
   total: any;
   percentage: any;
-}
+};
 
-export interface N911054 {
+export type N911054 = {
   total: number;
   percentage: string;
-}
+};
 
-export interface N1061204 {
+export type N1061204 = {
   total: any;
   percentage: any;
-}
+};

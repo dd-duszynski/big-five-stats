@@ -3,13 +3,13 @@ import { CoachBar } from '@/components/coach-bar/coach-bar';
 import GradientCard from '@/components/gradient-card/gradient-card';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
-import { CoachResponse } from '@/models/Coach.model';
-import { APIResponse } from '@/models/Standings.model';
-import { Trophies } from '@/models/Trophies.model';
+import { TCoach } from '@/models/Coach.model';
+import { APIResponse } from '@/models/standings.model';
+import { Trophies } from '@/models/trophies.model';
 import Image from 'next/image';
 
 async function getData(coachId: number) {
-  const coach = await fetchAPISports<APIResponse<CoachResponse[]>>(
+  const coach = await fetchAPISports<APIResponse<TCoach[]>>(
     `coachs?id=${coachId}`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );

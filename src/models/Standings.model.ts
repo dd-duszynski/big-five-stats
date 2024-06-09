@@ -1,73 +1,31 @@
-export interface APIResponse<T> {
-  response: T;
-  parameters: ResponseParameters;
-}
+import { StandingResultsType } from './standing-results.model';
+import { TeamBasicInfoType } from './team-basic-info.model';
 
-export interface ResponseParameters {
-  league: string;
-  season: string;
-}
+export type StandingsResponseType = {
+  league: StandingsLeagueType;
+};
 
-export interface StandingsResponse {
-  league: League;
-}
-
-export interface League {
+export type StandingsLeagueType = {
   country: string;
   flag: string;
   id: number;
   logo: string;
   name: string;
   season: number;
-  standings: IStanding[][];
-}
+  standings: StandingType[][];
+};
 
-export interface IStanding {
-  all: All;
-  away: Away;
+export type StandingType = {
+  all: StandingResultsType;
+  away: StandingResultsType;
   description: string;
   form: string;
   goalsDiff: number;
   group: string;
-  home: Home;
+  home: StandingResultsType;
   points: number;
   rank: number;
   status: string;
-  team: Team;
+  team: TeamBasicInfoType;
   update: string;
-}
-
-export interface Team {
-  id: number;
-  name: string;
-  logo: string;
-}
-
-export interface All {
-  played: number;
-  win: number;
-  draw: number;
-  lose: number;
-  goals: Goals;
-}
-
-export interface Goals {
-  for: number;
-  against: number;
-}
-
-export interface Home {
-  played: number;
-  win: number;
-  draw: number;
-  lose: number;
-  goals: Goals;
-}
-
-export interface Away {
-  played: number;
-  win: number;
-  draw: number;
-  lose: number;
-  goals: Goals;
-}
+};

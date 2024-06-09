@@ -1,9 +1,9 @@
-import { CoachResponse } from '@/models/Coach.model';
+import { TCoach } from '@/models/Coach.model';
 import { CoachCard } from '../coach-card/coach-card';
 import GradientCard from '../gradient-card/gradient-card';
 
 type TeamCoachProps = {
-  coach: CoachResponse;
+  coach: TCoach;
 };
 
 export function TeamCoach({ coach }: TeamCoachProps) {

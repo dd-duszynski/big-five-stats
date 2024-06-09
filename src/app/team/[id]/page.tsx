@@ -10,21 +10,21 @@ import { TeamCoach } from '@/components/team-coach/team-coach';
 import { leagueIdForTeam } from '@/enums/league';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
-import { CoachResponse } from '@/models/Coach.model';
-import { APIResponse, StandingsResponse } from '@/models/Standings.model';
-import { TeamResponse } from '@/models/Team.model';
+import { TCoach } from '@/models/Coach.model';
+import { APIResponse, StandingsResponseType } from '@/models/standings.model';
+import { TeamResponseType } from '@/models/team.model';
 import { TeamSquadResponse } from '@/models/TeamSquad.model';
-import { TeamStatisticsResponse } from '@/models/TeamStatistics.model';
+import { TeamStatisticsResponseType } from '@/models/TeamStatistics.model';
 import { Metadata } from 'next';
 
 async function getData(teamId: string) {
   const leagueId = leagueIdForTeam(Number(teamId));
-  const teamInfo = await fetchAPISports<APIResponse<TeamResponse[]>>(
+  const teamInfo = await fetchAPISports<APIResponse<TeamResponseType[]>>(
     `teams?id=${teamId}`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
   const teamStatistics = await fetchAPISports<
-    APIResponse<TeamStatisticsResponse>
+    APIResponse<TeamStatisticsResponseType>
   >(`teams/statistics?season=2023&team=${teamId}&league=${leagueId}`, {
     revalidate: RevalidateTime.ONE_WEEK,
   });
@@ -32,11 +32,11 @@ async function getData(teamId: string) {
     `players/squads?team=${teamId}`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
-  const standings = await fetchAPISports<APIResponse<StandingsResponse[]>>(
+  const standings = await fetchAPISports<APIResponse<StandingsResponseType[]>>(
     `standings?league=${leagueId}&season=2023`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
-  const coach = await fetchAPISports<APIResponse<CoachResponse[]>>(
+  const coach = await fetchAPISports<APIResponse<TCoach[]>>(
     `coachs?team=${teamId}`,
     { revalidate: RevalidateTime.ONE_WEEK }
   );
