@@ -1,9 +1,9 @@
-import { TeamSquadPlayer } from '@/models/TeamSquad.model';
+import { TeamSquadPlayerType } from '@/models/team-squad-player.model';
 import Image from 'next/image';
 import Link from 'next/link';
 
 interface PlayerCardProps {
-  player: TeamSquadPlayer;
+  player: TeamSquadPlayerType;
 }
 
 export const PlayerCard = ({ player }: PlayerCardProps) => {
@@ -11,11 +11,11 @@ export const PlayerCard = ({ player }: PlayerCardProps) => {
     <div className="relative flex h-[200px] w-[170px] flex-col items-center justify-center rounded-md border border-purple-300">
       <div className="relative flex flex-col">
         <Image
-          src={player.photo}
           alt={player.name}
-          width={80}
-          height={80}
           className="rounded-lg"
+          height={80}
+          src={player.photo}
+          width={80}
         />
         <div className="border-purple absolute left-[-6px] top-0 rounded-full border border-white bg-slate-400  p-1 text-xs">
           <span>{player.number || '-'}</span>

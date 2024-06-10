@@ -18,26 +18,26 @@ async function getData(id: number) {
   const standings = await fetchAPISports<
     APIResponseType<StandingsResponseType[]>
   >(`standings?league=${id}&season=2023`, {
-    revalidate: RevalidateTime.ONE_WEEK,
+    revalidate: RevalidateTime.ONE_DAY,
   });
   const topScorers = await fetchAPISports<
     APIResponseType<PlayerResponseType[]>
   >(`players/topscorers?league=${id}&season=2023`, {
-    revalidate: RevalidateTime.ONE_WEEK,
+    revalidate: RevalidateTime.ONE_DAY,
   });
   const topAssists = await fetchAPISports<
     APIResponseType<PlayerResponseType[]>
   >(`players/topassists?league=${id}&season=2023`, {
-    revalidate: RevalidateTime.ONE_WEEK,
+    revalidate: RevalidateTime.ONE_DAY,
   });
   const yellowCard = await fetchAPISports<
     APIResponseType<PlayerResponseType[]>
   >(`players/topyellowcards?league=${id}&season=2023`, {
-    revalidate: RevalidateTime.ONE_WEEK,
+    revalidate: RevalidateTime.ONE_DAY,
   });
   const redCard = await fetchAPISports<APIResponseType<PlayerResponseType[]>>(
     `players/topredcards?league=${id}&season=2023`,
-    { revalidate: RevalidateTime.ONE_WEEK }
+    { revalidate: RevalidateTime.ONE_DAY }
   );
 
   return {

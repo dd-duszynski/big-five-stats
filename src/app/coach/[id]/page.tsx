@@ -11,11 +11,11 @@ import Image from 'next/image';
 async function getData(coachId: number) {
   const coach = await fetchAPISports<APIResponseType<CoachType[]>>(
     `coachs?id=${coachId}`,
-    { revalidate: RevalidateTime.ONE_WEEK }
+    { revalidate: RevalidateTime.ONE_DAY }
   );
   const trophies = await fetchAPISports<APIResponseType<Trophies[]>>(
     `trophies?coach=${coachId}`,
-    { revalidate: RevalidateTime.ONE_WEEK }
+    { revalidate: RevalidateTime.ONE_DAY }
   );
   return { coach, trophies };
 }

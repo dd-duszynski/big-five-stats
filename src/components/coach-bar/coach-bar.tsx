@@ -1,8 +1,8 @@
-import { TCoach } from '@/models/Coach.model';
+import { CoachType } from '@/models/coach.model';
 import Image from 'next/image';
 
 interface ICoachBarProps {
-  coach: TCoach;
+  coach: CoachType;
 }
 
 /* TODO_DD: unify with PlayerBar */

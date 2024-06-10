@@ -1,9 +1,9 @@
-import { TCoach } from '@/models/Coach.model';
+import { CoachType } from '@/models/coach.model';
 import Image from 'next/image';
 import Link from 'next/link';
 
 interface CoachCardProps {
-  coach: TCoach;
+  coach: CoachType;
 }
 
 export const CoachCard = ({ coach }: CoachCardProps) => {

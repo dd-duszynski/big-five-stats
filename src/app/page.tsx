@@ -14,19 +14,19 @@ async function getData() {
   const standingsPromises = leaguesId.map((league) => {
     return fetchAPISports<APIResponseType<StandingsResponseType[]>>(
       `standings?league=${league}&season=2023`,
-      { revalidate: RevalidateTime.ONE_WEEK }
+      { revalidate: RevalidateTime.ONE_DAY }
     );
   });
   const topScorersPromises = leaguesId.map((league) => {
     return fetchAPISports<APIResponseType<PlayerResponseType[]>>(
       `players/topscorers?league=${league}&season=2023`,
-      { revalidate: RevalidateTime.ONE_WEEK }
+      { revalidate: RevalidateTime.ONE_DAY }
     );
   });
   const topAssistsPromises = leaguesId.map((league) => {
     return fetchAPISports<APIResponseType<PlayerResponseType[]>>(
       `players/topassists?league=${league}&season=2023`,
-      { revalidate: RevalidateTime.ONE_WEEK }
+      { revalidate: RevalidateTime.ONE_DAY }
     );
   });
 

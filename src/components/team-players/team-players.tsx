@@ -1,9 +1,9 @@
-import { TeamSquadPlayer } from '@/models/TeamSquad.model';
+import { TeamSquadPlayerType } from '@/models/team-squad-player.model';
 import GradientCard from '../gradient-card/gradient-card';
 import { PlayerCard } from '../player-card/player-card';
 
 type TeamPlayersProps = {
-  players: TeamSquadPlayer[];
+  players: TeamSquadPlayerType[];
 };
 
 export function TeamPlayers({ players }: TeamPlayersProps) {

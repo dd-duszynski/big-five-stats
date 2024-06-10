@@ -10,7 +10,7 @@ async function getData(playerId: number) {
   const playerResponse = await fetchAPISports<
     APIResponseType<PlayerResponseType[]>
   >(`players/?id=${playerId}&season=2023`, {
-    revalidate: RevalidateTime.ONE_WEEK,
+    revalidate: RevalidateTime.ONE_DAY,
   });
   /* TODO_DD: move this to helper function */
   // if (playerResponse && playerResponse.response.length > 0) {
