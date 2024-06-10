@@ -4,30 +4,21 @@ import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponseType } from '@/models/api-response.model';
 import { PlayerResponseType } from '@/models/player.model';
+import { Trophies } from '@/models/trophies.model';
 import { Metadata } from 'next';
 
 async function getData(playerId: number) {
-  const playerResponse = await fetchAPISports<
-    APIResponseType<PlayerResponseType[]>
-  >(`players/?id=${playerId}&season=2023`, {
-    revalidate: RevalidateTime.ONE_DAY,
-  });
-  /* TODO_DD: move this to helper function */
-  // if (playerResponse && playerResponse.response.length > 0) {
-  //   fs.writeFile(
-  //     path.resolve(`./data/players/player-${playerId}.json`),
-  //     JSON.stringify(playerResponse.response),
-  //     (err) => {
-  //       if (err) {
-  //         console.error('Error writing data to file:', err);
-  //       } else {
-  //         console.log(`Data for player ${playerId} saved to file.`);
-  //       }
-  //     }
-  //   );
-  // }
-  console.log('playerResponse:', playerResponse);
-  return playerResponse;
+  const player = await fetchAPISports<APIResponseType<PlayerResponseType[]>>(
+    `players/?id=${playerId}&season=2023`,
+    {
+      revalidate: RevalidateTime.ONE_DAY,
+    }
+  );
+  const trophies = await fetchAPISports<APIResponseType<Trophies[]>>(
+    `trophies?player=${playerId}`,
+    { revalidate: RevalidateTime.ONE_DAY }
+  );
+  return { player, trophies };
 }
 
 export const metadata: Metadata = {
@@ -37,9 +28,12 @@ export const metadata: Metadata = {
 
 export default async function PlayerPage({ params }: any) {
   const data = await getData(params.id);
-  const playerData = data?.response[0] || null;
+  const playerData = data.player?.response[0] || null;
+  const trophiesData = data.trophies?.response || null;
 
-  if (!playerData) return <div className="text-black">Player not found</div>;
+  if (!playerData || !trophiesData) {
+    return <div className="text-black">Player not found</div>;
+  }
 
   const breadcrumbs = [
     {
@@ -68,7 +62,7 @@ export default async function PlayerPage({ params }: any) {
           statistics={playerData.statistics}
         />
       </div>
-      <main className="grow px-4">
+      <main className="grow overflow-y-auto px-4">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
           className="my-2"
@@ -122,6 +116,32 @@ export default async function PlayerPage({ params }: any) {
               <p className="place-self-end">
                 {playerData.statistics[0].goals.conceded}
               </p>
+            </div>
+          </GradientCard>
+        </div>
+        {/* TODO_DD: to unify with coach trophies */}
+        <div className="flex flex-wrap gap-4">
+          <GradientCard
+            headerTitle="Trophies"
+            className="w-[450px]"
+          >
+            <div className="flex flex-col">
+              {/* TODO_DD: use table */}
+              {trophiesData.map((trophies, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-center border-b-2 border-slate-200"
+                >
+                  <div>
+                    <p className="place-self-end">
+                      {trophies.league} - {trophies.place}
+                    </p>
+                    <p className="place-self-end">
+                      {trophies.country} - {trophies.season}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </GradientCard>
         </div>

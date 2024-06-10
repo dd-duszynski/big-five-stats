@@ -2,16 +2,22 @@ import Image from 'next/image';
 import { calculateImageCssSize } from '..';
 
 type CrestProps = {
-  src: string;
   alt?: string;
+  className?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  src: string;
 };
 
-export const Crest = ({ src, alt, size = 'md' }: CrestProps) => {
+export const Crest = ({
+  alt,
+  className = '',
+  size = 'md',
+  src,
+}: CrestProps) => {
   const imageSizeCSS = calculateImageCssSize(size);
 
   return (
-    <figure className={`relative ${imageSizeCSS}`}>
+    <figure className={`relative ${imageSizeCSS} ${className}`}>
       <Image
         alt={alt ?? ''}
         className={`object-contain`}

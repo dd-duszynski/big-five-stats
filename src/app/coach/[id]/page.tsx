@@ -48,7 +48,7 @@ export default async function CoachPage({ params }: any) {
       <div className="w-[250px] bg-gradient-to-t from-emerald-500 to-indigo-500">
         <CoachBar coach={coachData} />
       </div>
-      <main className="grow px-4">
+      <main className="grow overflow-y-auto px-4">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
           className="my-2"
@@ -82,7 +82,7 @@ export default async function CoachPage({ params }: any) {
               ))}
             </div>
           </GradientCard>
-
+          {/* TODO_DD: to unify with player trophies */}
           <div className="flex flex-wrap gap-4">
             <GradientCard
               headerTitle="Trophies"
@@ -93,7 +93,7 @@ export default async function CoachPage({ params }: any) {
                 {trophiesData.map((trophies, index) => (
                   <div
                     key={index}
-                    className="flex flex-row items-center"
+                    className="flex flex-row items-center border-b-2 border-slate-200"
                   >
                     <div>
                       <p className="place-self-end">

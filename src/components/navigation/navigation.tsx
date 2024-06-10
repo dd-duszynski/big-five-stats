@@ -40,31 +40,31 @@ const leagues: { title: string; href: string; flag: string }[] = [
     href: '/league/135',
     flag: 'https://media.api-sports.io/flags/it.svg',
   },
-  // {
-  //   title: 'Primeira Liga',
-  //   href: '/league/94',
-  //   flag: 'https://media.api-sports.io/flags/pt.svg',
-  // },
-  // {
-  //   title: 'Ekstraklasa',
-  //   href: '/league/106',
-  //   flag: 'https://media.api-sports.io/flags/pl.svg',
-  // },
-  // {
-  //   title: 'SuperLig',
-  //   href: '/league/203',
-  //   flag: 'https://media.api-sports.io/flags/tr.svg',
-  // },
-  // {
-  //   title: 'Eredivisie',
-  //   href: '/league/88',
-  //   flag: 'https://media.api-sports.io/flags/nl.svg',
-  // },
-  // {
-  //   title: 'ProLeague',
-  //   href: '/league/307',
-  //   flag: 'https://media.api-sports.io/flags/sa.svg',
-  // },
+  {
+    title: 'Primeira Liga',
+    href: '/league/94',
+    flag: 'https://media.api-sports.io/flags/pt.svg',
+  },
+  {
+    title: 'Ekstraklasa',
+    href: '/league/106',
+    flag: 'https://media.api-sports.io/flags/pl.svg',
+  },
+  {
+    title: 'SuperLig',
+    href: '/league/203',
+    flag: 'https://media.api-sports.io/flags/tr.svg',
+  },
+  {
+    title: 'Eredivisie',
+    href: '/league/88',
+    flag: 'https://media.api-sports.io/flags/nl.svg',
+  },
+  {
+    title: 'ProLeague',
+    href: '/league/307',
+    flag: 'https://media.api-sports.io/flags/sa.svg',
+  },
 ];
 
 export function Navigation() {

@@ -26,6 +26,7 @@ export function PageHeader({
             alt={title}
             size={logoSize}
             src={logo}
+            className="rounded-md bg-white"
           />
           <div>
             <Text
