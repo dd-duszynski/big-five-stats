@@ -12,7 +12,7 @@ import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponseType } from '@/models/api-response.model';
 import { CoachType } from '@/models/coach.model';
-import { StandingsResponseType } from '@/models/standings.model';
+import { StandingsResponseType } from '@/models/standings-response.model';
 import { TeamResponseType } from '@/models/team-response.model';
 import { TeamSquadResponseType } from '@/models/team-squad-response.model';
 import { TeamStatisticsResponseType } from '@/models/team-statistics-response.model';
