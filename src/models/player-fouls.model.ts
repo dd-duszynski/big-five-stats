@@ -1,4 +1,4 @@
-export type FoulsType = {
+export type PlayerFoulsType = {
   committed: number;
   drawn: number;
 };

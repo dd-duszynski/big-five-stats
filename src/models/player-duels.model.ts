@@ -1,4 +1,4 @@
-export type DuelsType = {
+export type PlayerDuelsType = {
   total: number;
   won: number;
 };

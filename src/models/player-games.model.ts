@@ -1,4 +1,4 @@
-export type GamesType = {
+export type PlayerGamesType = {
   appearences: number;
   captain: boolean;
   lineups: number;

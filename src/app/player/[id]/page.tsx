@@ -3,8 +3,8 @@ import GradientCard from '@/components/gradient-card/gradient-card';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponseType } from '@/models/api-response.model';
-import { PlayerResponseType } from '@/models/player.model';
-import { Trophies } from '@/models/trophies.model';
+import { PlayerResponseType } from '@/models/player-response.model';
+import { TrophiesType } from '@/models/trophies.model';
 import { Metadata } from 'next';
 
 async function getData(playerId: number) {
@@ -14,7 +14,7 @@ async function getData(playerId: number) {
       revalidate: RevalidateTime.ONE_DAY,
     }
   );
-  const trophies = await fetchAPISports<APIResponseType<Trophies[]>>(
+  const trophies = await fetchAPISports<APIResponseType<TrophiesType[]>>(
     `trophies?player=${playerId}`,
     { revalidate: RevalidateTime.ONE_DAY }
   );

@@ -1,6 +1,6 @@
-import { MinutesType } from './minutes.model';
+import { PerMinutesType } from './minutes.model';
 
 export type TeamStatisticsCardsType = {
-  yellow: MinutesType;
-  red: MinutesType;
+  yellow: PerMinutesType;
+  red: PerMinutesType;
 };

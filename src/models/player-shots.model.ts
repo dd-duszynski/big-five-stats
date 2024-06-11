@@ -1,4 +1,4 @@
-export type ShotsType = {
+export type PlayerShotsType = {
   on: number;
   total: number;
 };

@@ -5,7 +5,7 @@ import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponseType } from '@/models/api-response.model';
 import { CoachType } from '@/models/coach.model';
-import { Trophies } from '@/models/trophies.model';
+import { TrophiesType } from '@/models/trophies.model';
 import Image from 'next/image';
 
 async function getData(coachId: number) {
@@ -13,7 +13,7 @@ async function getData(coachId: number) {
     `coachs?id=${coachId}`,
     { revalidate: RevalidateTime.ONE_DAY }
   );
-  const trophies = await fetchAPISports<APIResponseType<Trophies[]>>(
+  const trophies = await fetchAPISports<APIResponseType<TrophiesType[]>>(
     `trophies?coach=${coachId}`,
     { revalidate: RevalidateTime.ONE_DAY }
   );

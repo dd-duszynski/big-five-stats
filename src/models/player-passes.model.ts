@@ -1,4 +1,4 @@
-export type PassesType = {
+export type PlayerPassesType = {
   accuracy: number;
   key: number;
   total: number;

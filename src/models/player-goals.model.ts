@@ -1,4 +1,4 @@
-export type GoalsType = {
+export type PlayerGoalsType = {
   assists: number;
   conceded: number;
   saves: any;

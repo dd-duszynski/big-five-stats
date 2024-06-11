@@ -1,7 +1,7 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlayerResponseType } from '@/models/player.model';
+import { PlayerResponseType } from '@/models/player-response.model';
 import { StandingsLeagueType } from '@/models/standings.model';
 import Link from 'next/link';
 import { useState } from 'react';

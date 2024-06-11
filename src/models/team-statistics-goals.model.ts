@@ -1,5 +1,5 @@
 import { HomeAwayTotalType } from './home-away-total.model';
-import { MinutesType } from './minutes.model';
+import { PerMinutesType } from './minutes.model';
 
 export type TeamStatisticsGoalsType = {
   for: Goals;
@@ -8,6 +8,6 @@ export type TeamStatisticsGoalsType = {
 
 export type Goals = {
   average: HomeAwayTotalType<string>;
-  minute: MinutesType;
+  minute: PerMinutesType;
   total: HomeAwayTotalType<number>;
 };

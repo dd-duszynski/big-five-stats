@@ -1,10 +1,6 @@
 import { StandingResultsType } from './standing-results.model';
 import { TeamBasicInfoType } from './team-basic-info.model';
 
-export type StandingsResponseType = {
-  league: StandingsLeagueType;
-};
-
 export type StandingsLeagueType = {
   country: string;
   flag: string;

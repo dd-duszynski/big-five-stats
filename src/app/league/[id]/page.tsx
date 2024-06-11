@@ -10,8 +10,8 @@ import { PageHeader } from '@/components/page-header/page-header';
 import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponseType } from '@/models/api-response.model';
-import { PlayerResponseType } from '@/models/player.model';
-import { StandingsResponseType } from '@/models/standings.model';
+import { PlayerResponseType } from '@/models/player-response.model';
+import { StandingsResponseType } from '@/models/standings-response.model';
 import { Metadata } from 'next';
 
 async function getData(id: number) {

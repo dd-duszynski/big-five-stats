@@ -1,10 +1,4 @@
 import { BirthType } from './birth.model';
-import { PlayerStatisticType } from './player-statistic.model';
-
-export type PlayerResponseType = {
-  player: PlayerType;
-  statistics: PlayerStatisticType[];
-};
 
 export type PlayerType = {
   age: number;
