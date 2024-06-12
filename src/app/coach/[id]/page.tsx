@@ -5,8 +5,8 @@ import { RevalidateTime } from '@/enums/time';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponseType } from '@/models/api-response.model';
 import { CoachType } from '@/models/coach.model';
-import { TrophiesType } from '@/models/trophies.model';
 import Image from 'next/image';
+import { TrophiesType } from '@/models/trophies.model';
 
 async function getData(coachId: number) {
   const coach = await fetchAPISports<APIResponseType<CoachType[]>>(
