@@ -49,7 +49,7 @@ export const yellowCardsColumns: ColumnDef<any>[] = [
     size: 50,
     cell: ({ row }) => {
       const rating = row.original.statistics[0].games.rating;
-      return <span>{rating.substring(0, 3)}</span>;
+      return <span>{rating ? rating.substring(0, 3) : '-'}</span>;
     },
   },
   {
@@ -59,8 +59,8 @@ export const yellowCardsColumns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       return (
         <Link
-          href={`/team/${row.original.statistics[0].team.id}`}
           className="hover:underline"
+          href={`/team/${row.original.statistics[0].team.id}`}
         >
           <div className="flex items-center gap-2">
             <Crest

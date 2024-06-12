@@ -1,8 +1,8 @@
-import { FixturesType } from './fixtures.model';
 import { HomeAwayTotalType } from './home-away-total.model';
 import { LeagueType } from './league.model';
 import { TeamBasicInfoType } from './team-basic-info.model';
 import { TeamStatisticsBiggestType } from './team-statistics-biggest.model';
+import { TeamStatisticsFixturesType } from './team-statistics-fixtures.model';
 import { TeamStatisticsGoalsType } from './team-statistics-goals.model';
 import { TeamStatisticsLineupType } from './team-statistics-lineup.model';
 import { TeamStatisticsCardsType } from './team-statistics-lineup.model copy';
@@ -13,7 +13,7 @@ export interface TeamStatisticsResponseType {
   cards: TeamStatisticsCardsType;
   clean_sheet: HomeAwayTotalType<number>;
   failed_to_score: HomeAwayTotalType<number>;
-  fixtures: FixturesType;
+  fixtures: TeamStatisticsFixturesType;
   form: string;
   goals: TeamStatisticsGoalsType;
   league: LeagueType;

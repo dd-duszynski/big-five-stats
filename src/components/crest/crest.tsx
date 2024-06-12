@@ -15,7 +15,6 @@ export const Crest = ({
   src,
 }: CrestProps) => {
   const imageSizeCSS = calculateImageCssSize(size);
-
   return (
     <figure className={`relative ${imageSizeCSS} ${className}`}>
       <Image
