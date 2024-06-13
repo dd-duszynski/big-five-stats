@@ -51,7 +51,7 @@ export default async function Home() {
   return (
     <div className="flex w-full flex-col items-center">
       {data.standings.map((league, index) => {
-        if (!league || league.response.length === 0) return <p>No League</p>;
+        if (!league || league.response.length === 0) return null;
         const leagueId = league.response[0].league.id;
         const topScorers = data.topScorers.find(
           (topScorersItem) =>

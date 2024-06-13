@@ -11,8 +11,8 @@ import {
 import { FixturesType } from '@/models/fixtures.model';
 
 interface FixturesProps {
-  rounds: string[];
   games: FixturesType[];
+  rounds: string[];
 }
 
 export default function Fixtures({ rounds, games }: FixturesProps) {

@@ -9,6 +9,7 @@ import GradientCard from '@/components/gradient-card/gradient-card';
 import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
 import { RevalidateTime } from '@/enums/time';
+import { strings } from '@/lib/strings';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponseType } from '@/models/api-response.model';
 import { FixturesType } from '@/models/fixtures.model';
@@ -69,12 +70,12 @@ export const metadata: Metadata = {
 export default async function LeaguePage({ params }: any) {
   const data = await getData(params.id);
   if (!data || !data.standings || !data.standings.response.length)
-    return <div className="text-black">Data not found</div>;
+    return <div className="text-black">{strings.Data_not_found}</div>;
 
   const breadcrumbs = [
     {
       link: `/`,
-      text: 'Home',
+      text: strings.Home,
       showSeparator: true,
     },
     {
@@ -105,7 +106,7 @@ export default async function LeaguePage({ params }: any) {
 
         <GradientCard
           className="mb-2 w-full"
-          headerTitle="Fixtures"
+          headerTitle={strings.Fixtures}
         >
           {data.rounds && data.games && (
             <Fixtures
@@ -119,7 +120,7 @@ export default async function LeaguePage({ params }: any) {
           <div className="flex w-full justify-between gap-4">
             <div className="w-1/2">
               <GradientCard
-                headerTitle="Top Scorers"
+                headerTitle={strings.Top_Scorers}
                 className="w-full"
               >
                 {data.topScorers && (
@@ -133,7 +134,7 @@ export default async function LeaguePage({ params }: any) {
 
             <div className="w-1/2">
               <GradientCard
-                headerTitle="Top Asists"
+                headerTitle={strings.Top_Asists}
                 className="w-full"
               >
                 {data.topAssists && (
@@ -151,7 +152,7 @@ export default async function LeaguePage({ params }: any) {
           <div className="flex w-full justify-between gap-4">
             <div className="w-1/2">
               <GradientCard
-                headerTitle="Yellow Cards"
+                headerTitle={strings.Yellow_Cards}
                 className="w-full"
               >
                 {data.yellowCard && (
@@ -165,7 +166,7 @@ export default async function LeaguePage({ params }: any) {
 
             <div className="w-1/2">
               <GradientCard
-                headerTitle="Red Cards"
+                headerTitle={strings.Red_Cards}
                 className="w-full"
               >
                 {data.redCard && (

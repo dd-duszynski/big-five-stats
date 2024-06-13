@@ -9,6 +9,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import { strings } from '@/lib/strings';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,52 +17,52 @@ import * as React from 'react';
 
 const leagues: { title: string; href: string; flag: string }[] = [
   {
-    title: 'Premier League',
+    title: strings.leagues.Premier_League,
     href: '/league/39',
     flag: 'https://media.api-sports.io/flags/gb.svg',
   },
   {
-    title: 'La Liga',
+    title: strings.leagues.La_Liga,
     href: '/league/140',
     flag: 'https://media.api-sports.io/flags/es.svg',
   },
   {
-    title: 'Ligue 1',
+    title: strings.leagues.Ligue_1,
     href: '/league/61',
     flag: 'https://media.api-sports.io/flags/fr.svg',
   },
   {
-    title: 'Bundesliga',
+    title: strings.leagues.Bundesliga,
     href: '/league/78',
     flag: 'https://media.api-sports.io/flags/de.svg',
   },
   {
-    title: 'Serie A',
+    title: strings.leagues.Serie_A,
     href: '/league/135',
     flag: 'https://media.api-sports.io/flags/it.svg',
   },
   {
-    title: 'Primeira Liga',
+    title: strings.leagues.Primeira_Liga,
     href: '/league/94',
     flag: 'https://media.api-sports.io/flags/pt.svg',
   },
   {
-    title: 'Ekstraklasa',
+    title: strings.leagues.Ekstraklasa,
     href: '/league/106',
     flag: 'https://media.api-sports.io/flags/pl.svg',
   },
   {
-    title: 'SuperLig',
+    title: strings.leagues.SuperLig,
     href: '/league/203',
     flag: 'https://media.api-sports.io/flags/tr.svg',
   },
   {
-    title: 'Eredivisie',
+    title: strings.leagues.Eredivisie,
     href: '/league/88',
     flag: 'https://media.api-sports.io/flags/nl.svg',
   },
   {
-    title: 'ProLeague',
+    title: strings.leagues.ProLeague,
     href: '/league/307',
     flag: 'https://media.api-sports.io/flags/sa.svg',
   },
@@ -78,13 +79,13 @@ export function Navigation() {
             passHref
           >
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Home
+              {strings.Home}
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Leagues</NavigationMenuTrigger>
+          <NavigationMenuTrigger>{strings.Leagues}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[350px] grid-cols-2 grid-rows-2 gap-1 bg-white p-3 md:w-[500px] lg:w-[600px]">
               {leagues.map((league) => (
@@ -117,19 +118,7 @@ export function Navigation() {
             passHref
           >
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Statistics
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <Link
-            href="/top-form"
-            legacyBehavior
-            passHref
-          >
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Top Form
+              {strings.Statistics}
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

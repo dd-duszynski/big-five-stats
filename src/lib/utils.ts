@@ -1,4 +1,4 @@
-import { type ClassValue, clsx } from 'clsx';
+import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -18,8 +18,8 @@ export async function fetchAPISports<T>(
     method: 'GET',
     headers: myHeaders,
     redirect: 'follow',
-    next: next,
-    // cache: 'no-cache',
+    // next: next,
+    cache: 'no-cache',
   };
 
   try {
@@ -28,10 +28,10 @@ export async function fetchAPISports<T>(
       requestOptions
     );
     if (!response.ok) {
-      throw new Error('Failed to fetch data from API:' + url);
+      console.error('fetchAPISports #1 - Failed to fetch data from API: ', url);
     }
     return await response.json();
   } catch (error) {
-    console.error(error);
+    console.error('fetchAPISports #2:', error);
   }
 }

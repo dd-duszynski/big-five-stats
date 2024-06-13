@@ -25,7 +25,7 @@ interface IPlayerBarProps {
 
 export const PlayerBar = ({ player, statistics }: IPlayerBarProps) => {
   return (
-    <div className="relative flex flex-col items-center justify-center gap-4 pt-8 text-white [clip-path:border-box]">
+    <div className="relative flex flex-col items-center justify-center gap-4 py-8 text-white [clip-path:border-box]">
       <div className="absolute left-[-20px] top-[275px] h-[1px] w-[300px] rotate-[175deg] rounded-lg bg-white opacity-80" />
       <div className="relative flex flex-col">
         <Image

@@ -1,6 +1,7 @@
 import { Breadcrumbs, PlayerBar } from '@/components';
 import GradientCard from '@/components/gradient-card/gradient-card';
 import { RevalidateTime } from '@/enums/time';
+import { strings } from '@/lib/strings';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponseType } from '@/models/api-response.model';
 import { PlayerResponseType } from '@/models/player-response.model';
@@ -32,13 +33,13 @@ export default async function PlayerPage({ params }: any) {
   const trophiesData = data.trophies?.response || null;
 
   if (!playerData || !trophiesData) {
-    return <div className="text-black">Player not found</div>;
+    return <div className="text-black">{strings.Player_not_found}</div>;
   }
 
   const breadcrumbs = [
     {
       link: `/`,
-      text: 'Home',
+      text: strings.Home,
       showSeparator: true,
     },
     {
@@ -56,7 +57,7 @@ export default async function PlayerPage({ params }: any) {
 
   return (
     <div className="flex h-full w-full flex-row flex-nowrap">
-      <div className="w-[250px] bg-gradient-to-t from-emerald-500 to-indigo-500">
+      <div className="w-[250px] overflow-y-auto overflow-x-hidden bg-gradient-to-t from-emerald-500 to-indigo-500">
         <PlayerBar
           player={playerData.player}
           statistics={playerData.statistics}
@@ -73,22 +74,22 @@ export default async function PlayerPage({ params }: any) {
             className="w-[350px]"
           >
             <div className="grid grid-cols-2 gap-2 pt-2">
-              <p>Appearences </p>
+              <p>{strings.Appearences} </p>
               <p className="place-self-end">
                 {playerData.statistics[0].games.appearences}{' '}
               </p>
               <div className="col-span-2 h-[1px] w-full bg-slate-200" />
-              <p>Lineups </p>
+              <p>{strings.Lineups} </p>
               <p className="place-self-end">
                 {playerData.statistics[0].games.lineups}{' '}
               </p>
               <div className="col-span-2 h-[1px] w-full bg-slate-200" />
-              <p>Minutes </p>
+              <p>{strings.Minutes}</p>
               <p className="place-self-end">
                 {playerData.statistics[0].games.minutes}{' '}
               </p>
               <div className="col-span-2 h-[1px] w-full bg-slate-200" />
-              <p>Rating:</p>
+              <p>{strings.Rating}:</p>
               <p className="place-self-end">
                 {playerData.statistics[0].games.rating?.slice(0, 4)}
               </p>
@@ -96,23 +97,23 @@ export default async function PlayerPage({ params }: any) {
           </GradientCard>
           <GradientCard headerTitle="Goals">
             <div className="grid grid-cols-2 gap-2 pt-2">
-              <p>Goals: </p>
+              <p>{strings.Goals}: </p>
               <p className="place-self-end">
                 {playerData.statistics[0].goals.total}
               </p>
               <div className="col-span-2 h-[1px] w-full bg-slate-200" />
-              <p>Assists</p>
+              <p>{strings.Assists}</p>
               <p className="place-self-end">
                 {playerData.statistics[0].goals.assists}
               </p>
               <div className="col-span-2 h-[1px] w-full bg-slate-200" />
-              <p>Canadian </p>
+              <p>{strings.Canadian} </p>
               <p className="place-self-end">
                 {playerData.statistics[0].goals.total +
                   (playerData.statistics[0].goals.assists || 0)}
               </p>
               <div className="col-span-2 h-[1px] w-full bg-slate-200" />
-              <p>Conceded:</p>
+              <p>{strings.Conceded}</p>
               <p className="place-self-end">
                 {playerData.statistics[0].goals.conceded}
               </p>
@@ -122,7 +123,7 @@ export default async function PlayerPage({ params }: any) {
         {/* TODO_DD: to unify with coach trophies */}
         <div className="flex flex-wrap gap-4">
           <GradientCard
-            headerTitle="Trophies"
+            headerTitle={strings.Trophies}
             className="w-[450px]"
           >
             <div className="flex flex-col">

@@ -9,6 +9,7 @@ import { PageHeader } from '@/components/page-header/page-header';
 import { TeamCoach } from '@/components/team-coach/team-coach';
 import { leagueIdForTeam } from '@/enums/league';
 import { RevalidateTime } from '@/enums/time';
+import { strings } from '@/lib/strings';
 import { fetchAPISports } from '@/lib/utils';
 import { APIResponseType } from '@/models/api-response.model';
 import { CoachType } from '@/models/coach.model';
@@ -66,13 +67,13 @@ export default async function TeamPage({ params }: any) {
 
   if (!teamInfo || !teamStatistics || !teamSquad || !standings || !coach) {
     /* TODO_DD: loader component */
-    return <div>loading...</div>;
+    return <div>{strings.Loading}</div>;
   }
 
   const breadcrumbs: BreadcrumbsItem[] = [
     {
       link: `/`,
-      text: 'Home',
+      text: strings.Home,
       showSeparator: true,
     },
     {

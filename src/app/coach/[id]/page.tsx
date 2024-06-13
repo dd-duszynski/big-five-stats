@@ -7,6 +7,7 @@ import { APIResponseType } from '@/models/api-response.model';
 import { CoachType } from '@/models/coach.model';
 import Image from 'next/image';
 import { TrophiesType } from '@/models/trophies.model';
+import { strings } from '@/lib/strings';
 
 async function getData(coachId: number) {
   const coach = await fetchAPISports<APIResponseType<CoachType[]>>(
@@ -26,13 +27,13 @@ export default async function CoachPage({ params }: any) {
   const trophiesData = data.trophies?.response || null;
 
   if (!coachData || !trophiesData) {
-    return <div className="text-black">Coach not found</div>;
+    return <div className="text-black">{strings.Coach_not_found}</div>;
   }
 
   const breadcrumbs = [
     {
       link: `/`,
-      text: 'Home',
+      text: strings.Home,
       showSeparator: true,
     },
     {
@@ -45,7 +46,7 @@ export default async function CoachPage({ params }: any) {
 
   return (
     <div className="flex h-full w-full flex-row flex-nowrap">
-      <div className="w-[250px] bg-gradient-to-t from-emerald-500 to-indigo-500">
+      <div className="w-[250px] overflow-y-auto overflow-x-hidden bg-gradient-to-t from-emerald-500 to-indigo-500">
         <CoachBar coach={coachData} />
       </div>
       <main className="grow overflow-y-auto px-4">
@@ -55,7 +56,7 @@ export default async function CoachPage({ params }: any) {
         />
         <div className="flex flex-wrap gap-4">
           <GradientCard
-            headerTitle="Career"
+            headerTitle={strings.Career}
             className="w-[450px]"
           >
             <div className="flex flex-col">
@@ -85,7 +86,7 @@ export default async function CoachPage({ params }: any) {
           {/* TODO_DD: to unify with player trophies */}
           <div className="flex flex-wrap gap-4">
             <GradientCard
-              headerTitle="Trophies"
+              headerTitle={strings.Trophies}
               className="w-[450px]"
             >
               <div className="flex flex-col">

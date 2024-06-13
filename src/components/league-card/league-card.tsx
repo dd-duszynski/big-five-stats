@@ -12,6 +12,7 @@ import { DataTable } from '../data-table/data-table';
 import { LeagueCrest } from '../league-crest/league-crest';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
+import { strings } from '@/lib/strings';
 
 type LeagueCardProps = {
   isInitialyCollapsed?: boolean;
@@ -91,19 +92,19 @@ export function LeagueCard({
                   value="table"
                   className="mr-2 w-[160px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
                 >
-                  Standings
+                  {strings.Standings}
                 </TabsTrigger>
                 <TabsTrigger
                   value="top-scorers"
                   className="mr-2 w-[160px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
                 >
-                  Top Scorers
+                  {strings.Top_Scorers}
                 </TabsTrigger>
                 <TabsTrigger
                   value="top-assists"
                   className="w-[160px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
                 >
-                  Top Asists
+                  {strings.Top_Asists}
                 </TabsTrigger>
               </TabsList>
 
@@ -137,7 +138,7 @@ export function LeagueCard({
                 size="lg"
                 className={`cursor-pointer rounded-lg bg-slate-100 hover:bg-slate-300`}
               >
-                Show more
+                {strings.Show_more}
               </Button>
             </Link>
           </CardFooter>

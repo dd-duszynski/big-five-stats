@@ -8,7 +8,7 @@ interface ICoachBarProps {
 /* TODO_DD: unify with PlayerBar */
 export const CoachBar = ({ coach }: ICoachBarProps) => {
   return (
-    <div className="relative flex flex-col items-center justify-center gap-4 pt-8 text-white [clip-path:border-box]">
+    <div className="relative flex flex-col items-center justify-center gap-4 py-8 text-white [clip-path:border-box]">
       <div className="relative flex flex-col">
         <Image
           src={coach.photo}
