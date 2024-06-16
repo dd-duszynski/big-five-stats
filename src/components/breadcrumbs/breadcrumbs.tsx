@@ -20,7 +20,12 @@ interface BreadcrumbsProps {
 export function Breadcrumbs({ breadcrumbs, className = '' }: BreadcrumbsProps) {
   const breadcrumbItems = breadcrumbs.map((breadcrumb, index) => (
     <BreadcrumbItem key={index}>
-      <BreadcrumbLink href={breadcrumb.link}>{breadcrumb.text}</BreadcrumbLink>
+      <BreadcrumbLink
+        href={breadcrumb.link}
+        className="hover:underline"
+      >
+        {breadcrumb.text}
+      </BreadcrumbLink>
       {breadcrumb.showSeparator && <BreadcrumbSeparator />}
     </BreadcrumbItem>
   ));

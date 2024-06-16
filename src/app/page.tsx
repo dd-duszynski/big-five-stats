@@ -33,6 +33,9 @@ async function getData() {
   const standings = await Promise.all(standingsPromises);
   const topScorers = await Promise.all(topScorersPromises);
   const topAssists = await Promise.all(topAssistsPromises);
+  console.log('standings:', standings);
+  console.log('topScorers:', topScorers);
+  console.log('topAssists:', topAssists);
 
   return {
     standings,
