@@ -1,15 +1,4 @@
-export enum LEAGUES_ID {
-  ENG_Premier_League = 39,
-  ESP_La_Liga = 140,
-  FRA_Ligue_1 = 61,
-  GER_Bundesliga = 78,
-  ITA_Serie_A = 135,
-  POR_Primeira_Liga = 94,
-  POL_Ekstraklasa = 106,
-  TUR_SuperLig = 203,
-  NET_Eredivisie = 88,
-  SAU_ProLeague = 307,
-}
+import { LEAGUES_ID } from '../enums/league';
 
 const ENG_TeamsId = [
   33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52,
@@ -70,7 +59,7 @@ const SAU_TeamsId = [
   2966, 2967, 2968, 2969, 2970, 2971, 2972, 2973, 2974, 2975,
 ];
 
-export const leagueIdForTeam = (teamId: number): LEAGUES_ID | undefined => {
+export const getLeagueIdForTeam = (teamId: number): LEAGUES_ID | undefined => {
   if (ENG_TeamsId.includes(teamId)) return LEAGUES_ID.ENG_Premier_League;
   if (ESP_TeamsId.includes(teamId)) return LEAGUES_ID.ESP_La_Liga;
   if (FRA_TeamsId.includes(teamId)) return LEAGUES_ID.FRA_Ligue_1;

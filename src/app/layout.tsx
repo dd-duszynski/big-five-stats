@@ -1,6 +1,7 @@
 import { Navigation } from '@/components';
 import { Noto_Sans } from 'next/font/google';
 import './globals.css';
+import Providers from '@/lib/utils/providers';
 
 const noto_sans = Noto_Sans({
   weight: ['300', '500', '700'],
@@ -18,8 +19,12 @@ export default function RootLayout({
         className={`${noto_sans.className} h-full w-full overflow-hidden`}
         suppressHydrationWarning={true}
       >
-        <Navigation />
-        <main className="h-[calc(100vh-3rem)] overflow-y-auto">{children}</main>
+        <Providers>
+          <Navigation />
+          <main className="h-[calc(100vh-3rem)] overflow-y-auto">
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import { TeamSquadPlayerType } from '@/models/team-squad-player.model';
+import { TeamSquadPlayerType } from '@/lib/models/team-squad-player.model';
 import GradientCard from '../gradient-card/gradient-card';
 import { PlayerCard } from '../player-card/player-card';
 

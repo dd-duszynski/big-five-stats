@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-import { cn } from '@/lib/utils';
+import { joinClassNames } from '@/lib/utils/join-class-names';
 
 const Table = React.forwardRef<
   HTMLTableElement,
@@ -9,7 +8,7 @@ const Table = React.forwardRef<
   <div className="relative w-full overflow-auto">
     <table
       ref={ref}
-      className={cn('w-full caption-bottom text-sm', className)}
+      className={joinClassNames('w-full caption-bottom text-sm', className)}
       {...props}
     />
   </div>
@@ -22,7 +21,7 @@ const TableHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <thead
     ref={ref}
-    className={cn('[&_tr]:border-b', className)}
+    className={joinClassNames('[&_tr]:border-b', className)}
     {...props}
   />
 ));
@@ -34,7 +33,7 @@ const TableBody = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <tbody
     ref={ref}
-    className={cn('[&_tr:last-child]:border-0', className)}
+    className={joinClassNames('[&_tr:last-child]:border-0', className)}
     {...props}
   />
 ));
@@ -46,7 +45,7 @@ const TableFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <tfoot
     ref={ref}
-    className={cn(
+    className={joinClassNames(
       'bg-muted/50 border-t font-medium [&>tr]:last:border-b-0',
       className
     )}
@@ -61,7 +60,7 @@ const TableRow = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <tr
     ref={ref}
-    className={cn(
+    className={joinClassNames(
       'hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors',
       className
     )}
@@ -76,7 +75,7 @@ const TableHead = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <th
     ref={ref}
-    className={cn(
+    className={joinClassNames(
       'text-muted-foreground h-12 px-4 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0',
       className
     )}
@@ -91,7 +90,10 @@ const TableCell = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <td
     ref={ref}
-    className={cn('p-3 align-middle [&:has([role=checkbox])]:pr-0', className)}
+    className={joinClassNames(
+      'p-3 align-middle [&:has([role=checkbox])]:pr-0',
+      className
+    )}
     {...props}
   />
 ));
@@ -103,7 +105,7 @@ const TableCaption = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <caption
     ref={ref}
-    className={cn('text-muted-foreground mt-4 text-sm', className)}
+    className={joinClassNames('text-muted-foreground mt-4 text-sm', className)}
     {...props}
   />
 ));

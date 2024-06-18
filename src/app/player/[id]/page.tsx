@@ -1,11 +1,11 @@
 import { Breadcrumbs, PlayerBar } from '@/components';
 import GradientCard from '@/components/gradient-card/gradient-card';
-import { RevalidateTime } from '@/enums/time';
-import { strings } from '@/lib/strings';
-import { fetchAPISports } from '@/lib/utils';
-import { APIResponseType } from '@/models/api-response.model';
-import { PlayerResponseType } from '@/models/player-response.model';
-import { TrophiesType } from '@/models/trophies.model';
+import { RevalidateTime } from '@/lib/enums/revalidate-time';
+import { APIResponseType } from '@/lib/models/api-response.model';
+import { PlayerResponseType } from '@/lib/models/player-response.model';
+import { TrophiesType } from '@/lib/models/trophies.model';
+import { strings } from '@/lib/strings/strings';
+import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
 import { Metadata } from 'next';
 
 async function getData(playerId: number) {

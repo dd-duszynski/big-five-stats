@@ -1,4 +1,4 @@
-import { TeamSquadPlayerType } from '@/models/team-squad-player.model';
+import { TeamSquadPlayerType } from '@/lib/models/team-squad-player.model';
 import Image from 'next/image';
 import Link from 'next/link';
 

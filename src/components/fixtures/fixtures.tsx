@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { FixturesType } from '@/models/fixtures.model';
+import { FixturesType } from '@/lib/models/fixtures.model';
 
 interface FixturesProps {
   games: FixturesType[];

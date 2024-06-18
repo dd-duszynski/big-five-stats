@@ -8,13 +8,13 @@ import Fixtures from '@/components/fixtures/fixtures';
 import GradientCard from '@/components/gradient-card/gradient-card';
 import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
-import { RevalidateTime } from '@/enums/time';
-import { strings } from '@/lib/strings';
-import { fetchAPISports } from '@/lib/utils';
-import { APIResponseType } from '@/models/api-response.model';
-import { FixturesType } from '@/models/fixtures.model';
-import { PlayerResponseType } from '@/models/player-response.model';
-import { StandingsResponseType } from '@/models/standings-response.model';
+import { RevalidateTime } from '@/lib/enums/revalidate-time';
+import { APIResponseType } from '@/lib/models/api-response.model';
+import { FixturesType } from '@/lib/models/fixtures.model';
+import { PlayerResponseType } from '@/lib/models/player-response.model';
+import { StandingsResponseType } from '@/lib/models/standings-response.model';
+import { strings } from '@/lib/strings/strings';
+import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
 import { Metadata } from 'next';
 
 async function getData(id: number) {

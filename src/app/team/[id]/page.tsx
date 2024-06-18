@@ -7,20 +7,22 @@ import { standingsColumns } from '@/components/data-table/columns/standings-colu
 import LeagueTable from '@/components/league-table/league-table';
 import { PageHeader } from '@/components/page-header/page-header';
 import { TeamCoach } from '@/components/team-coach/team-coach';
-import { leagueIdForTeam } from '@/enums/league';
-import { RevalidateTime } from '@/enums/time';
-import { strings } from '@/lib/strings';
-import { fetchAPISports } from '@/lib/utils';
-import { APIResponseType } from '@/models/api-response.model';
-import { CoachType } from '@/models/coach.model';
-import { StandingsResponseType } from '@/models/standings-response.model';
-import { TeamResponseType } from '@/models/team-response.model';
-import { TeamSquadResponseType } from '@/models/team-squad-response.model';
-import { TeamStatisticsResponseType } from '@/models/team-statistics-response.model';
+import { RevalidateTime } from '@/lib/enums/revalidate-time';
+import { APIResponseType } from '@/lib/models/api-response.model';
+import { CoachType } from '@/lib/models/coach.model';
+import { StandingsResponseType } from '@/lib/models/standings-response.model';
+import { TeamResponseType } from '@/lib/models/team-response.model';
+import { TeamSquadResponseType } from '@/lib/models/team-squad-response.model';
+import { TeamStatisticsResponseType } from '@/lib/models/team-statistics-response.model';
+import { strings } from '@/lib/strings/strings';
+import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
+import { getLeagueIdForTeam } from '@/lib/utils/get-league-id-for-team';
+import { getQueryClient } from '@/lib/utils/get-query-client';
+import { pokemonOptions } from '@/lib/utils/top-scorers-query';
 import { Metadata } from 'next';
 
 async function getData(teamId: string) {
-  const leagueId = leagueIdForTeam(Number(teamId));
+  const leagueId = getLeagueIdForTeam(Number(teamId));
   const teamInfo = await fetchAPISports<APIResponseType<TeamResponseType[]>>(
     `teams?id=${teamId}`,
     { revalidate: RevalidateTime.ONE_DAY }

@@ -1,4 +1,4 @@
-import { CoachType } from '@/models/coach.model';
+import { CoachType } from '@/lib/models/coach.model';
 import { CoachCard } from '../coach-card/coach-card';
 import GradientCard from '../gradient-card/gradient-card';
 

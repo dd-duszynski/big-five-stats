@@ -1,8 +1,8 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlayerResponseType } from '@/models/player-response.model';
-import { StandingsLeagueType } from '@/models/standings.model';
+import { PlayerResponseType } from '@/lib/models/player-response.model';
+import { StandingsLeagueType } from '@/lib/models/standings.model';
 import Link from 'next/link';
 import { useState } from 'react';
 import { standingsColumns } from '../data-table/columns/standings-columns';
@@ -12,7 +12,12 @@ import { DataTable } from '../data-table/data-table';
 import { LeagueCrest } from '../league-crest/league-crest';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
-import { strings } from '@/lib/strings';
+import { strings } from '@/lib/strings/strings';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import {
+  pokemonOptions,
+  topScorersOptions,
+} from '@/lib/utils/top-scorers-query';
 
 type LeagueCardProps = {
   isInitialyCollapsed?: boolean;
@@ -28,6 +33,9 @@ export function LeagueCard({
   topScorers,
 }: LeagueCardProps) {
   const [isCollapsed, setIsCollapsed] = useState(isInitialyCollapsed);
+  // const { data } = useSuspenseQuery(pokemonOptions);
+  const { data } = useSuspenseQuery(topScorersOptions);
+  console.log('data:', data);
   const standingsData = league.standings[0];
   const topAssistsData = topAssists
     ? topAssists.map((player, index) => ({

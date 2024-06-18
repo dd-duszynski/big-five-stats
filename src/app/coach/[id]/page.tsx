@@ -1,13 +1,13 @@
 import { Breadcrumbs } from '@/components';
 import { CoachBar } from '@/components/coach-bar/coach-bar';
 import GradientCard from '@/components/gradient-card/gradient-card';
-import { RevalidateTime } from '@/enums/time';
-import { fetchAPISports } from '@/lib/utils';
-import { APIResponseType } from '@/models/api-response.model';
-import { CoachType } from '@/models/coach.model';
+import { RevalidateTime } from '@/lib/enums/revalidate-time';
+import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
+import { APIResponseType } from '@/lib/models/api-response.model';
+import { CoachType } from '@/lib/models/coach.model';
 import Image from 'next/image';
-import { TrophiesType } from '@/models/trophies.model';
-import { strings } from '@/lib/strings';
+import { TrophiesType } from '@/lib/models/trophies.model';
+import { strings } from '@/lib/strings/strings';
 
 async function getData(coachId: number) {
   const coach = await fetchAPISports<APIResponseType<CoachType[]>>(

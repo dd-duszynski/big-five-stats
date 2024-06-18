@@ -1,4 +1,4 @@
-import { CoachType } from '@/models/coach.model';
+import { CoachType } from '@/lib/models/coach.model';
 import Image from 'next/image';
 import Link from 'next/link';
 

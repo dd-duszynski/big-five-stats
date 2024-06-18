@@ -1,15 +1,9 @@
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-
 export async function fetchAPISports<T>(
   url: string,
   next?: NextFetchRequestConfig
 ): Promise<T | undefined> {
-  const apiKey = process.env.X_APISPORTS_KEY;
+  const apiKey =
+    process.env.X_APISPORTS_KEY || process.env.NEXT_PUBLIC_X_APISPORTS_KEY;
   const myHeaders = new Headers();
   if (typeof apiKey === 'string') {
     myHeaders.append('x-apisports-key', apiKey);

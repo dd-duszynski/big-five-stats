@@ -9,8 +9,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { strings } from '@/lib/strings';
-import { cn } from '@/lib/utils';
+import { strings } from '@/lib/strings/strings';
+import { joinClassNames } from '@/lib/utils/join-class-names';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
@@ -136,7 +136,7 @@ const ListItem = React.forwardRef<
       <NavigationMenuLink asChild>
         <a
           ref={ref}
-          className={cn(
+          className={joinClassNames(
             'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none text-black no-underline outline-none transition-colors',
             className
           )}

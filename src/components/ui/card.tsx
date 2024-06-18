@@ -1,6 +1,5 @@
+import { joinClassNames } from '@/lib/utils/join-class-names';
 import * as React from 'react';
-
-import { cn } from '@/lib/utils';
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -8,7 +7,7 @@ const Card = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
+    className={joinClassNames(
       'bg-card text-card-foreground rounded-lg border shadow-sm',
       className
     )}
@@ -23,7 +22,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('flex flex-col px-6 py-2', className)}
+    className={joinClassNames('flex flex-col px-6 py-2', className)}
     {...props}
   />
 ));
@@ -35,7 +34,7 @@ const CardTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={cn(
+    className={joinClassNames(
       'text-2xl font-semibold leading-none tracking-tight',
       className
     )}
@@ -50,7 +49,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-muted-foreground text-sm', className)}
+    className={joinClassNames('text-muted-foreground text-sm', className)}
     {...props}
   />
 ));
@@ -62,7 +61,7 @@ const CardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('p-6', className)}
+    className={joinClassNames('p-6', className)}
     {...props}
   />
 ));
@@ -74,7 +73,7 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(' flex items-center p-6 pt-0', className)}
+    className={joinClassNames(' flex items-center p-6 pt-0', className)}
     {...props}
   />
 ));
@@ -82,9 +81,9 @@ CardFooter.displayName = 'CardFooter';
 // TODO: CardWrapper and use everywhere where Card and CardHeader is used
 export {
   Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
   CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 };
