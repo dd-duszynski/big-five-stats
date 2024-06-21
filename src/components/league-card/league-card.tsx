@@ -1,64 +1,79 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlayerResponseType } from '@/lib/models/player-response.model';
 import { StandingsLeagueType } from '@/lib/models/standings.model';
+import { strings } from '@/lib/strings/strings';
+import { topAssistsOptions } from '@/lib/utils/top-assists-query';
+import { topScorersOptions } from '@/lib/utils/top-scorers-query';
+import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useState } from 'react';
 import { standingsColumns } from '../data-table/columns/standings-columns';
 import { topAssistsColumns } from '../data-table/columns/top-assists-columns';
 import { topScorersColumns } from '../data-table/columns/top-scorers-columns';
 import { DataTable } from '../data-table/data-table';
-import { LeagueCrest } from '../league-crest/league-crest';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
-import { strings } from '@/lib/strings/strings';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import {
-  pokemonOptions,
-  topScorersOptions,
-} from '@/lib/utils/top-scorers-query';
 
 type LeagueCardProps = {
   isInitialyCollapsed?: boolean;
-  league: StandingsLeagueType;
-  topAssists: PlayerResponseType[] | undefined;
-  topScorers: PlayerResponseType[] | undefined;
+  leagueId: number;
+  standingsLeagueData: StandingsLeagueType;
 };
 
 export function LeagueCard({
   isInitialyCollapsed = false,
-  league,
-  topAssists,
-  topScorers,
-}: LeagueCardProps) {
+  standingsLeagueData,
+  leagueId,
+}: // topAssists,
+// topScorers,
+LeagueCardProps) {
   const [isCollapsed, setIsCollapsed] = useState(isInitialyCollapsed);
-  // const { data } = useSuspenseQuery(pokemonOptions);
-  const { data } = useSuspenseQuery(topScorersOptions);
-  console.log('data:', data);
-  const standingsData = league.standings[0];
-  const topAssistsData = topAssists
-    ? topAssists.map((player, index) => ({
-        ...player,
-        rank: index + 1,
-      }))
-    : [];
-  const topScorersData = topScorers
-    ? topScorers.map((player, index) => ({
-        ...player,
-        rank: index + 1,
-      }))
-    : [];
+  const [activeTab, setActiveTab] = useState('');
+  const {
+    data: topScorers,
+    isLoading: isTopScorersLoading,
+    isError: isErrorTopScorers,
+  } = useQuery(topScorersOptions(leagueId, 2023, activeTab));
+  const {
+    data: topAssists,
+    isLoading: isTopAssistsLoading,
+    isError: isErrorTopAssists,
+  } = useQuery(topAssistsOptions(leagueId, 2023, activeTab));
+  console.log('topScorers:', topScorers, isTopScorersLoading);
+  console.log('topAssists:', topAssists, isTopAssistsLoading);
 
-  const leagueCrestWithName = (
-    <LeagueCrest
-      flag={league.flag}
-      logo={league.logo}
-      logoSize="md"
-      subtitle={league.country}
-      title={league.name}
-    />
-  );
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+  const standingsData = standingsLeagueData.standings[0];
+
+  const topAssistsData =
+    topAssists && topAssists.response.length > 0
+      ? topAssists.response.map((player: any, index: number) => ({
+          ...player,
+          rank: index + 1,
+        }))
+      : [];
+
+  const topScorersData =
+    topScorers && topScorers.response.length > 0
+      ? topScorers.response.map((player: any, index: number) => ({
+          ...player,
+          rank: index + 1,
+        }))
+      : [];
+
+  // const leagueCrestWithName = (
+  //   <LeagueCrest
+  //     flag={standingsLeagueData.flag}
+  //     logo={standingsLeagueData.logo}
+  //     logoSize="md"
+  //     subtitle={standingsLeagueData.country}
+  //     title={standingsLeagueData.name}
+  //   />
+  // );
 
   return (
     <Card
@@ -71,13 +86,15 @@ export function LeagueCard({
     >
       <CardHeader className="flex flex-row items-center justify-between gap-3">
         {isCollapsed ? (
-          leagueCrestWithName
+          // leagueCrestWithName
+          standingsLeagueData.name
         ) : (
           <Link
-            href={isCollapsed ? '' : `/league/${league.id}`}
+            href={isCollapsed ? '' : `/league/${standingsLeagueData.id}`}
             className="hover:underline"
           >
-            {leagueCrestWithName}
+            {/* {leagueCrestWithName} */}
+            {standingsLeagueData.name}
           </Link>
         )}
         <Button
@@ -105,12 +122,14 @@ export function LeagueCard({
                 <TabsTrigger
                   value="top-scorers"
                   className="mr-2 w-[160px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
+                  onClick={() => handleTabClick('top-scorers')}
                 >
                   {strings.Top_Scorers}
                 </TabsTrigger>
                 <TabsTrigger
                   value="top-assists"
                   className="w-[160px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
+                  onClick={() => handleTabClick('top-assists')}
                 >
                   {strings.Top_Asists}
                 </TabsTrigger>
@@ -124,24 +143,32 @@ export function LeagueCard({
                 />
               </TabsContent>
               <TabsContent value="top-scorers">
-                <DataTable
-                  columns={topScorersColumns}
-                  data={topScorersData}
-                  onlyFive
-                />
+                {isTopScorersLoading || isErrorTopScorers ? (
+                  <div>{strings.Loading}</div>
+                ) : (
+                  <DataTable
+                    columns={topScorersColumns}
+                    data={topScorersData}
+                    onlyFive
+                  />
+                )}
               </TabsContent>
               <TabsContent value="top-assists">
-                <DataTable
-                  columns={topAssistsColumns}
-                  data={topAssistsData}
-                  onlyFive
-                />
+                {isTopAssistsLoading || isErrorTopAssists ? (
+                  <div>{strings.Loading}</div>
+                ) : (
+                  <DataTable
+                    columns={topAssistsColumns}
+                    data={topAssistsData}
+                    onlyFive
+                  />
+                )}
               </TabsContent>
             </Tabs>
           </CardContent>
 
           <CardFooter className="justify-end">
-            <Link href={`/league/${league.id}`}>
+            <Link href={`/league/${leagueId}`}>
               <Button
                 size="lg"
                 className={`cursor-pointer rounded-lg bg-slate-100 hover:bg-slate-300`}

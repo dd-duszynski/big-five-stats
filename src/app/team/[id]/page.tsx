@@ -17,8 +17,6 @@ import { TeamStatisticsResponseType } from '@/lib/models/team-statistics-respons
 import { strings } from '@/lib/strings/strings';
 import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
 import { getLeagueIdForTeam } from '@/lib/utils/get-league-id-for-team';
-import { getQueryClient } from '@/lib/utils/get-query-client';
-import { pokemonOptions } from '@/lib/utils/top-scorers-query';
 import { Metadata } from 'next';
 
 async function getData(teamId: string) {

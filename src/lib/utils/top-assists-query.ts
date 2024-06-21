@@ -2,20 +2,20 @@ import { queryOptions } from '@tanstack/react-query';
 import { PlayerResponseType } from '../models/player-response.model';
 import { fetchAPISports } from './fetch-api-sports';
 
-export const topScorersOptions = (
+export const topAssistsOptions = (
   leagueId: number,
   seasonId: number,
   tabName: string
 ) =>
   queryOptions({
-    queryKey: ['top-scorers', leagueId, seasonId],
-    enabled: tabName === 'top-scorers',
+    queryKey: ['top-assists', leagueId, seasonId],
+    enabled: tabName === 'top-assists',
     queryFn: async () => {
       /* TODO_DD:  */
       // const response = await fetchAPISports<PlayerResponseType[]>(
       const response = await fetchAPISports<any>(
-        `players/topscorers?league=${leagueId}&season=${seasonId}`
+        `players/topassists?league=${leagueId}&season=${seasonId}`
       );
-      return response.response;
+      return response;
     },
   });
