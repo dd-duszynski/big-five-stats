@@ -12,6 +12,7 @@ import { standingsColumns } from '../data-table/columns/standings-columns';
 import { topAssistsColumns } from '../data-table/columns/top-assists-columns';
 import { topScorersColumns } from '../data-table/columns/top-scorers-columns';
 import { DataTable } from '../data-table/data-table';
+import { LeagueCrest } from '../league-crest/league-crest';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 
@@ -29,28 +30,39 @@ export function LeagueCard({
 // topScorers,
 LeagueCardProps) {
   const [isCollapsed, setIsCollapsed] = useState(isInitialyCollapsed);
-  const [activeTab, setActiveTab] = useState('');
   const {
     data: topScorers,
     isLoading: isTopScorersLoading,
     isError: isErrorTopScorers,
-  } = useQuery(topScorersOptions(leagueId, 2023, activeTab));
+    isFetched: isTopScorersFetched,
+  } = useQuery(topScorersOptions(leagueId, 2023, isCollapsed));
   const {
     data: topAssists,
     isLoading: isTopAssistsLoading,
     isError: isErrorTopAssists,
-  } = useQuery(topAssistsOptions(leagueId, 2023, activeTab));
-  console.log('topScorers:', topScorers, isTopScorersLoading);
-  console.log('topAssists:', topAssists, isTopAssistsLoading);
-
-  const handleTabClick = (tab: string) => {
-    setActiveTab(tab);
-  };
+    isFetched: isTopAssistsFetched,
+  } = useQuery(topAssistsOptions(leagueId, 2023, isCollapsed));
+  console.log(
+    'topScorers:',
+    leagueId,
+    topScorers,
+    isTopScorersLoading,
+    isErrorTopScorers,
+    isTopScorersFetched
+  );
+  console.log(
+    'topAssists:',
+    leagueId,
+    topAssists,
+    isTopAssistsLoading,
+    isErrorTopAssists,
+    isTopAssistsFetched
+  );
 
   const standingsData = standingsLeagueData.standings[0];
 
   const topAssistsData =
-    topAssists && topAssists.response.length > 0
+    topAssists && topAssists.response?.length > 0
       ? topAssists.response.map((player: any, index: number) => ({
           ...player,
           rank: index + 1,
@@ -58,22 +70,22 @@ LeagueCardProps) {
       : [];
 
   const topScorersData =
-    topScorers && topScorers.response.length > 0
+    topScorers && topScorers.response?.length > 0
       ? topScorers.response.map((player: any, index: number) => ({
           ...player,
           rank: index + 1,
         }))
       : [];
 
-  // const leagueCrestWithName = (
-  //   <LeagueCrest
-  //     flag={standingsLeagueData.flag}
-  //     logo={standingsLeagueData.logo}
-  //     logoSize="md"
-  //     subtitle={standingsLeagueData.country}
-  //     title={standingsLeagueData.name}
-  //   />
-  // );
+  const leagueCrestWithName = (
+    <LeagueCrest
+      flag={standingsLeagueData.flag}
+      logo={standingsLeagueData.logo}
+      logoSize="md"
+      subtitle={standingsLeagueData.country}
+      title={standingsLeagueData.name}
+    />
+  );
 
   return (
     <Card
@@ -86,15 +98,13 @@ LeagueCardProps) {
     >
       <CardHeader className="flex flex-row items-center justify-between gap-3">
         {isCollapsed ? (
-          // leagueCrestWithName
-          standingsLeagueData.name
+          leagueCrestWithName
         ) : (
           <Link
             href={isCollapsed ? '' : `/league/${standingsLeagueData.id}`}
             className="hover:underline"
           >
-            {/* {leagueCrestWithName} */}
-            {standingsLeagueData.name}
+            {leagueCrestWithName}
           </Link>
         )}
         <Button
@@ -122,14 +132,12 @@ LeagueCardProps) {
                 <TabsTrigger
                   value="top-scorers"
                   className="mr-2 w-[160px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
-                  onClick={() => handleTabClick('top-scorers')}
                 >
                   {strings.Top_Scorers}
                 </TabsTrigger>
                 <TabsTrigger
                   value="top-assists"
                   className="w-[160px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
-                  onClick={() => handleTabClick('top-assists')}
                 >
                   {strings.Top_Asists}
                 </TabsTrigger>

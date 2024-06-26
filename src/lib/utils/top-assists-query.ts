@@ -5,11 +5,11 @@ import { fetchAPISports } from './fetch-api-sports';
 export const topAssistsOptions = (
   leagueId: number,
   seasonId: number,
-  tabName: string
+  isCollapsed: boolean
 ) =>
   queryOptions({
     queryKey: ['top-assists', leagueId, seasonId],
-    enabled: tabName === 'top-assists',
+    enabled: !isCollapsed,
     queryFn: async () => {
       /* TODO_DD:  */
       // const response = await fetchAPISports<PlayerResponseType[]>(

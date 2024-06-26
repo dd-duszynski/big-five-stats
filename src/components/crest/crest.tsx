@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { calculateImageCssSize } from '..';
 
 type CrestProps = {
@@ -16,13 +16,9 @@ export const Crest = ({
 }: CrestProps) => {
   const imageSizeCSS = calculateImageCssSize(size);
   return (
-    <figure className={`relative ${imageSizeCSS} ${className}`}>
-      <Image
-        alt={alt ?? ''}
-        className={`object-contain`}
-        fill
-        src={src}
-      />
-    </figure>
+    <Avatar className={`${imageSizeCSS} ${className}`}>
+      <AvatarImage src={src} />
+      <AvatarFallback>{alt?.substring(0, 3).toUpperCase()}</AvatarFallback>
+    </Avatar>
   );
 };
