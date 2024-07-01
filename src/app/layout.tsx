@@ -1,7 +1,7 @@
 import { Navigation } from '@/components';
+import Providers from '@/components/providers/providers';
 import { Noto_Sans } from 'next/font/google';
 import './globals.css';
-import Providers from '@/lib/utils/providers';
 
 const noto_sans = Noto_Sans({
   weight: ['300', '500', '700'],

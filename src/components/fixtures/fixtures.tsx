@@ -16,7 +16,6 @@ interface FixturesProps {
 }
 
 export default function Fixtures({ rounds, games }: FixturesProps) {
-  // console.log('games:', games);
   return (
     <div>
       <Select defaultValue={rounds[0]}>

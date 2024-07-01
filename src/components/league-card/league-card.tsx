@@ -1,6 +1,7 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { PlayerResponseType } from '@/lib/models/player-response.model';
 import { StandingsLeagueType } from '@/lib/models/standings.model';
 import { strings } from '@/lib/strings/strings';
 import { topAssistsOptions } from '@/lib/utils/top-assists-query';
@@ -24,57 +25,43 @@ type LeagueCardProps = {
 
 export function LeagueCard({
   isInitialyCollapsed = false,
-  standingsLeagueData,
   leagueId,
-}: // topAssists,
-// topScorers,
-LeagueCardProps) {
+  standingsLeagueData,
+}: LeagueCardProps) {
   const [isCollapsed, setIsCollapsed] = useState(isInitialyCollapsed);
   const {
     data: topScorers,
     isLoading: isTopScorersLoading,
     isError: isErrorTopScorers,
-    isFetched: isTopScorersFetched,
   } = useQuery(topScorersOptions(leagueId, 2023, isCollapsed));
   const {
     data: topAssists,
     isLoading: isTopAssistsLoading,
     isError: isErrorTopAssists,
-    isFetched: isTopAssistsFetched,
   } = useQuery(topAssistsOptions(leagueId, 2023, isCollapsed));
-  console.log(
-    'topScorers:',
-    leagueId,
-    topScorers,
-    isTopScorersLoading,
-    isErrorTopScorers,
-    isTopScorersFetched
-  );
-  console.log(
-    'topAssists:',
-    leagueId,
-    topAssists,
-    isTopAssistsLoading,
-    isErrorTopAssists,
-    isTopAssistsFetched
-  );
 
   const standingsData = standingsLeagueData.standings[0];
 
   const topAssistsData =
     topAssists && topAssists.response?.length > 0
-      ? topAssists.response.map((player: any, index: number) => ({
-          ...player,
-          rank: index + 1,
-        }))
+      ? topAssists.response.map(
+          (player: PlayerResponseType, index: number) => ({
+            /* TODO_DD: Create mapper for that */
+            ...player,
+            rank: index + 1,
+          })
+        )
       : [];
 
   const topScorersData =
     topScorers && topScorers.response?.length > 0
-      ? topScorers.response.map((player: any, index: number) => ({
-          ...player,
-          rank: index + 1,
-        }))
+      ? topScorers.response.map(
+          (player: PlayerResponseType, index: number) => ({
+            /* TODO_DD: Create mapper for that */
+            ...player,
+            rank: index + 1,
+          })
+        )
       : [];
 
   const leagueCrestWithName = (

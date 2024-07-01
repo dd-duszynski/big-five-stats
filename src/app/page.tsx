@@ -29,12 +29,12 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const data = await getData();
+  const { standings } = await getData();
   const queryClient = getQueryClient();
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="flex w-full flex-col items-center">
-        {data.standings.map((league, index) => {
+        {standings.map((league, index) => {
           if (!league || league.response.length === 0) return null;
           const leagueId = league.response[0].league.id;
           return (
