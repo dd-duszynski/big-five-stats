@@ -3,18 +3,18 @@ import { APIResponseType } from '../models/api-response.model';
 import { PlayerResponseType } from '../models/player-response.model';
 import { fetchAPISports } from './fetch-api-sports';
 
-export const topScorersOptions = (
+export const topYellowCardOptions = (
   leagueId: number,
   seasonId: number,
-  enabled: boolean
+  enabled: boolean = true
 ) =>
   queryOptions({
-    queryKey: ['top-scorers', leagueId, seasonId],
+    queryKey: ['top-yellow-card', leagueId, seasonId],
     enabled: enabled,
     queryFn: async () => {
       const response = await fetchAPISports<
         APIResponseType<PlayerResponseType[]>
-      >(`players/topscorers?league=${leagueId}&season=${seasonId}`);
+      >(`players/topyellowcards?league=${leagueId}&season=${seasonId}`);
       return response;
     },
   });

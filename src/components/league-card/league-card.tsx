@@ -33,12 +33,12 @@ export function LeagueCard({
     data: topScorers,
     isLoading: isTopScorersLoading,
     isError: isErrorTopScorers,
-  } = useQuery(topScorersOptions(leagueId, 2023, isCollapsed));
+  } = useQuery(topScorersOptions(leagueId, 2023, !isCollapsed));
   const {
     data: topAssists,
     isLoading: isTopAssistsLoading,
     isError: isErrorTopAssists,
-  } = useQuery(topAssistsOptions(leagueId, 2023, isCollapsed));
+  } = useQuery(topAssistsOptions(leagueId, 2023, !isCollapsed));
 
   const standingsData = standingsLeagueData.standings[0];
 
