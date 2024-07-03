@@ -1,17 +1,21 @@
-import { Breadcrumbs, Stadium, TeamPlayers } from '@/components';
+import {
+  Breadcrumbs,
+  BreadcrumbsItemType,
+  LeagueTable,
+  PageHeader,
+  Stadium,
+  TeamCoach,
+  TeamPlayers,
+} from '@/components';
 import { CoachType } from '@/lib/models/coach.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { TeamResponseType } from '@/lib/models/team-response.model';
 import { TeamSquadResponseType } from '@/lib/models/team-squad-response.model';
 import { TeamStatisticsResponseType } from '@/lib/models/team-statistics-response.model';
-import { BreadcrumbsItem } from '../breadcrumbs/breadcrumbs';
 import { standingsColumns } from '../data-table/columns/standings-columns';
-import LeagueTable from '../league-table/league-table';
-import { PageHeader } from '../page-header/page-header';
-import { TeamCoach } from '../team-coach/team-coach';
 
 type TeamPageComponentProps = {
-  breadcrumbs: BreadcrumbsItem[];
+  breadcrumbs: BreadcrumbsItemType[];
   coach: CoachType;
   standings: StandingsResponseType;
   teamInfo: TeamResponseType;
@@ -19,7 +23,7 @@ type TeamPageComponentProps = {
   teamStatistics: TeamStatisticsResponseType;
 };
 
-export default async function TeamPageComponent({
+export function TeamPageComponent({
   breadcrumbs,
   coach,
   standings,

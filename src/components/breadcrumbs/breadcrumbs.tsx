@@ -6,16 +6,16 @@ import {
   BreadcrumbSeparator,
 } from '../ui/breadcrumb';
 
-export interface BreadcrumbsItem {
+export type BreadcrumbsItemType = {
   link: string;
   showSeparator: boolean;
   text: string;
-}
+};
 
-interface BreadcrumbsProps {
-  breadcrumbs: BreadcrumbsItem[];
+type BreadcrumbsProps = {
+  breadcrumbs: BreadcrumbsItemType[];
   className?: string;
-}
+};
 
 export function Breadcrumbs({ breadcrumbs, className = '' }: BreadcrumbsProps) {
   const breadcrumbItems = breadcrumbs.map((breadcrumb, index) => (

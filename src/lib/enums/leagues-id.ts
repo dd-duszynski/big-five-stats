@@ -1,4 +1,4 @@
-export enum LEAGUES_ID {
+export enum LeaguesId {
   ENG_Premier_League = 39,
   ESP_La_Liga = 140,
   FRA_Ligue_1 = 61,

@@ -2,15 +2,15 @@ import { Breadcrumbs, GradientCard, PlayerBar } from '@/components';
 import { PlayerResponseType } from '@/lib/models/player-response.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
 import { strings } from '@/lib/strings/strings';
-import { BreadcrumbsItem } from '../breadcrumbs/breadcrumbs';
+import { BreadcrumbsItemType } from '../breadcrumbs/breadcrumbs';
 
 type PlayerPageComponentProps = {
-  breadcrumbs: BreadcrumbsItem[];
+  breadcrumbs: BreadcrumbsItemType[];
   playerData: PlayerResponseType;
   trophiesData: TrophiesType[];
 };
 
-export default async function PlayerPageComponent({
+export function PlayerPageComponent({
   breadcrumbs,
   playerData,
   trophiesData,

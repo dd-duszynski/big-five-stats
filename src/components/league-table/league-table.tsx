@@ -9,7 +9,7 @@ interface LeagueTableProps<TData, TValue> {
   teamToHighlight?: number;
 }
 
-const LeagueTable = <TData, TValue>({
+export const LeagueTable = <TData, TValue>({
   columns,
   data,
   teamToHighlight,
@@ -34,5 +34,3 @@ const LeagueTable = <TData, TValue>({
     </Card>
   );
 };
-
-export default LeagueTable;

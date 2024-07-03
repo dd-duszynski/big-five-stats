@@ -4,15 +4,15 @@ import { CoachType } from '@/lib/models/coach.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
 import { strings } from '@/lib/strings/strings';
 import Image from 'next/image';
-import { BreadcrumbsItem } from '../breadcrumbs/breadcrumbs';
+import { BreadcrumbsItemType } from '../breadcrumbs/breadcrumbs';
 
 type CoachPageComponentProps = {
-  breadcrumbs: BreadcrumbsItem[];
+  breadcrumbs: BreadcrumbsItemType[];
   coachData: CoachType;
   trophiesData: TrophiesType[];
 };
 
-export default async function CoachPageComponent({
+export function CoachPageComponent({
   breadcrumbs,
   coachData,
   trophiesData,

@@ -4,7 +4,7 @@ interface FormIconProps {
   value: 'W' | 'D' | 'L' extends string ? string : never;
 }
 
-export default function FormIcon({ value }: FormIconProps) {
+export function FormIcon({ value }: FormIconProps) {
   const mapValueToStyle =
     value === 'W'
       ? 'bg-green-500'

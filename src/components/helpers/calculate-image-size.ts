@@ -33,3 +33,5 @@ export const calculateImageSize = (size: ImageSize) => {
 
   return sizeMap[size];
 };
+
+/* TODO_DD: add to index, or move to lib/utils */

@@ -1,4 +1,4 @@
-import { BreadcrumbsItem } from '@/components/breadcrumbs/breadcrumbs';
+import { BreadcrumbsItemType } from '@/components/breadcrumbs/breadcrumbs';
 import CoachPageComponent from '@/components/coach-page/coach-page';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
@@ -34,7 +34,7 @@ export default async function CoachPage({ params }: any) {
     return <div className="text-black">{strings.Coach_not_found}</div>;
   }
 
-  const breadcrumbs: BreadcrumbsItem[] = [
+  const breadcrumbs: BreadcrumbsItemType[] = [
     {
       link: `/`,
       text: strings.Home,

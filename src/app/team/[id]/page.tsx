@@ -1,4 +1,4 @@
-import { BreadcrumbsItem } from '@/components/breadcrumbs/breadcrumbs';
+import { BreadcrumbsItemType } from '@/components/breadcrumbs/breadcrumbs';
 import TeamPageComponent from '@/components/team-page/team-page';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
@@ -63,7 +63,7 @@ export default async function TeamPage({ params }: any) {
     return <div>{strings.Loading}</div>;
   }
 
-  const breadcrumbs: BreadcrumbsItem[] = [
+  const breadcrumbs: BreadcrumbsItemType[] = [
     {
       link: `/`,
       text: strings.Home,

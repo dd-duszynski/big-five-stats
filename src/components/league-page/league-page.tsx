@@ -1,6 +1,13 @@
 'use client';
 
-import { GradientCard } from '@/components';
+import {
+  Breadcrumbs,
+  DataTable,
+  Fixtures,
+  GradientCard,
+  LeagueTable,
+  PageHeader,
+} from '@/components';
 import { FixturesType } from '@/lib/models/fixtures.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { strings } from '@/lib/strings/strings';
@@ -9,19 +16,15 @@ import { topRedCardOptions } from '@/lib/utils/top-red-card-query';
 import { topScorersOptions } from '@/lib/utils/top-scorers-query';
 import { topYellowCardOptions } from '@/lib/utils/top-yellow-card-query';
 import { useQuery } from '@tanstack/react-query';
-import { Breadcrumbs, BreadcrumbsItem } from '../breadcrumbs/breadcrumbs';
+import { BreadcrumbsItemType } from '../breadcrumbs/breadcrumbs';
 import { redCardsColumns } from '../data-table/columns/red-cards-columns';
 import { standingsColumns } from '../data-table/columns/standings-columns';
 import { topAssistsColumns } from '../data-table/columns/top-assists-columns';
 import { topScorersColumns } from '../data-table/columns/top-scorers-columns';
 import { yellowCardsColumns } from '../data-table/columns/yellow-cards-columns';
-import { DataTable } from '../data-table/data-table';
-import Fixtures from '../fixtures/fixtures';
-import LeagueTable from '../league-table/league-table';
-import { PageHeader } from '../page-header/page-header';
 
 type LeaguePageComponentProps = {
-  breadcrumbs: BreadcrumbsItem[];
+  breadcrumbs: BreadcrumbsItemType[];
   games: FixturesType[];
   leagueId: number;
   rounds: string[];

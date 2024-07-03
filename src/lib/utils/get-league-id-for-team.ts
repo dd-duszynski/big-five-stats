@@ -1,4 +1,4 @@
-import { LEAGUES_ID } from '../enums/league';
+import { LeaguesId } from '@/lib/enums/leagues-id';
 
 const ENG_TeamsId = [
   33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52,
@@ -59,15 +59,15 @@ const SAU_TeamsId = [
   2966, 2967, 2968, 2969, 2970, 2971, 2972, 2973, 2974, 2975,
 ];
 
-export const getLeagueIdForTeam = (teamId: number): LEAGUES_ID | undefined => {
-  if (ENG_TeamsId.includes(teamId)) return LEAGUES_ID.ENG_Premier_League;
-  if (ESP_TeamsId.includes(teamId)) return LEAGUES_ID.ESP_La_Liga;
-  if (FRA_TeamsId.includes(teamId)) return LEAGUES_ID.FRA_Ligue_1;
-  if (GER_TeamsId.includes(teamId)) return LEAGUES_ID.GER_Bundesliga;
-  if (ITA_TeamsId.includes(teamId)) return LEAGUES_ID.ITA_Serie_A;
-  if (POR_TeamsId.includes(teamId)) return LEAGUES_ID.POR_Primeira_Liga;
-  if (POL_TeamsId.includes(teamId)) return LEAGUES_ID.POL_Ekstraklasa;
-  if (TUR_TeamsId.includes(teamId)) return LEAGUES_ID.TUR_SuperLig;
-  if (NET_TeamsId.includes(teamId)) return LEAGUES_ID.NET_Eredivisie;
-  if (SAU_TeamsId.includes(teamId)) return LEAGUES_ID.SAU_ProLeague;
+export const getLeagueIdForTeam = (teamId: number): LeaguesId | undefined => {
+  if (ENG_TeamsId.includes(teamId)) return LeaguesId.ENG_Premier_League;
+  if (ESP_TeamsId.includes(teamId)) return LeaguesId.ESP_La_Liga;
+  if (FRA_TeamsId.includes(teamId)) return LeaguesId.FRA_Ligue_1;
+  if (GER_TeamsId.includes(teamId)) return LeaguesId.GER_Bundesliga;
+  if (ITA_TeamsId.includes(teamId)) return LeaguesId.ITA_Serie_A;
+  if (POR_TeamsId.includes(teamId)) return LeaguesId.POR_Primeira_Liga;
+  if (POL_TeamsId.includes(teamId)) return LeaguesId.POL_Ekstraklasa;
+  if (TUR_TeamsId.includes(teamId)) return LeaguesId.TUR_SuperLig;
+  if (NET_TeamsId.includes(teamId)) return LeaguesId.NET_Eredivisie;
+  if (SAU_TeamsId.includes(teamId)) return LeaguesId.SAU_ProLeague;
 };

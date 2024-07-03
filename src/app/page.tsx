@@ -1,5 +1,5 @@
 import { LeagueCard } from '@/components';
-import { LEAGUES_ID } from '@/lib/enums/league';
+import { LeaguesId } from '@/lib/enums/leagues-id';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
@@ -9,7 +9,7 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { Metadata } from 'next';
 
 async function getData() {
-  const leaguesId = Object.values(LEAGUES_ID).filter(
+  const leaguesId = Object.values(LeaguesId).filter(
     (league) => typeof league === 'number'
   );
   const standingsPromises = leaguesId.map((league) => {

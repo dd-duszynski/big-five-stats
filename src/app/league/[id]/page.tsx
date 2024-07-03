@@ -1,10 +1,10 @@
-import { BreadcrumbsItem } from '@/components/breadcrumbs/breadcrumbs';
+import { BreadcrumbsItemType } from '@/components/breadcrumbs/breadcrumbs';
 import { LeaguePageComponent } from '@/components/league-page/league-page';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { FixturesType } from '@/lib/models/fixtures.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
-import { strings } from '@/lib/strings/strings';
+import { strings } from '@/lib/strings';
 import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
 import { Metadata } from 'next';
 
@@ -47,7 +47,7 @@ export default async function LeaguePage({ params }: any) {
     return <div className="text-black">{strings.Data_not_found}</div>;
   }
 
-  const breadcrumbs: BreadcrumbsItem[] = [
+  const breadcrumbs: BreadcrumbsItemType[] = [
     {
       link: `/`,
       text: strings.Home,

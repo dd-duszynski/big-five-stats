@@ -1,7 +1,6 @@
 'use client';
 
-import { Crest } from '@/components';
-import FormIcon from '@/components/form-icon/form-icon';
+import { Crest, FormIcon } from '@/components';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 

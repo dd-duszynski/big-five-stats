@@ -10,7 +10,7 @@ export type APIResponseType<T> = {
   };
 };
 
-export type APIResponseParametersType = {
+type APIResponseParametersType = {
   /* TODO_DD: it is not complete, there are more properties */
   league: string;
   season: string;
