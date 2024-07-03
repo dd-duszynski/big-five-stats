@@ -1,8 +1,12 @@
-import { Breadcrumbs, GradientCard, PlayerBar } from '@/components';
+import {
+  Breadcrumbs,
+  BreadcrumbsItemType,
+  GradientCard,
+  PlayerBar,
+} from '@/components';
 import { PlayerResponseType } from '@/lib/models/player-response.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
 import { strings } from '@/lib/strings/strings';
-import { BreadcrumbsItemType } from '../breadcrumbs/breadcrumbs';
 
 type PlayerPageComponentProps = {
   breadcrumbs: BreadcrumbsItemType[];

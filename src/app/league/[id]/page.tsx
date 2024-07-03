@@ -1,5 +1,4 @@
-import { BreadcrumbsItemType } from '@/components/breadcrumbs/breadcrumbs';
-import { LeaguePageComponent } from '@/components/league-page/league-page';
+import { BreadcrumbsItemType, LeaguePageComponent } from '@/components';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { FixturesType } from '@/lib/models/fixtures.model';

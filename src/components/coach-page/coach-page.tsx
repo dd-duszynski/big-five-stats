@@ -1,10 +1,13 @@
-import { Breadcrumbs, GradientCard } from '@/components';
-import { CoachBar } from '@/components/coach-bar/coach-bar';
+import {
+  Breadcrumbs,
+  BreadcrumbsItemType,
+  CoachBar,
+  GradientCard,
+} from '@/components';
 import { CoachType } from '@/lib/models/coach.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
 import { strings } from '@/lib/strings/strings';
 import Image from 'next/image';
-import { BreadcrumbsItemType } from '../breadcrumbs/breadcrumbs';
 
 type CoachPageComponentProps = {
   breadcrumbs: BreadcrumbsItemType[];

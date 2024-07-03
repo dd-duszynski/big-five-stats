@@ -1,5 +1,4 @@
-import { BreadcrumbsItemType } from '@/components/breadcrumbs/breadcrumbs';
-import TeamPageComponent from '@/components/team-page/team-page';
+import { BreadcrumbsItemType, TeamPageComponent } from '@/components';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { CoachType } from '@/lib/models/coach.model';

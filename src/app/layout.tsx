@@ -1,5 +1,4 @@
-import { Navigation } from '@/components';
-import Providers from '@/components/providers/providers';
+import { Navigation, Providers } from '@/components';
 import { Noto_Sans } from 'next/font/google';
 import './globals.css';
 

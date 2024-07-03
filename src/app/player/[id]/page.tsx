@@ -1,4 +1,4 @@
-import PlayerPageComponent from '@/components/player-page/player-page';
+import { PlayerPageComponent } from '@/components/';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { PlayerResponseType } from '@/lib/models/player-response.model';

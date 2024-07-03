@@ -58,7 +58,6 @@ export {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-  navigationMenuTriggerStyle,
 } from './ui/navigation-menu';
 export {
   Select,
