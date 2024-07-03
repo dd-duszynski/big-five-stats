@@ -1,6 +1,6 @@
 import { CoachType } from '@/lib/models/coach.model';
 import { CoachCard } from '../coach-card/coach-card';
-import GradientCard from '../gradient-card/gradient-card';
+import { GradientCard } from '@/components';
 
 type TeamCoachProps = {
   coach: CoachType;

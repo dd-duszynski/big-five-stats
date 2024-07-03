@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import GradientCard from '../gradient-card/gradient-card';
+import { GradientCard } from '@/components';
 
 type StadiumProps = {
   name: string;

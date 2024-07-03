@@ -1,12 +1,5 @@
-import { Stadium, TeamPlayers } from '@/components';
-import {
-  Breadcrumbs,
-  BreadcrumbsItem,
-} from '@/components/breadcrumbs/breadcrumbs';
-import { standingsColumns } from '@/components/data-table/columns/standings-columns';
-import LeagueTable from '@/components/league-table/league-table';
-import { PageHeader } from '@/components/page-header/page-header';
-import { TeamCoach } from '@/components/team-coach/team-coach';
+import { BreadcrumbsItem } from '@/components/breadcrumbs/breadcrumbs';
+import TeamPageComponent from '@/components/team-page/team-page';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { CoachType } from '@/lib/models/coach.model';
@@ -89,34 +82,13 @@ export default async function TeamPage({ params }: any) {
   ];
 
   return (
-    <div className="h-full w-full">
-      <PageHeader
-        logo={teamStatistics.team.logo}
-        logoSize="lg"
-        subLogo={teamStatistics.league.flag}
-        subtitle={`${teamStatistics.league.name} - ${teamStatistics.league.country}`}
-        title={teamStatistics.team.name}
-      />
-      <div className="px-8">
-        <Breadcrumbs
-          breadcrumbs={breadcrumbs}
-          className="mb-2 text-indigo-950"
-        />
-        <LeagueTable
-          columns={standingsColumns}
-          data={standings.league.standings[0]}
-          teamToHighlight={teamStatistics.team.id}
-        />
-        <TeamPlayers players={teamSquad.players} />
-        <TeamCoach coach={coach} />
-        <Stadium
-          name={teamInfo.venue.name}
-          address={teamInfo.venue.address}
-          city={teamInfo.venue.city}
-          capacity={teamInfo.venue.capacity}
-          image={teamInfo.venue.image}
-        />
-      </div>
-    </div>
+    <TeamPageComponent
+      breadcrumbs={breadcrumbs}
+      coach={coach}
+      standings={standings}
+      teamInfo={teamInfo}
+      teamSquad={teamSquad}
+      teamStatistics={teamStatistics}
+    />
   );
 }

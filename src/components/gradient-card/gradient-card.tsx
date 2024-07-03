@@ -10,7 +10,7 @@ interface IGradientCardProps {
   className?: string;
 }
 
-const GradientCard = ({
+export const GradientCard = ({
   children,
   headerTitle,
   className,
@@ -29,5 +29,3 @@ const GradientCard = ({
     </Card>
   );
 };
-
-export default GradientCard;

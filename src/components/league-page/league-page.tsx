@@ -1,5 +1,6 @@
 'use client';
 
+import { GradientCard } from '@/components';
 import { FixturesType } from '@/lib/models/fixtures.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { strings } from '@/lib/strings/strings';
@@ -16,7 +17,6 @@ import { topScorersColumns } from '../data-table/columns/top-scorers-columns';
 import { yellowCardsColumns } from '../data-table/columns/yellow-cards-columns';
 import { DataTable } from '../data-table/data-table';
 import Fixtures from '../fixtures/fixtures';
-import GradientCard from '../gradient-card/gradient-card';
 import LeagueTable from '../league-table/league-table';
 import { PageHeader } from '../page-header/page-header';
 

@@ -1,5 +1,5 @@
 import { TeamSquadPlayerType } from '@/lib/models/team-squad-player.model';
-import GradientCard from '../gradient-card/gradient-card';
+import { GradientCard } from '@/components';
 import { PlayerCard } from '../player-card/player-card';
 
 type TeamPlayersProps = {
