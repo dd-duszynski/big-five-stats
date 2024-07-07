@@ -16,6 +16,7 @@ export { LeagueCard } from './league-card/league-card';
 export { LeagueCrest } from './league-crest/league-crest';
 export { LeaguePageComponent } from './league-page/league-page';
 export { LeagueTable } from './league-table/league-table';
+export { Loader } from './loader/loader';
 export { Navigation } from './navigation/navigation';
 export { PageHeader } from './page-header/page-header';
 export { PlayerBar } from './player-bar/player-bar';

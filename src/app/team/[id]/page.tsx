@@ -1,4 +1,4 @@
-import { BreadcrumbsItemType, TeamPageComponent } from '@/components';
+import { BreadcrumbsItemType, Loader, TeamPageComponent } from '@/components';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { CoachType } from '@/lib/models/coach.model';
@@ -58,8 +58,7 @@ export default async function TeamPage({ params }: any) {
   const coach = data.coach?.response[0];
 
   if (!teamInfo || !teamStatistics || !teamSquad || !standings || !coach) {
-    /* TODO_DD: loader component */
-    return <div>{strings.Loading}</div>;
+    return <Loader />;
   }
 
   const breadcrumbs: BreadcrumbsItemType[] = [

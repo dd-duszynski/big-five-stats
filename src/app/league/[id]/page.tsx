@@ -1,4 +1,4 @@
-import { BreadcrumbsItemType, LeaguePageComponent } from '@/components';
+import { BreadcrumbsItemType, LeaguePageComponent, Loader } from '@/components';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { FixturesType } from '@/lib/models/fixtures.model';
@@ -36,14 +36,12 @@ export const metadata: Metadata = {
 
 export default async function LeaguePage({ params }: any) {
   const data = await getData(params.id);
-  if (
-    !data ||
-    !data.standings ||
-    !data.rounds ||
-    !data.games ||
-    !data.standings.response.length
-  ) {
-    return <div className="text-black">{strings.Data_not_found}</div>;
+  const standingsData = data.standings?.response;
+  const dataGames = data.games?.response;
+  const dataRounds = data.rounds?.response;
+
+  if (!data || !standingsData || !dataGames || !dataRounds) {
+    return <Loader />;
   }
 
   const breadcrumbs: BreadcrumbsItemType[] = [
@@ -54,19 +52,20 @@ export default async function LeaguePage({ params }: any) {
     },
     {
       link: '',
-      text: data.standings.response[0].league.name,
+      text: standingsData[0].league.name,
       showSeparator: false,
     },
   ];
-  const leagueId = data.standings.response[0].league.id;
+
+  const leagueId = standingsData[0].league.id;
 
   return (
     <LeaguePageComponent
       breadcrumbs={breadcrumbs}
-      games={data.games.response}
+      games={dataGames}
       leagueId={leagueId}
-      rounds={data.rounds.response}
-      standings={data.standings.response}
+      rounds={dataRounds}
+      standings={standingsData}
     />
   );
 }

@@ -1,4 +1,4 @@
-import { PlayerPageComponent } from '@/components/';
+import { Loader, PlayerPageComponent } from '@/components/';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { PlayerResponseType } from '@/lib/models/player-response.model';
@@ -28,11 +28,11 @@ export const metadata: Metadata = {
 
 export default async function PlayerPage({ params }: any) {
   const data = await getData(params.id);
-  const playerData = data.player?.response[0] || null;
-  const trophiesData = data.trophies?.response || null;
+  const playerData = data.player?.response[0];
+  const trophiesData = data.trophies?.response;
 
   if (!playerData || !trophiesData) {
-    return <div className="text-black">{strings.Player_not_found}</div>;
+    return <Loader />;
   }
 
   const breadcrumbs = [

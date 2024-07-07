@@ -1,4 +1,4 @@
-import { BreadcrumbsItemType, CoachPageComponent } from '@/components';
+import { BreadcrumbsItemType, CoachPageComponent, Loader } from '@/components';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { CoachType } from '@/lib/models/coach.model';
@@ -26,11 +26,11 @@ export const metadata: Metadata = {
 
 export default async function CoachPage({ params }: any) {
   const data = await getData(params.id);
-  const coachData = data.coach?.response[0] || null;
-  const trophiesData = data.trophies?.response || null;
+  const coachData = data.coach?.response[0];
+  const trophiesData = data.trophies?.response;
 
   if (!coachData || !trophiesData) {
-    return <div className="text-black">{strings.Coach_not_found}</div>;
+    return <Loader />;
   }
 
   const breadcrumbs: BreadcrumbsItemType[] = [
