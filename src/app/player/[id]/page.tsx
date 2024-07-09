@@ -2,6 +2,8 @@ import { Loader, PlayerPageComponent } from '@/components/';
 import { RevalidateTime } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { PlayerResponseType } from '@/lib/models/player-response.model';
+import { PlayerSidelinedType } from '@/lib/models/player-sidelined.model';
+import { PlayerTransfersType } from '@/lib/models/player-transfers.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
 import { strings } from '@/lib/strings/strings';
 import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
@@ -14,11 +16,21 @@ async function getData(playerId: number) {
       revalidate: RevalidateTime.ONE_DAY,
     }
   );
+
   const trophies = await fetchAPISports<APIResponseType<TrophiesType[]>>(
     `trophies?player=${playerId}`,
     { revalidate: RevalidateTime.ONE_DAY }
   );
-  return { player, trophies };
+
+  const transfers = await fetchAPISports<
+    APIResponseType<PlayerTransfersType[]>
+  >(`transfers?player=${playerId}`, { revalidate: RevalidateTime.ONE_DAY });
+
+  const sidelined = await fetchAPISports<
+    APIResponseType<PlayerSidelinedType[]>
+  >(`sidelined?player=${playerId}`, { revalidate: RevalidateTime.ONE_DAY });
+
+  return { player, trophies, transfers, sidelined };
 }
 
 export const metadata: Metadata = {
@@ -30,8 +42,10 @@ export default async function PlayerPage({ params }: any) {
   const data = await getData(params.id);
   const playerData = data.player?.response[0];
   const trophiesData = data.trophies?.response;
+  const transfersData = data.transfers?.response[0].transfers;
+  const sidelinedData = data.sidelined?.response;
 
-  if (!playerData || !trophiesData) {
+  if (!playerData || !trophiesData || !transfersData || !sidelinedData) {
     return <Loader />;
   }
 
@@ -58,13 +72,9 @@ export default async function PlayerPage({ params }: any) {
     <PlayerPageComponent
       breadcrumbs={breadcrumbs}
       playerData={playerData}
+      sidelinedData={sidelinedData}
+      transfersData={transfersData}
       trophiesData={trophiesData}
     />
   );
 }
-
-/* TODO_DD: 
-transfers:  https://www.api-football.com/documentation-v3#tag/Transfers/operation/get-transfers 
-trophies: https://www.api-football.com/documentation-v3#tag/Trophies
-sidelied: https://www.api-football.com/documentation-v3#tag/Sidelined
-*/

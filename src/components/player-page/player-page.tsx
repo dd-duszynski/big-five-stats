@@ -5,19 +5,25 @@ import {
   PlayerBar,
 } from '@/components';
 import { PlayerResponseType } from '@/lib/models/player-response.model';
+import { PlayerSidelinedType } from '@/lib/models/player-sidelined.model';
+import { TransfersType } from '@/lib/models/player-transfers.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
 import { strings } from '@/lib/strings/strings';
 
 type PlayerPageComponentProps = {
   breadcrumbs: BreadcrumbsItemType[];
   playerData: PlayerResponseType;
+  sidelinedData: PlayerSidelinedType[];
+  transfersData: TransfersType[];
   trophiesData: TrophiesType[];
 };
 
 export function PlayerPageComponent({
   breadcrumbs,
   playerData,
+  transfersData,
   trophiesData,
+  sidelinedData,
 }: PlayerPageComponentProps) {
   return (
     <div className="flex h-full w-full flex-row flex-nowrap">
@@ -103,6 +109,85 @@ export function PlayerPageComponent({
                     </p>
                     <p className="place-self-end">
                       {trophies.country} - {trophies.season}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </GradientCard>
+        </div>
+
+        <div className="flex flex-wrap gap-4">
+          <GradientCard
+            headerTitle={strings.Transfers}
+            className="w-[450px]"
+          >
+            <div className="flex flex-col">
+              {/* TODO_DD: use table */}
+              {transfersData.map((transfer, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-center border-b-2 border-slate-200"
+                >
+                  <div>
+                    <p className="place-self-end">
+                      {transfer.date} - {transfer.type.toString()}
+                    </p>
+                    <p className="place-self-end">
+                      {transfer.teams.out.name} - {transfer.teams.in.name}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </GradientCard>
+        </div>
+
+        <div className="flex flex-wrap gap-4">
+          <GradientCard
+            headerTitle={strings.Sidelined}
+            className="w-[450px]"
+          >
+            <div className="flex flex-col">
+              {/* TODO_DD: use table */}
+              {sidelinedData.map((sideline, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-center border-b-2 border-slate-200"
+                >
+                  <div>
+                    <p className="place-self-end">{sideline.type}</p>
+                    <p className="place-self-end">
+                      {sideline.start} - {sideline.end}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </GradientCard>
+        </div>
+
+        <div className="flex flex-wrap gap-4">
+          <GradientCard
+            headerTitle={strings.Career}
+            className="w-[450px]"
+          >
+            <div className="flex flex-col">
+              {/* TODO_DD: use table */}
+              {playerData.statistics.map((playerStatistic, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row items-center border-b-2 border-slate-200"
+                >
+                  <div>
+                    <p className="place-self-end">
+                      {playerStatistic.team.name} -{' '}
+                      {playerStatistic.league.season}
+                    </p>
+                    <p className="place-self-end">
+                      {playerStatistic.games.appearences} -{' '}
+                      {playerStatistic.goals.total || 0} -{' '}
+                      {playerStatistic.goals.assists || 0}
                     </p>
                   </div>
                 </div>

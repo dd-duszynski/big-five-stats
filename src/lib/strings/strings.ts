@@ -23,6 +23,8 @@ export const strings = {
   Top_Scorers: 'Top Scorers',
   Trophies: 'Trophies',
   Yellow_Cards: 'Yellow Cards',
+  Transfers: 'Transfers',
+  Sidelined: 'Sidelined',
   leagues: {
     Premier_League: 'Premier League',
     La_Liga: 'La Liga',
