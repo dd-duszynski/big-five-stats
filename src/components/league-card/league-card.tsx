@@ -14,6 +14,7 @@ import { topAssistsColumns } from '../data-table/columns/top-assists-columns';
 import { topScorersColumns } from '../data-table/columns/top-scorers-columns';
 import { DataTable } from '../data-table/data-table';
 import { LeagueCrest } from '../league-crest/league-crest';
+import { Loader } from '../loader/loader';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 
@@ -139,7 +140,7 @@ export function LeagueCard({
               </TabsContent>
               <TabsContent value="top-scorers">
                 {isTopScorersLoading || isErrorTopScorers ? (
-                  <div>{strings.Loading}</div>
+                  <Loader />
                 ) : (
                   <DataTable
                     columns={topScorersColumns}
@@ -150,7 +151,7 @@ export function LeagueCard({
               </TabsContent>
               <TabsContent value="top-assists">
                 {isTopAssistsLoading || isErrorTopAssists ? (
-                  <div>{strings.Loading}</div>
+                  <Loader />
                 ) : (
                   <DataTable
                     columns={topAssistsColumns}

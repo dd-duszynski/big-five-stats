@@ -9,6 +9,9 @@ import { PlayerSidelinedType } from '@/lib/models/player-sidelined.model';
 import { TransfersType } from '@/lib/models/player-transfers.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
 import { strings } from '@/lib/strings/strings';
+import { PlayerSidelined } from '../player-sidelined/player-sidelined';
+import { PlayerTransfers } from '../player-transfers/player-transfers';
+import { PlayerTrophies } from '../player-trophies/player-trophies';
 
 type PlayerPageComponentProps = {
   breadcrumbs: BreadcrumbsItemType[];
@@ -90,66 +93,16 @@ export function PlayerPageComponent({
             </div>
           </GradientCard>
         </div>
-        {/* TODO_DD: to unify with coach trophies */}
-        <div className="flex flex-wrap gap-4">
-          <GradientCard
-            headerTitle={strings.Trophies}
-            className="w-[450px]"
-          >
-            <div className="flex flex-col">
-              {/* TODO_DD: use table */}
-              {trophiesData.map((trophies, index) => (
-                <div
-                  key={index}
-                  className="flex flex-row items-center border-b-2 border-slate-200"
-                >
-                  <div>
-                    <p className="place-self-end">
-                      {trophies.league} - {trophies.place}
-                    </p>
-                    <p className="place-self-end">
-                      {trophies.country} - {trophies.season}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </GradientCard>
-        </div>
+        <PlayerTrophies data={trophiesData} />
+        <PlayerTransfers data={transfersData} />
+        <PlayerSidelined data={sidelinedData} />
 
-        <div className="flex flex-wrap gap-4">
-          <GradientCard
-            headerTitle={strings.Transfers}
-            className="w-[450px]"
-          >
-            <div className="flex flex-col">
-              {/* TODO_DD: use table */}
-              {transfersData.map((transfer, index) => (
-                <div
-                  key={index}
-                  className="flex flex-row items-center border-b-2 border-slate-200"
-                >
-                  <div>
-                    <p className="place-self-end">
-                      {transfer.date} - {transfer.type.toString()}
-                    </p>
-                    <p className="place-self-end">
-                      {transfer.teams.out.name} - {transfer.teams.in.name}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </GradientCard>
-        </div>
-
-        <div className="flex flex-wrap gap-4">
+        {/* <div className="flex flex-wrap gap-4">
           <GradientCard
             headerTitle={strings.Sidelined}
             className="w-[450px]"
           >
             <div className="flex flex-col">
-              {/* TODO_DD: use table */}
               {sidelinedData.map((sideline, index) => (
                 <div
                   key={index}
@@ -165,7 +118,7 @@ export function PlayerPageComponent({
               ))}
             </div>
           </GradientCard>
-        </div>
+        </div> */}
 
         <div className="flex flex-wrap gap-4">
           <GradientCard
