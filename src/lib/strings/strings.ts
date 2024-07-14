@@ -11,6 +11,7 @@ export const strings = {
   Home: 'Home',
   Leagues: 'Leagues',
   Lineups: 'Lineups',
+  Games: 'Games',
   Loading: 'Loading...',
   Minutes: 'Minutes',
   Player_not_found: 'Player not found',

@@ -42,7 +42,7 @@ export default async function PlayerPage({ params }: any) {
   const data = await getData(params.id);
   const playerData = data.player?.response[0];
   const trophiesData = data.trophies?.response;
-  const transfersData = data.transfers?.response[0].transfers;
+  const transfersData = data.transfers?.response[0]?.transfers;
   const sidelinedData = data.sidelined?.response;
 
   if (!playerData || !trophiesData || !transfersData || !sidelinedData) {
