@@ -17,9 +17,9 @@ export function CoachPageComponent({
 }: CoachPageComponentProps) {
   return (
     <div className="flex h-full w-full flex-row flex-nowrap">
-      <div className="w-[250px] overflow-y-auto overflow-x-hidden bg-gradient-to-t from-emerald-500 to-indigo-500">
+      <aside className="w-[250px] overflow-y-auto overflow-x-hidden bg-gradient-to-t from-emerald-500 to-indigo-500">
         <CoachBar coach={coachData} />
-      </div>
+      </aside>
       <main className="grow overflow-y-auto px-4">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}

@@ -16,6 +16,7 @@ export function CoachTrophies({ data }: CoachTrophiesProps) {
       <DataTable
         columns={coachTrophiesColumns}
         data={data}
+        className="h-[calc(100vh-12rem)]"
       />
     </GradientCard>
   );

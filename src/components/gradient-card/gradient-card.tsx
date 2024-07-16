@@ -16,7 +16,9 @@ export const GradientCard = ({
   className,
 }: IGradientCardProps) => {
   return (
-    <Card className={`w-[300px] ${className}`}>
+    <Card
+      className={`h-fit max-h-screen w-[300px] overflow-hidden ${className}`}
+    >
       <CardHeader className="flex items-center justify-center gap-3 rounded-t-md bg-gradient-to-r from-indigo-500 to-emerald-500">
         <Text
           variant="h3"

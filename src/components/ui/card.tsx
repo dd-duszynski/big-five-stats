@@ -61,7 +61,7 @@ const CardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={joinClassNames('p-6', className)}
+    className={joinClassNames('p-4', className)}
     {...props}
   />
 ));
@@ -73,7 +73,7 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={joinClassNames(' flex items-center p-6 pt-0', className)}
+    className={joinClassNames(' flex items-center p-4 pt-0', className)}
     {...props}
   />
 ));

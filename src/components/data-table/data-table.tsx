@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { joinClassNames } from '@/lib/utils/join-class-names';
 import {
   ColumnDef,
   flexRender,
@@ -16,17 +17,18 @@ import {
 } from '@tanstack/react-table';
 
 interface DataTableProps<TData, TValue> {
+  className?: string;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   onlyFive?: boolean;
-  teamToHighlight?: number;
+  teamToHighlight?: number /* TODO_DD:  */;
 }
 
 export function DataTable<TData, TValue>({
+  className,
   columns,
   data,
   onlyFive,
-  teamToHighlight,
 }: DataTableProps<TData, TValue>) {
   // const collapsedData = data.slice(0, 5);
   const table = useReactTable({
@@ -42,7 +44,12 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border">
+    <div
+      className={joinClassNames(
+        'relative w-full overflow-auto rounded-md border',
+        className
+      )}
+    >
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -60,6 +67,7 @@ export function DataTable<TData, TValue>({
             </TableRow>
           ))}
         </TableHeader>
+
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => {
