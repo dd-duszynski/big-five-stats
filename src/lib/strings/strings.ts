@@ -26,6 +26,13 @@ export const strings = {
   Yellow_Cards: 'Yellow Cards',
   Transfers: 'Transfers',
   Sidelined: 'Sidelined',
+  Goalkeepers: 'Goalkeepers',
+  Defenders: 'Defenders',
+  Midfielders: 'Midfielders',
+  Attackers: 'Attackers',
+  Players: 'Players',
+  Age: 'Age',
+  Since: 'Since',
   leagues: {
     Premier_League: 'Premier League',
     La_Liga: 'La Liga',

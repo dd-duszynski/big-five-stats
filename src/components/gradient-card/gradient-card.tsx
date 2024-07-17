@@ -5,15 +5,17 @@ import { Text } from '../text/text';
 import { Card, CardContent, CardHeader } from '../ui/card';
 
 interface IGradientCardProps {
+  cardContentClassName?: string;
   children: React.ReactNode;
-  headerTitle: string;
   className?: string;
+  headerTitle: string;
 }
 
 export const GradientCard = ({
+  cardContentClassName,
   children,
-  headerTitle,
   className,
+  headerTitle,
 }: IGradientCardProps) => {
   return (
     <Card
@@ -27,7 +29,7 @@ export const GradientCard = ({
           {headerTitle}
         </Text>
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      <CardContent className={cardContentClassName}>{children}</CardContent>
     </Card>
   );
 };
