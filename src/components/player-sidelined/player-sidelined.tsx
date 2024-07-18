@@ -10,7 +10,7 @@ type PlayerTransfersProps = {
 export function PlayerSidelined({ data }: PlayerTransfersProps) {
   return (
     <GradientCard
-      className="w-[650px]"
+      className="w-full lg:w-[calc(50%-8px)]"
       headerTitle={strings.Sidelined}
     >
       <DataTable

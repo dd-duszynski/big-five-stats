@@ -10,7 +10,7 @@ type PlayerTransfersProps = {
 export function PlayerTransfers({ data }: PlayerTransfersProps) {
   return (
     <GradientCard
-      className="w-[650px]"
+      className="w-full"
       headerTitle={strings.Transfers}
     >
       <DataTable

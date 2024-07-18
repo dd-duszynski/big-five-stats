@@ -34,7 +34,7 @@ export const playerTransfersColumns: ColumnDef<any>[] = [
     accessorKey: 'teams.in.name',
     header: '',
     cell: () => {
-      return <span>{`->`}</span>;
+      return <span>{`>>>`}</span>;
     },
   },
   {

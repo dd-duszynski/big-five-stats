@@ -14,9 +14,9 @@ export function CoachTrophies({ data }: CoachTrophiesProps) {
       className="w-[650px]"
     >
       <DataTable
+        className="max-h-[calc(100vh-12rem)]"
         columns={coachTrophiesColumns}
         data={data}
-        className="max-h-[calc(100vh-12rem)]"
       />
     </GradientCard>
   );

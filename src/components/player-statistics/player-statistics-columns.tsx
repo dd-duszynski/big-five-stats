@@ -17,7 +17,7 @@ export const playerStatisticsColumns: ColumnDef<any>[] = [
           <div className="flex items-center gap-2">
             <Crest
               alt={row.original.league.name}
-              size="md"
+              size="xs"
               src={row.original.league.logo || row.original.league.flag}
             />
             {row.original.league.name}
@@ -38,7 +38,7 @@ export const playerStatisticsColumns: ColumnDef<any>[] = [
           <div className="flex items-center gap-2">
             <Crest
               alt={row.original.team.name}
-              size="md"
+              size="xs"
               src={row.original.team.logo}
             />
             {row.original.team.name}
