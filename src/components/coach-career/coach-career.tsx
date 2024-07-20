@@ -10,10 +10,11 @@ type CoachCareerProps = {
 export function CoachCareer({ data }: CoachCareerProps) {
   return (
     <GradientCard
+      className="w-full lg:w-[calc(50%-8px)]"
       headerTitle={strings.Career}
-      className="w-[500px]"
     >
       <DataTable
+        className="max-h-[calc(100vh-12rem)]"
         columns={coachCareerColumns}
         data={data}
       />

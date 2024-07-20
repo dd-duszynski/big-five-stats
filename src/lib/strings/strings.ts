@@ -35,9 +35,12 @@ export const strings = {
   Since: 'Since',
   Position: 'Position',
   Birthdate: 'Birthdate',
+  Birthplace: 'Birthplace',
   Nationality: 'Nationality',
   Height: 'Height',
   Weight: 'Weight',
+  Role: 'Role',
+  Coach: 'Coach',
 
   leagues: {
     Premier_League: 'Premier League',

@@ -29,7 +29,7 @@ export function PlayerPageComponent({
         player={playerData.player}
         statistics={playerData.statistics}
       />
-      <main className="grow overflow-y-auto px-4">
+      <main className="grow px-4 md:overflow-y-auto">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
           className="my-2"

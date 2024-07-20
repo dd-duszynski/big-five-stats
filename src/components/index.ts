@@ -1,3 +1,4 @@
+export { AsideBar } from './aside-bar/aside-bar';
 export { Breadcrumbs } from './breadcrumbs/breadcrumbs';
 export type { BreadcrumbsItemType } from './breadcrumbs/breadcrumbs';
 export { CoachBar } from './coach-bar/coach-bar';

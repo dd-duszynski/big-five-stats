@@ -10,8 +10,8 @@ type CoachTrophiesProps = {
 export function CoachTrophies({ data }: CoachTrophiesProps) {
   return (
     <GradientCard
+      className="w-full lg:w-[calc(50%-8px)]"
       headerTitle={strings.Trophies}
-      className="w-[650px]"
     >
       <DataTable
         className="max-h-[calc(100vh-12rem)]"

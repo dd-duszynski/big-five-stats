@@ -14,6 +14,7 @@ export function PlayerSidelined({ data }: PlayerTransfersProps) {
       headerTitle={strings.Sidelined}
     >
       <DataTable
+        className="max-h-[calc(100vh-12rem)]"
         columns={playerSidelinedColumns}
         data={data}
       />

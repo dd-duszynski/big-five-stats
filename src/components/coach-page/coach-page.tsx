@@ -16,16 +16,14 @@ export function CoachPageComponent({
   trophiesData,
 }: CoachPageComponentProps) {
   return (
-    <div className="flex h-full w-full flex-row flex-nowrap">
-      <aside className="w-[250px] overflow-y-auto overflow-x-hidden bg-gradient-to-t from-emerald-500 to-indigo-500">
-        <CoachBar coach={coachData} />
-      </aside>
-      <main className="grow overflow-y-auto px-4">
+    <div className="flex h-full w-full flex-col md:flex-row md:flex-nowrap">
+      <CoachBar coach={coachData} />
+      <main className="grow px-4 md:overflow-y-auto">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
           className="my-2"
         />
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap items-start gap-4 pb-4">
           <CoachCareer data={coachData.career} />
           <CoachTrophies data={trophiesData} />
         </div>

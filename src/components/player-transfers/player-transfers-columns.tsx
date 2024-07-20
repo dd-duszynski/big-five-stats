@@ -21,7 +21,7 @@ export const playerTransfersColumns: ColumnDef<any>[] = [
           <div className="flex items-center gap-2">
             <Crest
               alt={row.original.teams.out.name}
-              size="md"
+              size="sm"
               src={row.original.teams.out.logo}
             />
             {row.original.teams.out.name}
@@ -49,7 +49,7 @@ export const playerTransfersColumns: ColumnDef<any>[] = [
           <div className="flex items-center gap-2">
             <Crest
               alt={row.original.teams.in.name}
-              size="md"
+              size="sm"
               src={row.original.teams.in.logo}
             />
             {row.original.teams.in.name}

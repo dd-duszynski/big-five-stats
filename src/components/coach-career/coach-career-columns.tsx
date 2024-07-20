@@ -17,7 +17,7 @@ export const coachCareerColumns: ColumnDef<any>[] = [
           <div className="flex items-center gap-2">
             <Crest
               alt={row.original.team.name}
-              size="md"
+              size="sm"
               src={row.original.team.logo}
             />
             {row.original.team.name}
