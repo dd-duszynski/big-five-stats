@@ -19,7 +19,7 @@ export function Stadium({
   return (
     <GradientCard
       headerTitle="Stadium"
-      className="mb-2 w-[640px]"
+      className="w-full lg:w-[calc(50%-8px)]"
     >
       <div>
         <p>Name: {name} </p>

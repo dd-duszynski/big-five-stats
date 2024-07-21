@@ -15,7 +15,7 @@ export const LeagueTable = <TData, TValue>({
   teamToHighlight,
 }: LeagueTableProps<TData, TValue>) => {
   return (
-    <Card className="mb-2 max-w-full">
+    <Card className="max-w-full">
       <CardHeader className="flex items-center justify-center gap-3 rounded-t-md bg-gradient-to-r from-indigo-500 to-emerald-500">
         <Text
           className="text-center text-white"

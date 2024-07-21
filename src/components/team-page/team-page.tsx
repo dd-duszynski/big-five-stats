@@ -40,10 +40,10 @@ export function TeamPageComponent({
         subtitle={`${teamStatistics.league.name} - ${teamStatistics.league.country}`}
         title={teamStatistics.team.name}
       />
-      <div className="px-8">
+      <main className="flex flex-wrap items-start gap-4 px-4 pb-4">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
-          className="mb-2 text-indigo-950"
+          className="w-full"
         />
         <LeagueTable
           columns={standingsColumns}
@@ -59,7 +59,7 @@ export function TeamPageComponent({
           image={teamInfo.venue.image}
           name={teamInfo.venue.name}
         />
-      </div>
+      </main>
     </div>
   );
 }

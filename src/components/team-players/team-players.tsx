@@ -24,7 +24,7 @@ export function TeamPlayers({ players }: TeamPlayersProps) {
 
   const createSubSection = (title: string, players: TeamSquadPlayerType[]) => (
     <>
-      <div className="mb-2 flex justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
+      <div className="flex justify-center rounded-md bg-gradient-to-r from-indigo-500 to-emerald-500">
         <Text
           variant="h4"
           className="text-white"
@@ -46,7 +46,7 @@ export function TeamPlayers({ players }: TeamPlayersProps) {
   return (
     <GradientCard
       cardContentClassName="overflow-y-auto h-[800px]"
-      className="mb-2 w-[640px]"
+      className="mb-2 w-full"
       headerTitle={strings.Players}
     >
       {createSubSection(strings.Goalkeepers, goalkeepers)}

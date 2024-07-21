@@ -10,7 +10,7 @@ export function TeamCoach({ coach }: TeamCoachProps) {
   return (
     <GradientCard
       headerTitle="Coach"
-      className="mb-2 w-[640px]"
+      className="w-full lg:w-[calc(50%-8px)]"
     >
       <div className="flex flex-row flex-wrap gap-2">
         <CoachCard
