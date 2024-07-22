@@ -29,6 +29,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   onlyFive,
+  teamToHighlight,
 }: DataTableProps<TData, TValue>) {
   // const collapsedData = data.slice(0, 5);
   const table = useReactTable({
@@ -71,10 +72,16 @@ export function DataTable<TData, TValue>({
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => {
+              const teamId = teamToHighlight && (row.original as any).team.id;
               return (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
+                  className={joinClassNames(
+                    teamToHighlight &&
+                      teamToHighlight === teamId &&
+                      'bg-emerald-100'
+                  )}
                 >
                   {row.getVisibleCells().map((cell) => {
                     return (

@@ -4,8 +4,7 @@ import {
   LeagueTable,
   PageHeader,
   Stadium,
-  TeamCoach,
-  TeamPlayers,
+  TeamSquad,
 } from '@/components';
 import { CoachType } from '@/lib/models/coach.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
@@ -45,20 +44,24 @@ export function TeamPageComponent({
           breadcrumbs={breadcrumbs}
           className="w-full"
         />
-        <LeagueTable
-          columns={standingsColumns}
-          data={standings.league.standings[0]}
-          teamToHighlight={teamStatistics.team.id}
-        />
-        <TeamPlayers players={teamSquad.players} />
-        <TeamCoach coach={coach} />
-        <Stadium
-          address={teamInfo.venue.address}
-          capacity={teamInfo.venue.capacity}
-          city={teamInfo.venue.city}
-          image={teamInfo.venue.image}
-          name={teamInfo.venue.name}
-        />
+        <div className="flex flex-wrap items-start gap-4 pb-4">
+          <LeagueTable
+            columns={standingsColumns}
+            data={standings.league.standings[0]}
+            teamToHighlight={teamStatistics.team.id}
+          />
+          <Stadium
+            address={teamInfo.venue.address}
+            capacity={teamInfo.venue.capacity}
+            city={teamInfo.venue.city}
+            image={teamInfo.venue.image}
+            name={teamInfo.venue.name}
+          />
+          <TeamSquad
+            players={teamSquad.players}
+            coach={coach}
+          />
+        </div>
       </main>
     </div>
   );

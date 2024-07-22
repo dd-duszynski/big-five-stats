@@ -69,7 +69,6 @@ export function LeaguePageComponent({
           columns={standingsColumns}
           data={standings[0].league.standings[0]}
         />
-
         <GradientCard
           className="mb-2 w-full"
           headerTitle={strings.Fixtures}

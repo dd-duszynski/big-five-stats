@@ -22,7 +22,7 @@ export const PlayerCard = ({ player }: PlayerCardProps) => {
         </div>
       </div>
       <Link
-        className="hover:underline"
+        className="text-center hover:underline"
         href={`/player/${player.id}`}
       >
         <p>{player.name}</p>

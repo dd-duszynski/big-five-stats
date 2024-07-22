@@ -1,3 +1,4 @@
+import { strings } from '@/lib/strings';
 import { ColumnDef } from '@tanstack/react-table';
 import { DataTable } from '../data-table/data-table';
 import { Text } from '../text/text';
@@ -21,7 +22,7 @@ export const LeagueTable = <TData, TValue>({
           className="text-center text-white"
           variant="h2"
         >
-          Standings
+          {strings.Standings}
         </Text>
       </CardHeader>
       <CardContent>

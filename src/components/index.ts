@@ -26,9 +26,8 @@ export { PlayerImage } from './player-image/player-image';
 export { PlayerPageComponent } from './player-page/player-page';
 export { Providers } from './providers/providers';
 export { Stadium } from './stadium/stadium';
-export { TeamCoach } from './team-coach/team-coach';
 export { TeamPageComponent } from './team-page/team-page';
-export { TeamPlayers } from './team-players/team-players';
+export { TeamSquad } from './team-squad/team-squad';
 export { Text } from './text/text';
 
 // ./ui/
