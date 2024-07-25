@@ -1,5 +1,8 @@
+import {
+  calculateImageCssSize,
+  calculateImageSize,
+} from '@/lib/utils/calculate-image-size';
 import Image from 'next/image';
-import { calculateImageCssSize, calculateImageSize } from '..';
 
 interface IPlayerImageProps {
   photo: string;

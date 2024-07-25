@@ -9,10 +9,6 @@ export { DataTable } from './data-table/data-table';
 export { Fixtures } from './fixtures/fixtures';
 export { FormIcon } from './form-icon/form-icon';
 export { GradientCard } from './gradient-card/gradient-card';
-export {
-  calculateImageCssSize,
-  calculateImageSize,
-} from './helpers/calculate-image-size';
 export { LeagueCard } from './league-card/league-card';
 export { LeagueCrest } from './league-crest/league-crest';
 export { LeaguePageComponent } from './league-page/league-page';

@@ -1,5 +1,5 @@
 import { LeagueCard, Loader } from '@/components';
-import { LEAGUES_ID } from '@/lib/enums/leagues-id';
+import { getAllLeaguesId } from '@/lib/utils/getAllLeaguesId';
 import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
@@ -9,9 +9,7 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { Metadata } from 'next';
 
 async function getData() {
-  const leaguesId = Object.values(LEAGUES_ID).filter(
-    (league) => typeof league === 'number'
-  );
+  const leaguesId = getAllLeaguesId();
   const standingsPromises = leaguesId.map((league) => {
     return fetchAPISports<APIResponseType<StandingsResponseType[]>>(
       `standings?league=${league}&season=2023`,
@@ -48,8 +46,8 @@ export default async function Home() {
             <LeagueCard
               isInitialyCollapsed={index !== 0}
               key={leagueId}
-              standingsLeagueData={league.response[0].league}
               leagueId={leagueId}
+              standingsLeagueData={league.response[0].league}
             />
           );
         })}
