@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components';
-import { calculateImageCssSize } from '@/lib/utils/calculate-image-size';
+import { calculateImageCssSize } from '@/lib/utils/helpers/calculate-image-size';
 
 type CrestProps = {
   alt?: string;

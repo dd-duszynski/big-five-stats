@@ -9,8 +9,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { strings } from '@/lib/strings/strings';
-import { joinClassNames } from '@/lib/utils/join-class-names';
+import { strings } from '@/lib/strings';
+import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';

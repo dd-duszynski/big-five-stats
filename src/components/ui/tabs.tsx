@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
-import { joinClassNames } from '@/lib/utils/join-class-names';
+import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 
 const Tabs = TabsPrimitive.Root;
 

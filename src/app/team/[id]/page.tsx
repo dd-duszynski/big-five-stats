@@ -6,9 +6,9 @@ import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { TeamResponseType } from '@/lib/models/team-response.model';
 import { TeamSquadResponseType } from '@/lib/models/team-squad-response.model';
 import { TeamStatisticsResponseType } from '@/lib/models/team-statistics-response.model';
-import { strings } from '@/lib/strings/strings';
-import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
-import { getLeagueIdForTeam } from '@/lib/utils/get-league-id-for-team';
+import { strings } from '@/lib/strings';
+import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
+import { getLeagueIdForTeam } from '@/lib/utils/helpers/get-league-id-for-team';
 import { Metadata } from 'next';
 
 async function getData(teamId: string) {
@@ -36,11 +36,11 @@ async function getData(teamId: string) {
   );
 
   return {
-    teamInfo,
-    teamStatistics,
-    teamSquad,
-    standings,
     coach,
+    standings,
+    teamInfo,
+    teamSquad,
+    teamStatistics,
   };
 }
 
@@ -50,14 +50,21 @@ export const metadata: Metadata = {
 };
 
 export default async function TeamPage({ params }: any) {
-  const data = await getData(params.id);
-  const teamInfo = data.teamInfo?.response[0];
-  const teamStatistics = data.teamStatistics?.response;
-  const teamSquad = data.teamSquad?.response[0];
-  const standings = data.standings?.response[0];
-  const coach = data.coach?.response[0];
+  const { coach, standings, teamInfo, teamSquad, teamStatistics } =
+    await getData(params.id);
+  const teamInfoData = teamInfo?.response[0];
+  const teamStatisticsData = teamStatistics?.response;
+  const teamSquadData = teamSquad?.response[0];
+  const standingsData = standings?.response[0];
+  const coachData = coach?.response[0];
 
-  if (!teamInfo || !teamStatistics || !teamSquad || !standings || !coach) {
+  if (
+    !coachData ||
+    !standingsData ||
+    !teamInfoData ||
+    !teamSquadData ||
+    !teamStatisticsData
+  ) {
     return <Loader />;
   }
 
@@ -68,13 +75,13 @@ export default async function TeamPage({ params }: any) {
       showSeparator: true,
     },
     {
-      link: `/league/${teamStatistics.league.id}`,
-      text: teamStatistics.league.name,
+      link: `/league/${teamStatisticsData.league.id}`,
+      text: teamStatisticsData.league.name,
       showSeparator: true,
     },
     {
       link: '',
-      text: teamStatistics.team.name,
+      text: teamStatisticsData.team.name,
       showSeparator: false,
     },
   ];
@@ -82,11 +89,11 @@ export default async function TeamPage({ params }: any) {
   return (
     <TeamPageComponent
       breadcrumbs={breadcrumbs}
-      coach={coach}
-      standings={standings}
-      teamInfo={teamInfo}
-      teamSquad={teamSquad}
-      teamStatistics={teamStatistics}
+      coach={coachData}
+      standings={standingsData}
+      teamInfo={teamInfoData}
+      teamSquad={teamSquadData}
+      teamStatistics={teamStatisticsData}
     />
   );
 }

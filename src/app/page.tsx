@@ -1,10 +1,10 @@
 import { LeagueCard, Loader } from '@/components';
-import { getAllLeaguesId } from '@/lib/utils/getAllLeaguesId';
 import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
-import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
-import { getQueryClient } from '@/lib/utils/get-query-client';
+import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
+import { getAllLeaguesId } from '@/lib/utils/helpers/get-all-leagues-id';
+import { getQueryClient } from '@/lib/utils/query-options/get-query-client';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { Metadata } from 'next';
 
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const data = await getData();
-  const standingsData = data.standings || null;
+  const { standings } = await getData();
+  const standingsData = standings || null;
 
   if (!standingsData) {
     return <Loader />;

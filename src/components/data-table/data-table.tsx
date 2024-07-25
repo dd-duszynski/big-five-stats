@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { joinClassNames } from '@/lib/utils/join-class-names';
+import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import {
   ColumnDef,
   flexRender,

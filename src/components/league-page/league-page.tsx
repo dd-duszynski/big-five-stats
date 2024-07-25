@@ -10,11 +10,11 @@ import {
 } from '@/components';
 import { FixturesType } from '@/lib/models/fixtures.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
-import { strings } from '@/lib/strings/strings';
-import { topAssistsOptions } from '@/lib/utils/top-assists-query';
-import { topRedCardOptions } from '@/lib/utils/top-red-card-query';
-import { topScorersOptions } from '@/lib/utils/top-scorers-query';
-import { topYellowCardOptions } from '@/lib/utils/top-yellow-card-query';
+import { strings } from '@/lib/strings';
+import { topAssistsQueryOptions } from '@/lib/utils/query-options/top-assists-query-options';
+import { topRedCardQueryOptions } from '@/lib/utils/query-options/top-red-card-query-options';
+import { topScorersQueryOptions } from '@/lib/utils/query-options/top-scorers-query-options';
+import { topYellowCardQueryOptions } from '@/lib/utils/query-options/top-yellow-card-query-options';
 import { useQuery } from '@tanstack/react-query';
 import { BreadcrumbsItemType } from '../breadcrumbs/breadcrumbs';
 import { redCardsColumns } from '../data-table/columns/red-cards-columns';
@@ -39,16 +39,16 @@ export function LeaguePageComponent({
   standings,
 }: LeaguePageComponentProps) {
   const { data: topScorers, isFetched: isTopScorersFetched } = useQuery(
-    topScorersOptions(leagueId, 2023, true)
+    topScorersQueryOptions(leagueId, 2023, true)
   );
   const { data: topAssists, isFetched: isTopAssistsFetched } = useQuery(
-    topAssistsOptions(leagueId, 2023, true)
+    topAssistsQueryOptions(leagueId, 2023, true)
   );
   const { data: topRedCard, isFetched: isTopRedCardFetched } = useQuery(
-    topRedCardOptions(leagueId, 2023)
+    topRedCardQueryOptions(leagueId, 2023)
   );
   const { data: topYellowCard, isFetched: isTopYellowCardFetched } = useQuery(
-    topYellowCardOptions(leagueId, 2023)
+    topYellowCardQueryOptions(leagueId, 2023)
   );
 
   return (

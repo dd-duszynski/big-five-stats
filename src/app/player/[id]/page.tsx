@@ -5,8 +5,8 @@ import { PlayerResponseType } from '@/lib/models/player-response.model';
 import { PlayerSidelinedType } from '@/lib/models/player-sidelined.model';
 import { PlayerTransfersType } from '@/lib/models/player-transfers.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
-import { strings } from '@/lib/strings/strings';
-import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
+import { strings } from '@/lib/strings';
+import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
 import { Metadata } from 'next';
 
 async function getData(playerId: number) {
@@ -34,16 +34,16 @@ async function getData(playerId: number) {
 }
 
 export const metadata: Metadata = {
-  title: 'Big Five - Player statistics',
+  title: 'Big Five - Player information',
   description: 'Football stats for the big five leagues.',
 };
 
 export default async function PlayerPage({ params }: any) {
-  const data = await getData(params.id);
-  const playerData = data.player?.response[0];
-  const trophiesData = data.trophies?.response;
-  const transfersData = data.transfers?.response[0]?.transfers;
-  const sidelinedData = data.sidelined?.response;
+  const { player, trophies, transfers, sidelined } = await getData(params.id);
+  const playerData = player?.response[0];
+  const trophiesData = trophies?.response;
+  const transfersData = transfers?.response[0]?.transfers;
+  const sidelinedData = sidelined?.response;
 
   if (!playerData || !trophiesData || !transfersData || !sidelinedData) {
     return <Loader />;

@@ -4,7 +4,7 @@ import { APIResponseType } from '@/lib/models/api-response.model';
 import { FixturesType } from '@/lib/models/fixtures.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { strings } from '@/lib/strings';
-import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
+import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
 import { Metadata } from 'next';
 
 async function getData(id: number) {
@@ -35,12 +35,12 @@ export const metadata: Metadata = {
 };
 
 export default async function LeaguePage({ params }: any) {
-  const data = await getData(params.id);
-  const standingsData = data.standings?.response;
-  const dataGames = data.games?.response;
-  const dataRounds = data.rounds?.response;
+  const { standings, games, rounds } = await getData(params.id);
+  const standingsData = standings?.response;
+  const gamesData = games?.response;
+  const roundsData = rounds?.response;
 
-  if (!data || !standingsData || !dataGames || !dataRounds) {
+  if (!standingsData || !gamesData || !roundsData) {
     return <Loader />;
   }
 
@@ -62,9 +62,9 @@ export default async function LeaguePage({ params }: any) {
   return (
     <LeaguePageComponent
       breadcrumbs={breadcrumbs}
-      games={dataGames}
+      games={gamesData}
       leagueId={leagueId}
-      rounds={dataRounds}
+      rounds={roundsData}
       standings={standingsData}
     />
   );

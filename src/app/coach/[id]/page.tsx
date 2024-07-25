@@ -3,8 +3,8 @@ import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { CoachType } from '@/lib/models/coach.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
-import { strings } from '@/lib/strings/strings';
-import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
+import { strings } from '@/lib/strings';
+import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
 import { Metadata } from 'next';
 
 async function getData(coachId: number) {
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
 };
 
 export default async function CoachPage({ params }: any) {
-  const data = await getData(params.id);
-  const coachData = data.coach?.response[0];
-  const trophiesData = data.trophies?.response;
+  const { coach, trophies } = await getData(params.id);
+  const coachData = coach?.response[0];
+  const trophiesData = trophies?.response;
 
   if (!coachData || !trophiesData) {
     return <Loader />;

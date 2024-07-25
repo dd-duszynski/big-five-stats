@@ -1,4 +1,4 @@
-import { joinClassNames } from '@/lib/utils/join-class-names';
+import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import * as React from 'react';
 
 const Table = React.forwardRef<

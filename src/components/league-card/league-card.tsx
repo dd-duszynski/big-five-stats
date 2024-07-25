@@ -3,9 +3,9 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlayerResponseType } from '@/lib/models/player-response.model';
 import { StandingsLeagueType } from '@/lib/models/standings.model';
-import { strings } from '@/lib/strings/strings';
-import { topAssistsOptions } from '@/lib/utils/top-assists-query';
-import { topScorersOptions } from '@/lib/utils/top-scorers-query';
+import { strings } from '@/lib/strings';
+import { topAssistsQueryOptions } from '@/lib/utils/query-options/top-assists-query-options';
+import { topScorersQueryOptions } from '@/lib/utils/query-options/top-scorers-query-options';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -34,12 +34,12 @@ export function LeagueCard({
     data: topScorers,
     isLoading: isTopScorersLoading,
     isError: isErrorTopScorers,
-  } = useQuery(topScorersOptions(leagueId, 2023, !isCollapsed));
+  } = useQuery(topScorersQueryOptions(leagueId, 2023, !isCollapsed));
   const {
     data: topAssists,
     isLoading: isTopAssistsLoading,
     isError: isErrorTopAssists,
-  } = useQuery(topAssistsOptions(leagueId, 2023, !isCollapsed));
+  } = useQuery(topAssistsQueryOptions(leagueId, 2023, !isCollapsed));
 
   const standingsData = standingsLeagueData.standings[0];
 
