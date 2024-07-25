@@ -60,91 +60,86 @@ export function LeaguePageComponent({
         subtitle={standings[0].league.country}
         title={standings[0].league.name}
       />
-      <div className="px-8">
+      <section className="flex flex-wrap items-start gap-4 px-4 pb-4">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
-          className="mb-2 text-indigo-950"
+          className="w-full"
         />
-        <LeagueTable
-          columns={standingsColumns}
-          data={standings[0].league.standings[0]}
-        />
-        <GradientCard
-          className="mb-2 w-full"
-          headerTitle={strings.Fixtures}
-        >
-          {rounds && games && (
-            <Fixtures
-              rounds={rounds}
-              games={games}
-            />
-          )}
-        </GradientCard>
+        <div className="flex flex-wrap items-start gap-4 pb-4">
+          <LeagueTable
+            columns={standingsColumns}
+            data={standings[0].league.standings[0]}
+          />
+          <Fixtures
+            rounds={rounds}
+            games={games}
+          />
 
-        <div className="flex flex-row flex-wrap gap-2">
-          <div className="flex w-full justify-between gap-4">
-            <div className="w-1/2">
-              <GradientCard
-                headerTitle={strings.Top_Scorers}
-                className="w-full"
-              >
-                {topScorers && isTopScorersFetched && (
-                  <DataTable
-                    columns={topScorersColumns}
-                    data={topScorers.response}
-                  />
-                )}
-              </GradientCard>
+          <div className="flex flex-row flex-wrap gap-2">
+            <div className="flex w-full justify-between gap-4">
+              <div className="w-1/2">
+                <GradientCard
+                  headerTitle={strings.Top_Scorers}
+                  className="w-full"
+                >
+                  {topScorers && isTopScorersFetched && (
+                    <DataTable
+                      columns={topScorersColumns}
+                      data={topScorers.response}
+                    />
+                  )}
+                </GradientCard>
+              </div>
+
+              <div className="w-1/2">
+                <GradientCard
+                  headerTitle={strings.Top_Asists}
+                  className="w-full"
+                >
+                  {topAssists && isTopAssistsFetched && (
+                    <DataTable
+                      columns={topAssistsColumns}
+                      data={topAssists.response}
+                    />
+                  )}
+                </GradientCard>
+              </div>
             </div>
+          </div>
 
-            <div className="w-1/2">
-              <GradientCard
-                headerTitle={strings.Top_Asists}
-                className="w-full"
-              >
-                {topAssists && isTopAssistsFetched && (
-                  <DataTable
-                    columns={topAssistsColumns}
-                    data={topAssists.response}
-                  />
-                )}
-              </GradientCard>
+          <div className="flex flex-row flex-wrap gap-2">
+            <div className="flex w-full justify-between gap-4">
+              <div className="w-1/2">
+                <GradientCard
+                  headerTitle={strings.Yellow_Cards}
+                  className="w-full"
+                >
+                  {topYellowCard && isTopYellowCardFetched && (
+                    <DataTable
+                      columns={yellowCardsColumns}
+                      data={topYellowCard.response}
+                    />
+                  )}
+                </GradientCard>
+              </div>
+
+              <div className="w-1/2">
+                <GradientCard
+                  headerTitle={strings.Red_Cards}
+                  className="w-full"
+                >
+                  {topRedCard && isTopRedCardFetched && (
+                    <DataTable
+                      columns={redCardsColumns}
+                      data={topRedCard.response}
+                    />
+                  )}
+                </GradientCard>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="flex flex-row flex-wrap gap-2">
-          <div className="flex w-full justify-between gap-4">
-            <div className="w-1/2">
-              <GradientCard
-                headerTitle={strings.Yellow_Cards}
-                className="w-full"
-              >
-                {topYellowCard && isTopYellowCardFetched && (
-                  <DataTable
-                    columns={yellowCardsColumns}
-                    data={topYellowCard.response}
-                  />
-                )}
-              </GradientCard>
-            </div>
-
-            <div className="w-1/2">
-              <GradientCard
-                headerTitle={strings.Red_Cards}
-                className="w-full"
-              >
-                {topRedCard && isTopRedCardFetched && (
-                  <DataTable
-                    columns={redCardsColumns}
-                    data={topRedCard.response}
-                  />
-                )}
-              </GradientCard>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }

@@ -39,7 +39,7 @@ export function TeamPageComponent({
         subtitle={`${teamStatistics.league.name} - ${teamStatistics.league.country}`}
         title={teamStatistics.team.name}
       />
-      <main className="flex flex-wrap items-start gap-4 px-4 pb-4">
+      <section className="flex flex-wrap items-start gap-4 px-4 pb-4">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
           className="w-full"
@@ -62,7 +62,7 @@ export function TeamPageComponent({
             coach={coach}
           />
         </div>
-      </main>
+      </section>
     </div>
   );
 }

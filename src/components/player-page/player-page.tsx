@@ -29,7 +29,7 @@ export function PlayerPageComponent({
         player={playerData.player}
         statistics={playerData.statistics}
       />
-      <main className="grow px-4 md:overflow-y-auto">
+      <section className="grow px-4 md:overflow-y-auto">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
           className="my-2"
@@ -40,7 +40,7 @@ export function PlayerPageComponent({
           <PlayerTrophies data={trophiesData} />
           <PlayerSidelined data={sidelinedData} />
         </div>
-      </main>
+      </section>
     </div>
   );
 }

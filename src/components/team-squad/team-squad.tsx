@@ -1,5 +1,5 @@
 import { CoachCard, GradientCard, Text } from '@/components';
-import { PlayerPosition } from '@/lib/enums/player-position';
+import { PLAYER_POSITION } from '@/lib/enums/player-position';
 import { CoachType } from '@/lib/models/coach.model';
 import { TeamSquadPlayerType } from '@/lib/models/team-squad-player.model';
 import { strings } from '@/lib/strings';
@@ -12,16 +12,16 @@ type TeamSquadProps = {
 
 export function TeamSquad({ coach, players }: TeamSquadProps) {
   const goalkeepers = players.filter(
-    (player) => player.position === PlayerPosition.Goalkeeper
+    (player) => player.position === PLAYER_POSITION.GOALKEEPER
   );
   const defenders = players.filter(
-    (player) => player.position === PlayerPosition.Defender
+    (player) => player.position === PLAYER_POSITION.DEFENDER
   );
   const midfielders = players.filter(
-    (player) => player.position === PlayerPosition.Midfielder
+    (player) => player.position === PLAYER_POSITION.MIDFIELDER
   );
   const attackers = players.filter(
-    (player) => player.position === PlayerPosition.Attacker
+    (player) => player.position === PLAYER_POSITION.ATTACKER
   );
 
   const createSubSection = ({

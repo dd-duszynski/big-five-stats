@@ -1,4 +1,4 @@
-import { PlayerPosition } from '../enums/player-position';
+import { PLAYER_POSITION } from '../enums/player-position';
 
 export interface TeamSquadPlayerType {
   age: number;
@@ -6,5 +6,5 @@ export interface TeamSquadPlayerType {
   name: string;
   number: number;
   photo: string;
-  position: PlayerPosition;
+  position: PLAYER_POSITION;
 }

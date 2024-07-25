@@ -1,5 +1,5 @@
 import { BreadcrumbsItemType, LeaguePageComponent, Loader } from '@/components';
-import { RevalidateTime } from '@/lib/enums/revalidate-time';
+import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { FixturesType } from '@/lib/models/fixtures.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
@@ -11,15 +11,15 @@ async function getData(id: number) {
   const standings = await fetchAPISports<
     APIResponseType<StandingsResponseType[]>
   >(`standings?league=${id}&season=2023`, {
-    revalidate: RevalidateTime.ONE_DAY,
+    revalidate: REVALIDATE_TIME.ONE_DAY,
   });
   const rounds = await fetchAPISports<APIResponseType<string[]>>(
     `fixtures/rounds?league=${id}&season=2023`,
-    { revalidate: RevalidateTime.ONE_DAY }
+    { revalidate: REVALIDATE_TIME.ONE_DAY }
   );
   const games = await fetchAPISports<APIResponseType<FixturesType[]>>(
     `fixtures?league=${id}&season=2023&round=Regular Season - 1`,
-    { revalidate: RevalidateTime.ONE_DAY }
+    { revalidate: REVALIDATE_TIME.ONE_DAY }
   );
 
   return {

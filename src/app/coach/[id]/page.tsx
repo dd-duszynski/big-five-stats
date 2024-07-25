@@ -1,5 +1,5 @@
 import { BreadcrumbsItemType, CoachPageComponent, Loader } from '@/components';
-import { RevalidateTime } from '@/lib/enums/revalidate-time';
+import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { CoachType } from '@/lib/models/coach.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
@@ -10,11 +10,11 @@ import { Metadata } from 'next';
 async function getData(coachId: number) {
   const coach = await fetchAPISports<APIResponseType<CoachType[]>>(
     `coachs?id=${coachId}`,
-    { revalidate: RevalidateTime.ONE_DAY }
+    { revalidate: REVALIDATE_TIME.ONE_DAY }
   );
   const trophies = await fetchAPISports<APIResponseType<TrophiesType[]>>(
     `trophies?coach=${coachId}`,
-    { revalidate: RevalidateTime.ONE_DAY }
+    { revalidate: REVALIDATE_TIME.ONE_DAY }
   );
   return { coach, trophies };
 }

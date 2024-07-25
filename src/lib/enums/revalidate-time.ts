@@ -1,4 +1,4 @@
-export enum RevalidateTime {
+export enum REVALIDATE_TIME {
   HALF_HOUR = 1800,
   ONE_HOUR = 3600,
   HALF_DAY = 43200,

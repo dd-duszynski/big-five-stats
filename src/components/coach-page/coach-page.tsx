@@ -18,7 +18,7 @@ export function CoachPageComponent({
   return (
     <div className="flex h-full w-full flex-col md:flex-row md:flex-nowrap">
       <CoachBar coach={coachData} />
-      <main className="grow px-4 md:overflow-y-auto">
+      <section className="grow px-4 md:overflow-y-auto">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
           className="my-2"
@@ -27,7 +27,7 @@ export function CoachPageComponent({
           <CoachCareer data={coachData.career} />
           <CoachTrophies data={trophiesData} />
         </div>
-      </main>
+      </section>
     </div>
   );
 }

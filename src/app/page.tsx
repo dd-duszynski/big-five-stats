@@ -1,6 +1,6 @@
 import { LeagueCard, Loader } from '@/components';
-import { LeaguesId } from '@/lib/enums/leagues-id';
-import { RevalidateTime } from '@/lib/enums/revalidate-time';
+import { LEAGUES_ID } from '@/lib/enums/leagues-id';
+import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { fetchAPISports } from '@/lib/utils/fetch-api-sports';
@@ -9,13 +9,13 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { Metadata } from 'next';
 
 async function getData() {
-  const leaguesId = Object.values(LeaguesId).filter(
+  const leaguesId = Object.values(LEAGUES_ID).filter(
     (league) => typeof league === 'number'
   );
   const standingsPromises = leaguesId.map((league) => {
     return fetchAPISports<APIResponseType<StandingsResponseType[]>>(
       `standings?league=${league}&season=2023`,
-      { revalidate: RevalidateTime.ONE_DAY }
+      { revalidate: REVALIDATE_TIME.ONE_DAY }
     );
   });
   const standings = await Promise.all(standingsPromises);

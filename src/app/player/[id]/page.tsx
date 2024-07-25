@@ -1,5 +1,5 @@
 import { Loader, PlayerPageComponent } from '@/components/';
-import { RevalidateTime } from '@/lib/enums/revalidate-time';
+import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api-response.model';
 import { PlayerResponseType } from '@/lib/models/player-response.model';
 import { PlayerSidelinedType } from '@/lib/models/player-sidelined.model';
@@ -13,22 +13,22 @@ async function getData(playerId: number) {
   const player = await fetchAPISports<APIResponseType<PlayerResponseType[]>>(
     `players/?id=${playerId}&season=2023`,
     {
-      revalidate: RevalidateTime.ONE_DAY,
+      revalidate: REVALIDATE_TIME.ONE_DAY,
     }
   );
 
   const trophies = await fetchAPISports<APIResponseType<TrophiesType[]>>(
     `trophies?player=${playerId}`,
-    { revalidate: RevalidateTime.ONE_DAY }
+    { revalidate: REVALIDATE_TIME.ONE_DAY }
   );
 
   const transfers = await fetchAPISports<
     APIResponseType<PlayerTransfersType[]>
-  >(`transfers?player=${playerId}`, { revalidate: RevalidateTime.ONE_DAY });
+  >(`transfers?player=${playerId}`, { revalidate: REVALIDATE_TIME.ONE_DAY });
 
   const sidelined = await fetchAPISports<
     APIResponseType<PlayerSidelinedType[]>
-  >(`sidelined?player=${playerId}`, { revalidate: RevalidateTime.ONE_DAY });
+  >(`sidelined?player=${playerId}`, { revalidate: REVALIDATE_TIME.ONE_DAY });
 
   return { player, trophies, transfers, sidelined };
 }
