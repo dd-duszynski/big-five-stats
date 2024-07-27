@@ -11,6 +11,7 @@ import {
 import { FixturesType } from '@/lib/models/fixtures.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { strings } from '@/lib/strings';
+import { addRankPositionMapper } from '@/lib/utils/mappers';
 import { topAssistsQueryOptions } from '@/lib/utils/query-options/top-assists-query-options';
 import { topRedCardQueryOptions } from '@/lib/utils/query-options/top-red-card-query-options';
 import { topScorersQueryOptions } from '@/lib/utils/query-options/top-scorers-query-options';
@@ -51,6 +52,33 @@ export function LeaguePageComponent({
     topYellowCardQueryOptions(leagueId, 2023)
   );
 
+  const playerStatisticsSections = [
+    {
+      headerTitle: strings.Top_Scorers,
+      data: addRankPositionMapper(topScorers?.response),
+      isFetched: isTopScorersFetched,
+      columns: topScorersColumns,
+    },
+    {
+      headerTitle: strings.Top_Asists,
+      data: addRankPositionMapper(topAssists?.response),
+      isFetched: isTopAssistsFetched,
+      columns: topAssistsColumns,
+    },
+    {
+      headerTitle: strings.Yellow_Cards,
+      data: addRankPositionMapper(topYellowCard?.response),
+      isFetched: isTopYellowCardFetched,
+      columns: yellowCardsColumns,
+    },
+    {
+      headerTitle: strings.Red_Cards,
+      data: addRankPositionMapper(topRedCard?.response),
+      isFetched: isTopRedCardFetched,
+      columns: redCardsColumns,
+    },
+  ];
+
   return (
     <div className="h-full w-full">
       <PageHeader
@@ -60,85 +88,45 @@ export function LeaguePageComponent({
         subtitle={standings[0].league.country}
         title={standings[0].league.name}
       />
-      <section className="flex flex-wrap items-start gap-4 px-4 pb-4">
+
+      <section className="flex flex-wrap items-start gap-2 px-4 pb-4">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
           className="w-full"
         />
-        <div className="flex flex-wrap items-start gap-4 pb-4">
+        {/* <div className="flex w-full flex-wrap items-start gap-2 pb-4"> */}
+        <div className="flex w-full flex-wrap justify-between gap-4">
           <LeagueTable
+            className="w-full lg:w-[calc(50%-0.5rem)]"
             columns={standingsColumns}
             data={standings[0].league.standings[0]}
           />
           <Fixtures
-            rounds={rounds}
+            className="w-full lg:w-[calc(50%-0.5rem)]"
             games={games}
+            rounds={rounds}
           />
-
-          <div className="flex flex-row flex-wrap gap-2">
-            <div className="flex w-full justify-between gap-4">
-              <div className="w-1/2">
-                <GradientCard
-                  headerTitle={strings.Top_Scorers}
-                  className="w-full"
-                >
-                  {topScorers && isTopScorersFetched && (
-                    <DataTable
-                      columns={topScorersColumns}
-                      data={topScorers.response}
-                    />
-                  )}
-                </GradientCard>
-              </div>
-
-              <div className="w-1/2">
-                <GradientCard
-                  headerTitle={strings.Top_Asists}
-                  className="w-full"
-                >
-                  {topAssists && isTopAssistsFetched && (
-                    <DataTable
-                      columns={topAssistsColumns}
-                      data={topAssists.response}
-                    />
-                  )}
-                </GradientCard>
-              </div>
+          {playerStatisticsSections.map((section) => (
+            <div
+              className="w-full lg:w-[calc(50%-0.5rem)]"
+              key={section.headerTitle}
+            >
+              <GradientCard
+                className=" max-h-fit w-full"
+                headerTitle={section.headerTitle}
+              >
+                {section.data && section.isFetched && (
+                  <DataTable
+                    className="max-h-[423px]"
+                    columns={section.columns}
+                    data={section.data}
+                  />
+                )}
+              </GradientCard>
             </div>
-          </div>
-
-          <div className="flex flex-row flex-wrap gap-2">
-            <div className="flex w-full justify-between gap-4">
-              <div className="w-1/2">
-                <GradientCard
-                  headerTitle={strings.Yellow_Cards}
-                  className="w-full"
-                >
-                  {topYellowCard && isTopYellowCardFetched && (
-                    <DataTable
-                      columns={yellowCardsColumns}
-                      data={topYellowCard.response}
-                    />
-                  )}
-                </GradientCard>
-              </div>
-
-              <div className="w-1/2">
-                <GradientCard
-                  headerTitle={strings.Red_Cards}
-                  className="w-full"
-                >
-                  {topRedCard && isTopRedCardFetched && (
-                    <DataTable
-                      columns={redCardsColumns}
-                      data={topRedCard.response}
-                    />
-                  )}
-                </GradientCard>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
+        {/* </div> */}
       </section>
     </div>
   );

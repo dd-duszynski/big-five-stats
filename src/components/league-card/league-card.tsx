@@ -17,6 +17,7 @@ import { LeagueCrest } from '../league-crest/league-crest';
 import { Loader } from '../loader/loader';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
+import { addRankPositionMapper } from '@/lib/utils/mappers';
 
 type LeagueCardProps = {
   isInitialyCollapsed?: boolean;
@@ -42,28 +43,8 @@ export function LeagueCard({
   } = useQuery(topAssistsQueryOptions(leagueId, 2023, !isCollapsed));
 
   const standingsData = standingsLeagueData.standings[0];
-
-  const topAssistsData =
-    topAssists && topAssists.response?.length > 0
-      ? topAssists.response.map(
-          (player: PlayerResponseType, index: number) => ({
-            /* TODO_DD: Create mapper for that */
-            ...player,
-            rank: index + 1,
-          })
-        )
-      : [];
-
-  const topScorersData =
-    topScorers && topScorers.response?.length > 0
-      ? topScorers.response.map(
-          (player: PlayerResponseType, index: number) => ({
-            /* TODO_DD: Create mapper for that */
-            ...player,
-            rank: index + 1,
-          })
-        )
-      : [];
+  const topAssistsData = addRankPositionMapper(topAssists?.response);
+  const topScorersData = addRankPositionMapper(topScorers?.response);
 
   const leagueCrestWithName = (
     <LeagueCrest

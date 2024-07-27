@@ -3,7 +3,7 @@
 import { Crest, FormIcon } from '@/components';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
-/* TODO_DD: move to helpers utils? */
+
 export const standingsColumns: ColumnDef<any>[] = [
   {
     accessorKey: 'rank',

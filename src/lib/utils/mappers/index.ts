@@ -1,0 +1,1 @@
+export { addRankPositionMapper } from './addRankPositionMapper';

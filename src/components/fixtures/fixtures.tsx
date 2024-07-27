@@ -10,19 +10,21 @@ import {
 } from '@/components/ui/select';
 import { FixturesType } from '@/lib/models/fixtures.model';
 import { strings } from '@/lib/strings';
-import { GradientCard } from '../gradient-card/gradient-card';
+import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import Link from 'next/link';
 import { Crest, Text } from '..';
+import { GradientCard } from '../gradient-card/gradient-card';
 
 interface FixturesProps {
   games: FixturesType[];
   rounds: string[];
+  className?: string;
 }
 
-export function Fixtures({ rounds, games }: FixturesProps) {
+export function Fixtures({ rounds, games, className }: FixturesProps) {
   return (
     <GradientCard
-      className="mb-2 w-full"
+      className={joinClassNames(className, 'mb-2 w-full')}
       headerTitle={strings.Fixtures}
     >
       <Select defaultValue={rounds[0]}>
@@ -81,7 +83,6 @@ export function Fixtures({ rounds, games }: FixturesProps) {
                 {game.teams.away.name}
               </div>
             </Link>
-            {/* <p>{`${game.teams.home.name} ${game.goals.home} - ${game.goals.away} ${game.teams.away.name}`}</p> */}
           </div>
         ))}
       </div>
