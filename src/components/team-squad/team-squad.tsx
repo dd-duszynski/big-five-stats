@@ -57,8 +57,7 @@ export function TeamSquad({ coach, players }: TeamSquadProps) {
 
   return (
     <GradientCard
-      cardContentClassName="overflow-y-auto h-[1000px]"
-      className="mb-2 w-full"
+      className="mb-2 max-h-fit w-full"
       headerTitle={strings.Players}
     >
       {createSubSection({ title: strings.Goalkeepers, players: goalkeepers })}

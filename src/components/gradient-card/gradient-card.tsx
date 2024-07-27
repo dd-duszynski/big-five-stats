@@ -23,8 +23,8 @@ export const GradientCard = ({
     >
       <CardHeader className="flex items-center justify-center gap-3 rounded-t-md bg-gradient-to-r from-indigo-500 to-emerald-500">
         <Text
-          variant="h3"
           className="text-center text-white"
+          variant="h3"
         >
           {headerTitle}
         </Text>
