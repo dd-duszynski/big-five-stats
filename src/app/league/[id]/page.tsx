@@ -17,7 +17,7 @@ async function getData(id: number) {
     `fixtures/rounds?league=${id}&season=2023`,
     { revalidate: REVALIDATE_TIME.ONE_DAY }
   );
-  const games = await fetchAPISports<APIResponseType<FixturesType[]>>(
+  const fixtures = await fetchAPISports<APIResponseType<FixturesType[]>>(
     `fixtures?league=${id}&season=2023&round=Regular Season - 1`,
     { revalidate: REVALIDATE_TIME.ONE_DAY }
   );
@@ -25,7 +25,7 @@ async function getData(id: number) {
   return {
     standings,
     rounds,
-    games,
+    fixtures,
   };
 }
 
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
 };
 
 export default async function LeaguePage({ params }: any) {
-  const { standings, games, rounds } = await getData(params.id);
+  const { standings, fixtures, rounds } = await getData(params.id);
   const standingsData = standings?.response;
-  const gamesData = games?.response;
+  const gamesData = fixtures?.response;
   const roundsData = rounds?.response;
 
   if (!standingsData || !gamesData || !roundsData) {
@@ -62,7 +62,7 @@ export default async function LeaguePage({ params }: any) {
   return (
     <LeaguePageComponent
       breadcrumbs={breadcrumbs}
-      games={gamesData}
+      fixtures={gamesData}
       leagueId={leagueId}
       rounds={roundsData}
       standings={standingsData}

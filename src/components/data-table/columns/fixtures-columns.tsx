@@ -1,11 +1,12 @@
 'use client';
 
 import { Crest, Text } from '@/components';
+import { FixturesType } from '@/lib/models/fixtures.model';
 import { strings } from '@/lib/strings';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
-export const fixturesColumns: ColumnDef<any>[] = [
+export const fixturesColumns: ColumnDef<FixturesType>[] = [
   {
     accessorKey: 'teams.home.id',
     header: () => <div className="text-right">{strings.Home}</div>,

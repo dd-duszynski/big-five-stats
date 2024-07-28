@@ -8,31 +8,45 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { FixturesType } from '@/lib/models/fixtures.model';
 import { strings } from '@/lib/strings';
 import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
+import { leagueFixturesQueryOptions } from '@/lib/utils/query-options/league-fixtures-query-options';
+import { useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
+import { useState } from 'react';
 import { DataTable } from '..';
 import { GradientCard } from '../gradient-card/gradient-card';
 
-interface FixturesProps<TData, TValue> {
+interface FixturesProps {
   className?: string;
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  columns: ColumnDef<FixturesType>[];
+  data: FixturesType[];
+  leagueId: number;
   rounds: string[];
 }
 
-export function Fixtures<TData, TValue>({
+export function Fixtures({
   className,
   columns,
   data,
+  leagueId,
   rounds,
-}: FixturesProps<TData, TValue>) {
+}: FixturesProps) {
+  const [value, setValue] = useState(rounds[0]);
+  const { data: fixturesClientData, isFetched: isFixturesClientDataFetched } =
+    useQuery(leagueFixturesQueryOptions(leagueId, 2023, value));
+  const fixturesClientDataResponse = fixturesClientData?.response;
+
   return (
     <GradientCard
       className={joinClassNames(className, 'mb-2 w-full')}
       headerTitle={strings.Fixtures}
     >
-      <Select defaultValue={rounds[0]}>
+      <Select
+        value={value}
+        onValueChange={setValue}
+      >
         <SelectTrigger className="mb-2 w-[180px]">
           <SelectValue placeholder="Select a round" />
         </SelectTrigger>
@@ -53,7 +67,7 @@ export function Fixtures<TData, TValue>({
 
       <DataTable
         columns={columns}
-        data={data}
+        data={fixturesClientDataResponse || data}
       />
     </GradientCard>
   );

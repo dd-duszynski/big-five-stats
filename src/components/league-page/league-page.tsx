@@ -27,7 +27,7 @@ import { yellowCardsColumns } from '../data-table/columns/yellow-cards-columns';
 
 type LeaguePageComponentProps = {
   breadcrumbs: BreadcrumbsItemType[];
-  games: FixturesType[];
+  fixtures: FixturesType[];
   leagueId: number;
   rounds: string[];
   standings: StandingsResponseType[];
@@ -35,7 +35,7 @@ type LeaguePageComponentProps = {
 
 export function LeaguePageComponent({
   breadcrumbs,
-  games,
+  fixtures,
   leagueId,
   rounds,
   standings,
@@ -104,8 +104,9 @@ export function LeaguePageComponent({
           <Fixtures
             className="w-full lg:w-[calc(50%-0.5rem)]"
             columns={fixturesColumns}
-            data={games}
+            data={fixtures}
             rounds={rounds}
+            leagueId={leagueId}
           />
           {playerStatisticsSections.map((section) => (
             <div
