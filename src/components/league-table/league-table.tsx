@@ -6,17 +6,17 @@ import { Text } from '../text/text';
 import { Card, CardContent, CardHeader } from '../ui/card';
 
 interface LeagueTableProps<TData, TValue> {
+  className?: string;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   teamToHighlight?: number;
-  className?: string;
 }
 
 export const LeagueTable = <TData, TValue>({
+  className,
   columns,
   data,
   teamToHighlight,
-  className,
 }: LeagueTableProps<TData, TValue>) => {
   return (
     <Card className={joinClassNames(className, 'max-w-full')}>

@@ -18,6 +18,7 @@ import { topScorersQueryOptions } from '@/lib/utils/query-options/top-scorers-qu
 import { topYellowCardQueryOptions } from '@/lib/utils/query-options/top-yellow-card-query-options';
 import { useQuery } from '@tanstack/react-query';
 import { BreadcrumbsItemType } from '../breadcrumbs/breadcrumbs';
+import { fixturesColumns } from '../data-table/columns/fixtures-columns';
 import { redCardsColumns } from '../data-table/columns/red-cards-columns';
 import { standingsColumns } from '../data-table/columns/standings-columns';
 import { topAssistsColumns } from '../data-table/columns/top-assists-columns';
@@ -94,7 +95,6 @@ export function LeaguePageComponent({
           breadcrumbs={breadcrumbs}
           className="w-full"
         />
-        {/* <div className="flex w-full flex-wrap items-start gap-2 pb-4"> */}
         <div className="flex w-full flex-wrap justify-between gap-4">
           <LeagueTable
             className="w-full lg:w-[calc(50%-0.5rem)]"
@@ -103,7 +103,8 @@ export function LeaguePageComponent({
           />
           <Fixtures
             className="w-full lg:w-[calc(50%-0.5rem)]"
-            games={games}
+            columns={fixturesColumns}
+            data={games}
             rounds={rounds}
           />
           {playerStatisticsSections.map((section) => (

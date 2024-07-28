@@ -75,19 +75,19 @@ export function DataTable<TData, TValue>({
               const teamId = teamToHighlight && (row.original as any).team.id;
               return (
                 <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
                   className={joinClassNames(
                     teamToHighlight &&
                       teamToHighlight === teamId &&
                       'bg-emerald-100'
                   )}
+                  data-state={row.getIsSelected() && 'selected'}
+                  key={row.id}
                 >
                   {row.getVisibleCells().map((cell) => {
                     return (
                       <TableCell
-                        key={cell.id}
                         className="overflow-hidden text-ellipsis whitespace-nowrap"
+                        key={cell.id}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,

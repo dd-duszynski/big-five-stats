@@ -45,6 +45,8 @@ export const strings = {
   Weight: 'Weight',
   Role: 'Role',
   Coach: 'Coach',
+  Result: 'Result',
+  Away: 'Away',
 
   leagues: {
     Premier_League: 'Premier League',
