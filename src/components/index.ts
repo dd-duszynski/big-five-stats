@@ -6,6 +6,7 @@ export { CoachCard } from './coach-card/coach-card';
 export { CoachPageComponent } from './coach-page/coach-page';
 export { Crest } from './crest/crest';
 export { DataTable } from './data-table/data-table';
+export { FixtureDialog } from './fixture-dialog/fixture-dialog';
 export { Fixtures } from './fixtures/fixtures';
 export { FormIcon } from './form-icon/form-icon';
 export { GradientCard } from './gradient-card/gradient-card';
@@ -46,6 +47,18 @@ export {
   CardHeader,
   CardTitle,
 } from './ui/card';
+export {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+} from './ui/dialog';
 export {
   NavigationMenu,
   NavigationMenuContent,

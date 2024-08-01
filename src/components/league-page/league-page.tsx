@@ -103,7 +103,6 @@ export function LeaguePageComponent({
           />
           <Fixtures
             className="w-full lg:w-[calc(50%-0.5rem)]"
-            columns={fixturesColumns}
             data={fixtures}
             rounds={rounds}
             leagueId={leagueId}
