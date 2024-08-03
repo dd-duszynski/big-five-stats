@@ -97,12 +97,12 @@ export function LeaguePageComponent({
         />
         <div className="flex w-full flex-wrap justify-between gap-4">
           <LeagueTable
-            className="w-full lg:w-[calc(50%-0.5rem)]"
+            className="w-full lg:w-[calc(60%-0.5rem)]"
             columns={standingsColumns}
             data={standings[0].league.standings[0]}
           />
           <Fixtures
-            className="w-full lg:w-[calc(50%-0.5rem)]"
+            className="w-full lg:w-[calc(40%-0.5rem)]"
             data={fixtures}
             rounds={rounds}
             leagueId={leagueId}

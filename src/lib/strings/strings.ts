@@ -47,7 +47,7 @@ export const strings = {
   Coach: 'Coach',
   Result: 'Result',
   Away: 'Away',
-
+  Close: 'Close',
   leagues: {
     Premier_League: 'Premier League',
     La_Liga: 'La Liga',

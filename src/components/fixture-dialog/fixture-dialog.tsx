@@ -6,9 +6,13 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
 } from '@/components/ui/dialog';
 import { FixturesType } from '@/lib/models/fixtures.model';
+import { strings } from '@/lib/strings';
+import { dateFormat } from '@/lib/utils/helpers/date-format';
+import { DialogTitle } from '@radix-ui/react-dialog';
+import Link from 'next/link';
+import { Crest, Text } from '..';
 
 type FixtureDialogProps = {
   data: FixturesType | undefined;
@@ -24,26 +28,74 @@ export function FixtureDialog({
   if (!data) {
     return null;
   }
+  console.log('data:', data);
   return (
     <Dialog
-      open={isOpen}
       onOpenChange={onOpenChange}
+      open={isOpen}
     >
-      <DialogContent className="bg-white sm:max-w-[425px]">
+      <DialogContent className="bg-white sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>
-            {data.teams.home.name} - {data.teams.away.name}
+          <DialogTitle className="flex w-full justify-center">
+            <Text
+              className="text-nowrap block text-base"
+              variant="span"
+            >
+              {dateFormat(data.fixture.date)}
+            </Text>
           </DialogTitle>
-          <DialogDescription>Fixture id: + {data.fixture.id}</DialogDescription>
+
+          <div className="flex items-center justify-between">
+            <Link
+              className="flex w-full justify-start hover:underline"
+              href={`/team/${data.teams.home.id}`}
+            >
+              <div className="flex items-center gap-2">
+                <Crest
+                  alt={data.teams.home.name}
+                  size="sm"
+                  src={data.teams.home.logo}
+                />
+                {data.teams.home.name}
+              </div>
+            </Link>
+
+            <div className="flex w-24 items-center justify-center">
+              <Text
+                className="text-nowrap block text-xl"
+                variant="span"
+              >
+                {`${data.goals.home} - ${data.goals.away}`}
+              </Text>
+            </div>
+
+            <Link
+              className="flex w-full justify-end hover:underline"
+              href={`/team/${data.teams.away.id}`}
+            >
+              <div className="flex items-center gap-2">
+                {data.teams.away.name}
+                <Crest
+                  alt={data.teams.away.name}
+                  size="sm"
+                  src={data.teams.away.logo}
+                />
+              </div>
+            </Link>
+          </div>
+          <DialogDescription>{`${data.fixture.venue.city} - ${data.fixture.venue.name}`}</DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">Fixture date: {data.fixture.date}</div>
+        <div className="grid gap-4 py-4">
+          {/* TODO_DD:  */}
+          ...
+        </div>
         <DialogFooter>
-          <DialogClose>
+          <DialogClose asChild>
             <Button
-              variant="outline"
+              variant="secondary"
               type="button"
             >
-              Close
+              {strings.Close}
             </Button>
           </DialogClose>
         </DialogFooter>
