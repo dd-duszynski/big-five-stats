@@ -12,7 +12,7 @@ import { strings } from '@/lib/strings';
 import { dateFormat } from '@/lib/utils/helpers/date-format';
 import { DialogTitle } from '@radix-ui/react-dialog';
 import Link from 'next/link';
-import { Crest, Text } from '..';
+import { Crest, Tabs, TabsContent, TabsList, TabsTrigger, Text } from '..';
 
 type FixtureDialogProps = {
   data: FixturesType | undefined;
@@ -85,10 +85,49 @@ export function FixtureDialog({
           </div>
           <DialogDescription>{`${data.fixture.venue.city} - ${data.fixture.venue.name}`}</DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          {/* TODO_DD:  */}
-          ...
-        </div>
+
+        <Tabs defaultValue={strings.Summary}>
+          <TabsList>
+            <TabsTrigger
+              value={strings.Summary}
+              className="mr-2 w-[120px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
+            >
+              {strings.Summary}
+            </TabsTrigger>
+            <TabsTrigger
+              value={strings.Statistics}
+              className="mr-2 w-[120px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
+            >
+              {strings.Statistics}
+            </TabsTrigger>
+            <TabsTrigger
+              value={strings.Lineups}
+              className="w-[120px] rounded-lg bg-slate-100 hover:bg-slate-300 aria-selected:bg-slate-300"
+            >
+              {strings.Lineups}
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value={strings.Summary}>
+            {strings.Summary}
+            {/* {data.events?.map((event) => {
+              return (
+                <div
+                  key={event.id}
+                  className="flex justify-between"
+                >
+                  <Text variant="span">{event.type}</Text>
+                  <Text variant="span">{`${event.player.name}`}</Text>
+                </div>
+              );
+            })} */}
+          </TabsContent>
+          <TabsContent value={strings.Statistics}>
+            {strings.Statistics}
+          </TabsContent>
+          <TabsContent value={strings.Lineups}>{strings.Lineups}</TabsContent>
+        </Tabs>
+
         <DialogFooter>
           <DialogClose asChild>
             <Button
