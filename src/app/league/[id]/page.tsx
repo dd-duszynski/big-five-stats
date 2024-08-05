@@ -1,7 +1,7 @@
 import { BreadcrumbsItemType, LeaguePageComponent, Loader } from '@/components';
 import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
-import { APIResponseType } from '@/lib/models/api-response.model';
-import { FixturesType } from '@/lib/models/fixtures.model';
+import { APIResponseType } from '@/lib/models/api/api-response.model';
+import { FixturesForRoundResponseType } from '@/lib/models/fixtures/fixtures-for-round.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { strings } from '@/lib/strings';
 import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
@@ -17,10 +17,11 @@ async function getData(id: number) {
     `fixtures/rounds?league=${id}&season=2023`,
     { revalidate: REVALIDATE_TIME.ONE_DAY }
   );
-  const fixtures = await fetchAPISports<APIResponseType<FixturesType[]>>(
-    `fixtures?league=${id}&season=2023&round=Regular Season - 1`,
-    { revalidate: REVALIDATE_TIME.ONE_DAY }
-  );
+  const fixtures = await fetchAPISports<
+    APIResponseType<FixturesForRoundResponseType[]>
+  >(`fixtures?league=${id}&season=2023&round=Regular Season - 1`, {
+    revalidate: REVALIDATE_TIME.ONE_DAY,
+  });
 
   return {
     standings,

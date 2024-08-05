@@ -8,10 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { FixturesType } from '@/lib/models/fixtures.model';
+import { FixturesForRoundResponseType } from '@/lib/models/fixtures/fixtures-for-round.model';
 import { strings } from '@/lib/strings';
 import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
-import { leagueFixturesQueryOptions } from '@/lib/utils/query-options/league-fixtures-query-options';
+import { fixturesForRoundQueryOptions } from '@/lib/utils/query-options/fixtures-for-round-query-options';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { DataTable } from '..';
@@ -21,20 +21,20 @@ import { GradientCard } from '../gradient-card/gradient-card';
 
 interface FixturesProps {
   className?: string;
-  data: FixturesType[];
+  data: FixturesForRoundResponseType[];
   leagueId: number;
   rounds: string[];
 }
 
 export function Fixtures({ className, data, leagueId, rounds }: FixturesProps) {
-  const [value, setValue] = useState(rounds[0]);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [selectedFixtureId, setSelectedFixtureId] = useState(0);
+  const [selectedRound, setSelectedRound] = useState(rounds[0]);
 
-  const { data: fixturesClientData } = useQuery(
-    leagueFixturesQueryOptions(leagueId, 2023, value)
+  const { data: leagueFixturesForRound } = useQuery(
+    fixturesForRoundQueryOptions(leagueId, 2023, selectedRound)
   );
-  const fixturesClientDataResponse = fixturesClientData?.response;
+  const leagueFixturesForRoundResponse = leagueFixturesForRound?.response;
 
   const columns = fixturesColumns({
     resultCallback: (id) => {
@@ -43,7 +43,7 @@ export function Fixtures({ className, data, leagueId, rounds }: FixturesProps) {
     },
   });
 
-  const dataToRender = fixturesClientDataResponse || data;
+  const dataToRender = leagueFixturesForRoundResponse || data;
 
   return (
     <GradientCard
@@ -51,8 +51,8 @@ export function Fixtures({ className, data, leagueId, rounds }: FixturesProps) {
       headerTitle={strings.Fixtures}
     >
       <Select
-        value={value}
-        onValueChange={setValue}
+        value={selectedRound}
+        onValueChange={setSelectedRound}
       >
         <SelectTrigger className="mb-2 w-[180px]">
           <SelectValue placeholder="Select a round" />
@@ -73,9 +73,7 @@ export function Fixtures({ className, data, leagueId, rounds }: FixturesProps) {
       </Select>
 
       <FixtureDialog
-        data={dataToRender.find(
-          (fixture) => fixture.fixture.id === selectedFixtureId
-        )}
+        fixtureId={selectedFixtureId}
         isOpen={isDialogOpen}
         onOpenChange={setDialogOpen}
       />

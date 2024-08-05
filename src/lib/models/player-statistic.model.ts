@@ -10,7 +10,7 @@ import { PlayerPenaltyType } from './player-penalty.model';
 import { PlayerShotsType } from './player-shots.model';
 import { PlayerSubstitutesType } from './player-substitutes.model';
 import { PlayerTacklesType } from './player-tackles.model';
-import { TeamBasicInfoType } from './team-basic-info.model';
+import { TeamBasicInfoType } from './general/team-basic-info.model';
 
 export type PlayerStatisticType = {
   cards: PlayerCardsType;

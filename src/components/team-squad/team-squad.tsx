@@ -1,6 +1,6 @@
 import { CoachCard, GradientCard, Text } from '@/components';
 import { PLAYER_POSITION } from '@/lib/enums/player-position';
-import { CoachType } from '@/lib/models/coach.model';
+import { CoachType } from '@/lib/models/coach/coach.model';
 import { TeamSquadPlayerType } from '@/lib/models/team-squad-player.model';
 import { strings } from '@/lib/strings';
 import { PlayerCard } from '../player-card/player-card';

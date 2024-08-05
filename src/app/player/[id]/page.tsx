@@ -1,6 +1,6 @@
 import { Loader, PlayerPageComponent } from '@/components/';
 import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
-import { APIResponseType } from '@/lib/models/api-response.model';
+import { APIResponseType } from '@/lib/models/api/api-response.model';
 import { PlayerResponseType } from '@/lib/models/player-response.model';
 import { PlayerSidelinedType } from '@/lib/models/player-sidelined.model';
 import { PlayerTransfersType } from '@/lib/models/player-transfers.model';

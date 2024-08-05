@@ -8,7 +8,7 @@ import {
   LeagueTable,
   PageHeader,
 } from '@/components';
-import { FixturesType } from '@/lib/models/fixtures.model';
+import { FixturesForRoundResponseType } from '@/lib/models/fixtures/fixtures-for-round.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { strings } from '@/lib/strings';
 import { addRankPositionMapper } from '@/lib/utils/mappers';
@@ -18,7 +18,6 @@ import { topScorersQueryOptions } from '@/lib/utils/query-options/top-scorers-qu
 import { topYellowCardQueryOptions } from '@/lib/utils/query-options/top-yellow-card-query-options';
 import { useQuery } from '@tanstack/react-query';
 import { BreadcrumbsItemType } from '../breadcrumbs/breadcrumbs';
-import { fixturesColumns } from '../data-table/columns/fixtures-columns';
 import { redCardsColumns } from '../data-table/columns/red-cards-columns';
 import { standingsColumns } from '../data-table/columns/standings-columns';
 import { topAssistsColumns } from '../data-table/columns/top-assists-columns';
@@ -27,7 +26,7 @@ import { yellowCardsColumns } from '../data-table/columns/yellow-cards-columns';
 
 type LeaguePageComponentProps = {
   breadcrumbs: BreadcrumbsItemType[];
-  fixtures: FixturesType[];
+  fixtures: FixturesForRoundResponseType[];
   leagueId: number;
   rounds: string[];
   standings: StandingsResponseType[];

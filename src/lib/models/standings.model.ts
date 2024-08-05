@@ -1,5 +1,5 @@
 import { StandingResultsType } from './standing-results.model';
-import { TeamBasicInfoType } from './team-basic-info.model';
+import { TeamBasicInfoType } from './general/team-basic-info.model';
 
 export type StandingsLeagueType = {
   country: string;

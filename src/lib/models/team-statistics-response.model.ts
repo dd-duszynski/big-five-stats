@@ -1,6 +1,6 @@
 import { HomeAwayTotalType } from './home-away-total.model';
 import { LeagueType } from './league.model';
-import { TeamBasicInfoType } from './team-basic-info.model';
+import { TeamBasicInfoType } from './general/team-basic-info.model';
 import { TeamStatisticsBiggestType } from './team-statistics-biggest.model';
 import { TeamStatisticsFixturesType } from './team-statistics-fixtures.model';
 import { TeamStatisticsGoalsType } from './team-statistics-goals.model';

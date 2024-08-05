@@ -1,11 +1,11 @@
-import { BirthType } from './birth.model';
-import { CareerType } from './career.model';
-import { TeamBasicInfoType } from './team-basic-info.model';
+import { BirthType } from '../general/birth.model';
+import { CoachCareerType } from './coach-career.model';
+import { TeamBasicInfoType } from '../general/team-basic-info.model';
 
 export type CoachType = {
   age: number;
   birth: BirthType;
-  career: CareerType[];
+  career: CoachCareerType[];
   firstname: string;
   height: number | null;
   id: number;

@@ -1,7 +1,7 @@
 'use client';
 
 import { Crest, Text } from '@/components';
-import { FixturesType } from '@/lib/models/fixtures.model';
+import { FixturesForRoundResponseType } from '@/lib/models/fixtures/fixtures-for-round.model';
 import { strings } from '@/lib/strings';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
@@ -12,7 +12,7 @@ type FixturesColumnsType = {
 
 export const fixturesColumns = ({
   resultCallback,
-}: FixturesColumnsType): ColumnDef<FixturesType>[] => {
+}: FixturesColumnsType): ColumnDef<FixturesForRoundResponseType>[] => {
   return [
     {
       accessorKey: 'teams.home.id',

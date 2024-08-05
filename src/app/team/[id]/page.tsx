@@ -1,7 +1,7 @@
 import { BreadcrumbsItemType, Loader, TeamPageComponent } from '@/components';
 import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
-import { APIResponseType } from '@/lib/models/api-response.model';
-import { CoachType } from '@/lib/models/coach.model';
+import { APIResponseType } from '@/lib/models/api/api-response.model';
+import { CoachType } from '@/lib/models/coach/coach.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { TeamResponseType } from '@/lib/models/team-response.model';
 import { TeamSquadResponseType } from '@/lib/models/team-squad-response.model';

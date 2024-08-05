@@ -6,7 +6,7 @@ import {
   Stadium,
   TeamSquad,
 } from '@/components';
-import { CoachType } from '@/lib/models/coach.model';
+import { CoachType } from '@/lib/models/coach/coach.model';
 import { StandingsResponseType } from '@/lib/models/standings-response.model';
 import { TeamResponseType } from '@/lib/models/team-response.model';
 import { TeamSquadResponseType } from '@/lib/models/team-squad-response.model';

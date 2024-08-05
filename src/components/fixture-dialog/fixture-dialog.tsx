@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -7,28 +9,39 @@ import {
   DialogFooter,
   DialogHeader,
 } from '@/components/ui/dialog';
-import { FixturesType } from '@/lib/models/fixtures.model';
 import { strings } from '@/lib/strings';
 import { dateFormat } from '@/lib/utils/helpers/date-format';
+import { fixtureDetailsQueryOptions } from '@/lib/utils/query-options/fixture-details-query-options';
 import { DialogTitle } from '@radix-ui/react-dialog';
+import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Crest, Tabs, TabsContent, TabsList, TabsTrigger, Text } from '..';
 
 type FixtureDialogProps = {
-  data: FixturesType | undefined;
+  fixtureId: number;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
 };
 
 export function FixtureDialog({
-  data,
+  fixtureId,
   isOpen,
   onOpenChange,
 }: FixtureDialogProps) {
-  if (!data) {
+  const { data: fixtureDetailsData, isFetched } = useQuery(
+    fixtureDetailsQueryOptions(fixtureId)
+  );
+
+  if (
+    !isFetched ||
+    !fixtureDetailsData ||
+    fixtureDetailsData.response.length === 0
+  ) {
     return null;
   }
-  console.log('data:', data);
+
+  const dataToRender = fixtureDetailsData.response[0];
+
   return (
     <Dialog
       onOpenChange={onOpenChange}
@@ -41,22 +54,22 @@ export function FixtureDialog({
               className="text-nowrap block text-base"
               variant="span"
             >
-              {dateFormat(data.fixture.date)}
+              {dateFormat(dataToRender.fixture.date)}
             </Text>
           </DialogTitle>
 
           <div className="flex items-center justify-between">
             <Link
               className="flex w-full justify-start hover:underline"
-              href={`/team/${data.teams.home.id}`}
+              href={`/team/${dataToRender.teams.home.id}`}
             >
               <div className="flex items-center gap-2">
                 <Crest
-                  alt={data.teams.home.name}
+                  alt={dataToRender.teams.home.name}
                   size="sm"
-                  src={data.teams.home.logo}
+                  src={dataToRender.teams.home.logo}
                 />
-                {data.teams.home.name}
+                {dataToRender.teams.home.name}
               </div>
             </Link>
 
@@ -65,25 +78,25 @@ export function FixtureDialog({
                 className="text-nowrap block text-xl"
                 variant="span"
               >
-                {`${data.goals.home} - ${data.goals.away}`}
+                {`${dataToRender.goals.home} - ${dataToRender.goals.away}`}
               </Text>
             </div>
 
             <Link
               className="flex w-full justify-end hover:underline"
-              href={`/team/${data.teams.away.id}`}
+              href={`/team/${dataToRender.teams.away.id}`}
             >
               <div className="flex items-center gap-2">
-                {data.teams.away.name}
+                {dataToRender.teams.away.name}
                 <Crest
-                  alt={data.teams.away.name}
+                  alt={dataToRender.teams.away.name}
                   size="sm"
-                  src={data.teams.away.logo}
+                  src={dataToRender.teams.away.logo}
                 />
               </div>
             </Link>
           </div>
-          <DialogDescription>{`${data.fixture.venue.city} - ${data.fixture.venue.name}`}</DialogDescription>
+          <DialogDescription>{`${dataToRender.fixture.venue.city} - ${dataToRender.fixture.venue.name}`}</DialogDescription>
         </DialogHeader>
 
         <Tabs defaultValue={strings.Summary}>
@@ -109,18 +122,26 @@ export function FixtureDialog({
           </TabsList>
 
           <TabsContent value={strings.Summary}>
-            {strings.Summary}
-            {/* {data.events?.map((event) => {
+            {/* {strings.Summary} */}
+            {dataToRender.events?.map((event, index) => {
               return (
                 <div
-                  key={event.id}
+                  key={index}
                   className="flex justify-between"
                 >
-                  <Text variant="span">{event.type}</Text>
-                  <Text variant="span">{`${event.player.name}`}</Text>
+                  <Text
+                    variant="span"
+                    className="text-xs"
+                  >
+                    {event.type}
+                  </Text>
+                  <Text
+                    variant="span"
+                    className="text-xs"
+                  >{`${event.player.name}`}</Text>
                 </div>
               );
-            })} */}
+            })}
           </TabsContent>
           <TabsContent value={strings.Statistics}>
             {strings.Statistics}

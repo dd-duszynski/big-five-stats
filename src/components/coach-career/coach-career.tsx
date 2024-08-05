@@ -1,10 +1,10 @@
-import { CareerType } from '@/lib/models/career.model';
+import { CoachCareerType } from '@/lib/models/coach/coach-career.model';
 import { strings } from '@/lib/strings';
 import { DataTable, GradientCard } from '..';
 import { coachCareerColumns } from './coach-career-columns';
 
 type CoachCareerProps = {
-  data: CareerType[];
+  data: CoachCareerType[];
 };
 
 export function CoachCareer({ data }: CoachCareerProps) {

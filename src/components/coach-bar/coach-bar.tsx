@@ -1,4 +1,4 @@
-import { CoachType } from '@/lib/models/coach.model';
+import { CoachType } from '@/lib/models/coach/coach.model';
 import { strings } from '@/lib/strings';
 import { AsideBar } from '..';
 
