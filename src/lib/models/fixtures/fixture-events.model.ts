@@ -1,3 +1,4 @@
+import { FIXTURE_EVENTS } from '@/lib/enums/fixture-events';
 import { TeamBasicInfoType } from '../general/team-basic-info.model';
 
 export type FixtureEventsType = {
@@ -14,7 +15,7 @@ export type FixtureEventsType = {
     id?: number;
     name?: string;
   };
-  type: string;
+  type: FIXTURE_EVENTS;
   detail: string;
   comments?: string;
 };

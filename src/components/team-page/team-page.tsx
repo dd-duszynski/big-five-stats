@@ -39,12 +39,16 @@ export function TeamPageComponent({
         subtitle={`${teamStatistics.league.name} - ${teamStatistics.league.country}`}
         title={teamStatistics.team.name}
       />
-      <section className="flex flex-wrap items-start gap-4 px-4 pb-4">
+      <section className="flex flex-wrap items-start gap-2 px-4 pb-4">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
           className="w-full"
         />
-        <div className="flex flex-wrap items-start gap-4 pb-4">
+        <div className="flex flex-wrap items-start gap-4">
+          <TeamSquad
+            players={teamSquad.players}
+            coach={coach}
+          />
           <LeagueTable
             columns={standingsColumns}
             data={standings.league.standings[0]}
@@ -56,10 +60,6 @@ export function TeamPageComponent({
             city={teamInfo.venue.city}
             image={teamInfo.venue.image}
             name={teamInfo.venue.name}
-          />
-          <TeamSquad
-            players={teamSquad.players}
-            coach={coach}
           />
         </div>
       </section>

@@ -16,6 +16,7 @@ import { DialogTitle } from '@radix-ui/react-dialog';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Crest, Tabs, TabsContent, TabsList, TabsTrigger, Text } from '..';
+import { FixtureDialogSummary } from './fixture-dialog-summary';
 
 type FixtureDialogProps = {
   fixtureId: number;
@@ -122,8 +123,9 @@ export function FixtureDialog({
           </TabsList>
 
           <TabsContent value={strings.Summary}>
+            <FixtureDialogSummary data={dataToRender} />
             {/* {strings.Summary} */}
-            {dataToRender.events?.map((event, index) => {
+            {/* {dataToRender.events?.map((event, index) => {
               return (
                 <div
                   key={index}
@@ -141,7 +143,7 @@ export function FixtureDialog({
                   >{`${event.player.name}`}</Text>
                 </div>
               );
-            })}
+            })} */}
           </TabsContent>
           <TabsContent value={strings.Statistics}>
             {strings.Statistics}

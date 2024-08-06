@@ -1,6 +1,6 @@
 import { Breadcrumbs, BreadcrumbsItemType, CoachBar } from '@/components';
 import { CoachType } from '@/lib/models/coach/coach.model';
-import { TrophiesType } from '@/lib/models/trophies.model';
+import { TrophiesType } from '@/lib/models/general/trophies.model';
 import { CoachCareer } from '../coach-career/coach-career';
 import { CoachTrophies } from '../coach-trophies/coach-trophies';
 
