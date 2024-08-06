@@ -1,5 +1,5 @@
 import { APIResponseType } from '@/lib/models/api/api-response.model';
-import { PlayerResponseType } from '@/lib/models/player-response.model';
+import { PlayerResponseType } from '@/lib/models/player/player-response.model';
 import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
 import { queryOptions } from '@tanstack/react-query';
 

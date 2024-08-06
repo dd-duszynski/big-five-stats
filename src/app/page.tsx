@@ -1,7 +1,7 @@
 import { LeagueCard, Loader } from '@/components';
 import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api/api-response.model';
-import { StandingsResponseType } from '@/lib/models/standings-response.model';
+import { StandingsResponseType } from '@/lib/models/standings/standings-response.model';
 import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
 import { getAllLeaguesId } from '@/lib/utils/helpers/get-all-leagues-id';
 import { getQueryClient } from '@/lib/utils/query-options/get-query-client';

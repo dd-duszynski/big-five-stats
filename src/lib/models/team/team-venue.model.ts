@@ -1,4 +1,4 @@
-export type VenueType = {
+export type TeamVenueType = {
   address: string;
   capacity: number;
   city: string;

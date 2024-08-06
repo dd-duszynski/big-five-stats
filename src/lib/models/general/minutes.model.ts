@@ -9,7 +9,7 @@ export type PerMinutesType = {
   '106-120': PerMinutesDetailsType;
 };
 
-export type PerMinutesDetailsType = {
+type PerMinutesDetailsType = {
   total: number;
   percentage: string;
 };

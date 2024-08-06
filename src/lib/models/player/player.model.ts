@@ -1,4 +1,4 @@
-import { BirthType } from './general/birth.model';
+import { BirthType } from '../general/birth.model';
 
 export type PlayerType = {
   age: number;

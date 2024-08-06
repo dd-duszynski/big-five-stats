@@ -4,13 +4,13 @@ import { PlayerDuelsType } from './player-duels.model';
 import { PlayerFoulsType } from './player-fouls.model';
 import { PlayerGamesType } from './player-games.model';
 import { PlayerGoalsType } from './player-goals.model';
-import { LeagueType } from './league.model';
+import { LeagueType } from '../general/league.model';
 import { PlayerPassesType } from './player-passes.model';
 import { PlayerPenaltyType } from './player-penalty.model';
 import { PlayerShotsType } from './player-shots.model';
 import { PlayerSubstitutesType } from './player-substitutes.model';
 import { PlayerTacklesType } from './player-tackles.model';
-import { TeamBasicInfoType } from './general/team-basic-info.model';
+import { TeamBasicInfoType } from '../general/team-basic-info.model';
 
 export type PlayerStatisticType = {
   cards: PlayerCardsType;

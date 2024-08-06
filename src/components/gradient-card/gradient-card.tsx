@@ -4,12 +4,12 @@ import React from 'react';
 import { Text } from '../text/text';
 import { Card, CardContent, CardHeader } from '../ui/card';
 
-interface IGradientCardProps {
+type IGradientCardProps = {
   cardContentClassName?: string;
   children: React.ReactNode;
   className?: string;
   headerTitle: string;
-}
+};
 
 export const GradientCard = ({
   cardContentClassName,

@@ -1,8 +1,8 @@
 'use client';
 
-interface FormIconProps {
+type FormIconProps = {
   value: 'W' | 'D' | 'L' extends string ? string : never;
-}
+};
 
 export function FormIcon({ value }: FormIconProps) {
   const mapValueToStyle =

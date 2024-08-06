@@ -4,11 +4,11 @@ import {
 } from '@/lib/utils/helpers/calculate-image-size';
 import Image from 'next/image';
 
-interface IPlayerImageProps {
+type IPlayerImageProps = {
   photo: string;
   name: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-}
+};
 
 export const PlayerImage = ({
   photo,

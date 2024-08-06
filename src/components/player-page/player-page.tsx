@@ -1,7 +1,7 @@
 import { Breadcrumbs, BreadcrumbsItemType, PlayerBar } from '@/components';
-import { PlayerResponseType } from '@/lib/models/player-response.model';
-import { PlayerSidelinedType } from '@/lib/models/player-sidelined.model';
-import { TransfersType } from '@/lib/models/player-transfers.model';
+import { PlayerResponseType } from '@/lib/models/player/player-response.model';
+import { PlayerSidelinedType } from '@/lib/models/player/player-sidelined.model';
+import { TransfersType } from '@/lib/models/player/player-transfers.model';
 import { TrophiesType } from '@/lib/models/trophies.model';
 import { PlayerSidelined } from '../player-sidelined/player-sidelined';
 import { PlayerStatistics } from '../player-statistics/player-statistics';

@@ -7,10 +7,10 @@ import {
   TeamSquad,
 } from '@/components';
 import { CoachType } from '@/lib/models/coach/coach.model';
-import { StandingsResponseType } from '@/lib/models/standings-response.model';
-import { TeamResponseType } from '@/lib/models/team-response.model';
-import { TeamSquadResponseType } from '@/lib/models/team-squad-response.model';
-import { TeamStatisticsResponseType } from '@/lib/models/team-statistics-response.model';
+import { StandingsResponseType } from '@/lib/models/standings/standings-response.model';
+import { TeamResponseType } from '@/lib/models/team/team-response.model';
+import { TeamSquadResponseType } from '@/lib/models/team/team-squad-response.model';
+import { TeamStatisticsResponseType } from '@/lib/models/team/team-statistics-response.model';
 import { standingsColumns } from '../data-table/columns/standings-columns';
 
 type TeamPageComponentProps = {

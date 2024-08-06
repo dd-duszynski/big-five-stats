@@ -1,10 +1,10 @@
-import { TeamSquadPlayerType } from '@/lib/models/team-squad-player.model';
+import { TeamSquadPlayerType } from '@/lib/models/team/team-squad-player.model';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface PlayerCardProps {
+type PlayerCardProps = {
   player: TeamSquadPlayerType;
-}
+};
 
 export const PlayerCard = ({ player }: PlayerCardProps) => {
   return (

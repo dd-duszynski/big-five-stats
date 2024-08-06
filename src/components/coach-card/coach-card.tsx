@@ -3,9 +3,9 @@ import { strings } from '@/lib/strings';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface CoachCardProps {
+type CoachCardProps = {
   coach: CoachType;
-}
+};
 
 export const CoachCard = ({ coach }: CoachCardProps) => {
   return (

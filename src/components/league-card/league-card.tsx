@@ -1,8 +1,8 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlayerResponseType } from '@/lib/models/player-response.model';
-import { StandingsLeagueType } from '@/lib/models/standings.model';
+import { PlayerResponseType } from '@/lib/models/player/player-response.model';
+import { StandingsLeagueType } from '@/lib/models/standings/standings.model';
 import { strings } from '@/lib/strings';
 import { topAssistsQueryOptions } from '@/lib/utils/query-options/top-assists-query-options';
 import { topScorersQueryOptions } from '@/lib/utils/query-options/top-scorers-query-options';

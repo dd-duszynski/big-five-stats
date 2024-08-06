@@ -5,12 +5,12 @@ import { DataTable } from '../data-table/data-table';
 import { Text } from '../text/text';
 import { Card, CardContent, CardHeader } from '../ui/card';
 
-interface LeagueTableProps<TData, TValue> {
+type LeagueTableProps<TData, TValue> = {
   className?: string;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   teamToHighlight?: number;
-}
+};
 
 export const LeagueTable = <TData, TValue>({
   className,

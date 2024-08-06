@@ -1,4 +1,4 @@
-import { TransfersType } from '@/lib/models/player-transfers.model';
+import { TransfersType } from '@/lib/models/player/player-transfers.model';
 import { strings } from '@/lib/strings';
 import { DataTable, GradientCard } from '..';
 import { playerTransfersColumns } from './player-transfers-columns';

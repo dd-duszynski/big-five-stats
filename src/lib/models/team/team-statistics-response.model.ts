@@ -1,6 +1,6 @@
-import { HomeAwayTotalType } from './home-away-total.model';
-import { LeagueType } from './league.model';
-import { TeamBasicInfoType } from './general/team-basic-info.model';
+import { HomeAwayTotalType } from '../general/home-away-total.model';
+import { LeagueType } from '../general/league.model';
+import { TeamBasicInfoType } from '../general/team-basic-info.model';
 import { TeamStatisticsBiggestType } from './team-statistics-biggest.model';
 import { TeamStatisticsFixturesType } from './team-statistics-fixtures.model';
 import { TeamStatisticsGoalsType } from './team-statistics-goals.model';
@@ -8,7 +8,7 @@ import { TeamStatisticsLineupType } from './team-statistics-lineup.model';
 import { TeamStatisticsCardsType } from './team-statistics-lineup.model copy';
 import { TeamStatisticsPenaltyType } from './team-statistics-penalty.model';
 
-export interface TeamStatisticsResponseType {
+export type TeamStatisticsResponseType = {
   biggest: TeamStatisticsBiggestType;
   cards: TeamStatisticsCardsType;
   clean_sheet: HomeAwayTotalType<number>;
@@ -20,4 +20,4 @@ export interface TeamStatisticsResponseType {
   lineups: TeamStatisticsLineupType[];
   penalty: TeamStatisticsPenaltyType;
   team: TeamBasicInfoType;
-}
+};

@@ -16,13 +16,13 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-interface DataTableProps<TData, TValue> {
+type DataTableProps<TData, TValue> = {
   className?: string;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   onlyFive?: boolean;
-  teamToHighlight?: number /* TODO_DD:  */;
-}
+  teamToHighlight?: number;
+};
 
 export function DataTable<TData, TValue>({
   className,

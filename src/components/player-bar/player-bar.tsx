@@ -1,5 +1,5 @@
-import { PlayerStatisticType } from '@/lib/models/player-statistic.model';
-import { PlayerType } from '@/lib/models/player.model';
+import { PlayerStatisticType } from '@/lib/models/player/player-statistic.model';
+import { PlayerType } from '@/lib/models/player/player.model';
 import { strings } from '@/lib/strings';
 import { AsideBar } from '..';
 

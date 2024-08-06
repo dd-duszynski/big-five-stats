@@ -19,12 +19,12 @@ import { fixturesColumns } from '../data-table/columns/fixtures-columns';
 import { FixtureDialog } from '../fixture-dialog/fixture-dialog';
 import { GradientCard } from '../gradient-card/gradient-card';
 
-interface FixturesProps {
+type FixturesProps = {
   className?: string;
   data: FixturesForRoundResponseType[];
   leagueId: number;
   rounds: string[];
-}
+};
 
 export function Fixtures({ className, data, leagueId, rounds }: FixturesProps) {
   const [isDialogOpen, setDialogOpen] = useState(false);

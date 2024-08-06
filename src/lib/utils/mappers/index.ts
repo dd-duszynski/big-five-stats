@@ -1,1 +1,1 @@
-export { addRankPositionMapper } from './addRankPositionMapper';
+export { addRankPositionMapper } from './add-rank-position-mapper';

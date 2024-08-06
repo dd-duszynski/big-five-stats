@@ -1,4 +1,4 @@
-import { PlayerStatisticType } from '@/lib/models/player-statistic.model';
+import { PlayerStatisticType } from '@/lib/models/player/player-statistic.model';
 import { strings } from '@/lib/strings';
 import { DataTable, GradientCard } from '..';
 import { playerStatisticsColumns } from './player-statistics-columns';

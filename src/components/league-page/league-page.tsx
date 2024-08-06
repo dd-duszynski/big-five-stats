@@ -9,7 +9,7 @@ import {
   PageHeader,
 } from '@/components';
 import { FixturesForRoundResponseType } from '@/lib/models/fixtures/fixtures-for-round.model';
-import { StandingsResponseType } from '@/lib/models/standings-response.model';
+import { StandingsResponseType } from '@/lib/models/standings/standings-response.model';
 import { strings } from '@/lib/strings';
 import { addRankPositionMapper } from '@/lib/utils/mappers';
 import { topAssistsQueryOptions } from '@/lib/utils/query-options/top-assists-query-options';
