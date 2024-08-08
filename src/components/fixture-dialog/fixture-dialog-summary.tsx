@@ -20,7 +20,7 @@ export const FixtureDialogSummary = ({ data }: FixtureDialogSummaryProps) => {
       imageSource = '/yellow-card.png';
     if (event.type === FIXTURE_EVENTS.CARD && event.detail === 'Red Card')
       imageSource = '/red-card.png';
-
+    // https://www.freepik.com/icon/syncronization_4960937#fromView=search&page=1&position=5&uuid=367cc391-c7fb-4ee7-b8a7-eeab10e07519
     return (
       <div
         key={index}

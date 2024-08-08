@@ -1,10 +1,10 @@
 import { Loader, PlayerPageComponent } from '@/components/';
 import { REVALIDATE_TIME } from '@/lib/enums/revalidate-time';
 import { APIResponseType } from '@/lib/models/api/api-response.model';
+import { TrophiesType } from '@/lib/models/general/trophies.model';
 import { PlayerResponseType } from '@/lib/models/player/player-response.model';
 import { PlayerSidelinedType } from '@/lib/models/player/player-sidelined.model';
 import { PlayerTransfersType } from '@/lib/models/player/player-transfers.model';
-import { TrophiesType } from '@/lib/models/trophies.model';
 import { strings } from '@/lib/strings';
 import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
 import { Metadata } from 'next';

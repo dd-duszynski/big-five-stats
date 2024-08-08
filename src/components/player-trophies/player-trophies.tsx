@@ -1,4 +1,4 @@
-import { TrophiesType } from '@/lib/models/trophies.model';
+import { TrophiesType } from '@/lib/models/general/trophies.model';
 import { strings } from '@/lib/strings';
 import { DataTable, GradientCard } from '..';
 import { playerTrophiesColumns } from './player-trophies-columns';
