@@ -1,8 +1,12 @@
+import { FIXTURE_EVENTS } from '@/lib/enums/fixture-events';
 import { FixtureDetailsResponseType } from '@/lib/models/fixtures/fixture-details.model';
 import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import Image from 'next/image';
 import { Text } from '..';
-import { FIXTURE_EVENTS } from '@/lib/enums/fixture-events';
+import { FixtureDialogCardEvent } from './fixture-dialog-card-event';
+import { FixtureDialogGoalEvent } from './fixture-dialog-goal-event';
+import { FixtureDialogSubsEvent } from './fixture-dialog-subs-event';
+import { FixtureDialogVarEvent } from './fixture-dialog-var-event';
 
 type FixtureDialogSummaryProps = {
   data: FixtureDetailsResponseType;
@@ -15,18 +19,57 @@ export const FixtureDialogSummary = ({ data }: FixtureDialogSummaryProps) => {
 
   const events = data.events.map((event, index) => {
     let imageSource = '/ball.png';
-    if (event.type === FIXTURE_EVENTS.GOAL) imageSource = '/goal.png';
-    if (event.type === FIXTURE_EVENTS.CARD && event.detail === 'Yellow Card')
-      imageSource = '/yellow-card.png';
-    if (event.type === FIXTURE_EVENTS.CARD && event.detail === 'Red Card')
-      imageSource = '/red-card.png';
-    // https://www.freepik.com/icon/syncronization_4960937#fromView=search&page=1&position=5&uuid=367cc391-c7fb-4ee7-b8a7-eeab10e07519
+    if (event.type === FIXTURE_EVENTS.GOAL) {
+      return (
+        <FixtureDialogGoalEvent
+          assist={event.assist}
+          isHomeTeam={event.team.id === homeTeamId}
+          key={index}
+          player={event.player}
+          timeElapsed={event.time.elapsed}
+        />
+      );
+    }
+    if (event.type === FIXTURE_EVENTS.CARD) {
+      return (
+        <FixtureDialogCardEvent
+          eventDetail={event.detail}
+          isHomeTeam={event.team.id === homeTeamId}
+          key={index}
+          player={event.player}
+          timeElapsed={event.time.elapsed}
+        />
+      );
+    }
+    if (event.type === FIXTURE_EVENTS.SUBST) {
+      return (
+        <FixtureDialogSubsEvent
+          assist={event.assist}
+          isHomeTeam={event.team.id === homeTeamId}
+          key={index}
+          player={event.player}
+          timeElapsed={event.time.elapsed}
+        />
+      );
+    }
+    if (event.type === FIXTURE_EVENTS.VAR) {
+      return (
+        <FixtureDialogVarEvent
+          detail={event.detail}
+          isHomeTeam={event.team.id === homeTeamId}
+          key={index}
+          player={event.player}
+          timeElapsed={event.time.elapsed}
+        />
+      );
+    }
     return (
       <div
         key={index}
         className={joinClassNames(
           'flex',
           'gap-2',
+          'mb-2',
           'items-center',
           event.team.id === homeTeamId && 'justify-start',
           event.team.id === awayTeamId && 'justify-end'
