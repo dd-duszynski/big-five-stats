@@ -16,6 +16,8 @@ import { DialogTitle } from '@radix-ui/react-dialog';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Crest, Tabs, TabsContent, TabsList, TabsTrigger, Text } from '..';
+import { FixtureDialogLineups } from './fixture-dialog-lineups';
+import { FixtureDialogStatistics } from './fixture-dialog-statistics';
 import { FixtureDialogSummary } from './fixture-dialog-summary';
 
 type FixtureDialogProps = {
@@ -124,31 +126,13 @@ export function FixtureDialog({
 
           <TabsContent value={strings.Summary}>
             <FixtureDialogSummary data={dataToRender} />
-            {/* {strings.Summary} */}
-            {/* {dataToRender.events?.map((event, index) => {
-              return (
-                <div
-                  key={index}
-                  className="flex justify-between"
-                >
-                  <Text
-                    variant="span"
-                    className="text-xs"
-                  >
-                    {event.type}
-                  </Text>
-                  <Text
-                    variant="span"
-                    className="text-xs"
-                  >{`${event.player.name}`}</Text>
-                </div>
-              );
-            })} */}
           </TabsContent>
           <TabsContent value={strings.Statistics}>
-            {strings.Statistics}
+            <FixtureDialogStatistics data={dataToRender} />
           </TabsContent>
-          <TabsContent value={strings.Lineups}>{strings.Lineups}</TabsContent>
+          <TabsContent value={strings.Lineups}>
+            <FixtureDialogLineups data={dataToRender} />
+          </TabsContent>
         </Tabs>
 
         <DialogFooter>
