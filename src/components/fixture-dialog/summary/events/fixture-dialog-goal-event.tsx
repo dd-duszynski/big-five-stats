@@ -1,7 +1,7 @@
 import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Text } from '..';
+import { Text } from '../../..';
 
 type FixtureDialogGoalEventProps = {
   isHomeTeam: boolean;

@@ -1,14 +1,10 @@
 import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Text } from '..';
+import { Text } from '../../..';
 
-type FixtureDialogSubsEventProps = {
-  /* TODO_DD: add name & id - for Link to player */
-  assist: {
-    id?: number;
-    name?: string;
-  };
+type FixtureDialogCardEventProps = {
+  eventDetail: string;
   isHomeTeam: boolean;
   player: {
     id: number;
@@ -17,12 +13,16 @@ type FixtureDialogSubsEventProps = {
   timeElapsed: number;
 };
 
-export const FixtureDialogSubsEvent = ({
-  assist,
+export const FixtureDialogCardEvent = ({
+  eventDetail,
   isHomeTeam,
   player,
   timeElapsed,
-}: FixtureDialogSubsEventProps) => {
+}: FixtureDialogCardEventProps) => {
+  const isRedCard = eventDetail === 'Red Card';
+  let imageSource = '/yellow-card.png';
+  if (isRedCard) imageSource = '/red-card.png';
+
   return (
     <div
       className={joinClassNames(
@@ -34,9 +34,9 @@ export const FixtureDialogSubsEvent = ({
       )}
     >
       <Image
-        alt="subs icon"
+        alt="card icon"
         height={20}
-        src={'/subs.png'}
+        src={imageSource}
         width={20}
       />
       <Text
@@ -44,19 +44,12 @@ export const FixtureDialogSubsEvent = ({
         className="text-xs"
       >
         {`${timeElapsed}' `}
-        {assist && assist.name && (
-          <Link
-            className="hover:underline"
-            href={`/player/${assist.id}`}
-            target="_blank"
-          >{`${assist.name} `}</Link>
-        )}
         <Link
           className="hover:underline"
           href={`/player/${player.id}`}
           target="_blank"
         >
-          {` (${player.name})`}
+          {player.name}
         </Link>
       </Text>
     </div>

@@ -1,11 +1,14 @@
 import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Text } from '..';
+import { Text } from '../../..';
 
-type FixtureDialogVarEventProps = {
+type FixtureDialogSubsEventProps = {
   /* TODO_DD: add name & id - for Link to player */
-  detail: string;
+  assist: {
+    id?: number;
+    name?: string;
+  };
   isHomeTeam: boolean;
   player: {
     id: number;
@@ -14,12 +17,12 @@ type FixtureDialogVarEventProps = {
   timeElapsed: number;
 };
 
-export const FixtureDialogVarEvent = ({
-  detail,
+export const FixtureDialogSubsEvent = ({
+  assist,
   isHomeTeam,
   player,
   timeElapsed,
-}: FixtureDialogVarEventProps) => {
+}: FixtureDialogSubsEventProps) => {
   return (
     <div
       className={joinClassNames(
@@ -32,23 +35,29 @@ export const FixtureDialogVarEvent = ({
     >
       <Image
         alt="subs icon"
-        height={18}
-        src={'/var.png'}
-        width={18}
+        height={20}
+        src={'/subs.png'}
+        width={20}
       />
       <Text
         variant="span"
         className="text-xs"
       >
         {`${timeElapsed}' `}
+        {assist && assist.name && (
+          <Link
+            className="hover:underline"
+            href={`/player/${assist.id}`}
+            target="_blank"
+          >{`${assist.name} `}</Link>
+        )}
         <Link
           className="hover:underline"
           href={`/player/${player.id}`}
           target="_blank"
         >
-          {player.name}
+          {` (${player.name})`}
         </Link>
-        {` - ${detail}`}
       </Text>
     </div>
   );

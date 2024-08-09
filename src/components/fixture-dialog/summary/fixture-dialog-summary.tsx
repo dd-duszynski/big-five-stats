@@ -2,11 +2,11 @@ import { FIXTURE_EVENTS } from '@/lib/enums/fixture-events';
 import { FixtureDetailsResponseType } from '@/lib/models/fixtures/fixture-details.model';
 import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import Image from 'next/image';
-import { Text } from '..';
-import { FixtureDialogCardEvent } from './fixture-dialog-card-event';
-import { FixtureDialogGoalEvent } from './fixture-dialog-goal-event';
-import { FixtureDialogSubsEvent } from './fixture-dialog-subs-event';
-import { FixtureDialogVarEvent } from './fixture-dialog-var-event';
+import { Text } from '../..';
+import { FixtureDialogCardEvent } from './events/fixture-dialog-card-event';
+import { FixtureDialogGoalEvent } from './events/fixture-dialog-goal-event';
+import { FixtureDialogSubsEvent } from './events/fixture-dialog-subs-event';
+import { FixtureDialogVarEvent } from './events/fixture-dialog-var-event';
 
 type FixtureDialogSummaryProps = {
   data: FixtureDetailsResponseType;

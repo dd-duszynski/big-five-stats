@@ -16,9 +16,9 @@ import { DialogTitle } from '@radix-ui/react-dialog';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Crest, Tabs, TabsContent, TabsList, TabsTrigger, Text } from '..';
-import { FixtureDialogLineups } from './fixture-dialog-lineups';
-import { FixtureDialogStatistics } from './fixture-dialog-statistics';
-import { FixtureDialogSummary } from './fixture-dialog-summary';
+import { FixtureDialogLineups } from './lineups/fixture-dialog-lineups';
+import { FixtureDialogStatistics } from './statistics/fixture-dialog-statistics';
+import { FixtureDialogSummary } from './summary/fixture-dialog-summary';
 
 type FixtureDialogProps = {
   fixtureId: number;

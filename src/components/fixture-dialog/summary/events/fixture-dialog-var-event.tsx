@@ -1,10 +1,11 @@
 import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Text } from '..';
+import { Text } from '../../..';
 
-type FixtureDialogCardEventProps = {
-  eventDetail: string;
+type FixtureDialogVarEventProps = {
+  /* TODO_DD: add name & id - for Link to player */
+  detail: string;
   isHomeTeam: boolean;
   player: {
     id: number;
@@ -13,16 +14,12 @@ type FixtureDialogCardEventProps = {
   timeElapsed: number;
 };
 
-export const FixtureDialogCardEvent = ({
-  eventDetail,
+export const FixtureDialogVarEvent = ({
+  detail,
   isHomeTeam,
   player,
   timeElapsed,
-}: FixtureDialogCardEventProps) => {
-  const isRedCard = eventDetail === 'Red Card';
-  let imageSource = '/yellow-card.png';
-  if (isRedCard) imageSource = '/red-card.png';
-
+}: FixtureDialogVarEventProps) => {
   return (
     <div
       className={joinClassNames(
@@ -34,10 +31,10 @@ export const FixtureDialogCardEvent = ({
       )}
     >
       <Image
-        alt="card icon"
-        height={20}
-        src={imageSource}
-        width={20}
+        alt="subs icon"
+        height={18}
+        src={'/var.png'}
+        width={18}
       />
       <Text
         variant="span"
@@ -51,6 +48,7 @@ export const FixtureDialogCardEvent = ({
         >
           {player.name}
         </Link>
+        {` - ${detail}`}
       </Text>
     </div>
   );
