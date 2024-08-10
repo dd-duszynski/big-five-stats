@@ -69,6 +69,7 @@ export {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from './ui/navigation-menu';
+export { Progress } from './ui/progress';
 export {
   Select,
   SelectContent,
