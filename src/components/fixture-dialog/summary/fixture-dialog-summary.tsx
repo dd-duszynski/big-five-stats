@@ -13,7 +13,6 @@ type FixtureDialogSummaryProps = {
 };
 
 export const FixtureDialogSummary = ({ data }: FixtureDialogSummaryProps) => {
-  console.log('data:', data);
   const homeTeamId = data.teams.home.id;
   const awayTeamId = data.teams.away.id;
 

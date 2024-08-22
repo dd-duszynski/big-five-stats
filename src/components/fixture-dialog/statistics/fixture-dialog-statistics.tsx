@@ -1,4 +1,5 @@
 import { FixtureDetailsResponseType } from '@/lib/models/fixtures/fixture-details.model';
+import { fixtureDialogStatisticsTypeMapper } from '@/lib/utils/mappers';
 import { Progress, Text } from '../..';
 
 type FixtureDialogStatisticsProps = {
@@ -44,19 +45,19 @@ export const FixtureDialogStatistics = ({
                 variant="span"
                 className="text-xs"
               >
-                {homeTeamStatistics?.find((i) => i.type === type)?.value}
+                {homeTeamStatistics?.find((i) => i.type === type)?.value || 0}
               </Text>
               <Text
                 variant="span"
                 className="text-xs"
               >
-                {type}
+                {fixtureDialogStatisticsTypeMapper(type)}
               </Text>
               <Text
                 variant="span"
                 className="text-xs"
               >
-                {awayTeamStatistics?.find((i) => i.type === type)?.value}
+                {awayTeamStatistics?.find((i) => i.type === type)?.value || 0}
               </Text>
             </div>
             <div className="flex w-full justify-between gap-1">
