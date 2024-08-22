@@ -3,7 +3,7 @@ export type FixtureLineupsType = {
   coach: LineupCoach;
   formation: string;
   startXI: {
-    player: StartSquadPlayer;
+    player: StartSquadPlayerType;
   }[];
   substitutes: FixtureLineupsSubstitutesType[];
 };
@@ -30,7 +30,7 @@ type LineupCoach = {
   photo: string;
 };
 
-type StartSquadPlayer = {
+export type StartSquadPlayerType = {
   id: number;
   name: string;
   number: number;
