@@ -1,21 +1,27 @@
+import { FIXTURE_LINEUPS_PLAYER_POSITION } from '@/lib/enums/fixture-lineups-player-position';
+
 export type FixtureLineupsType = {
   team: FixtureLineupsTeamType;
   coach: LineupCoach;
   formation: string;
-  startXI: {
-    player: StartSquadPlayerType;
-  }[];
+  startXI: FixtureLineupsStartPlayerType[];
   substitutes: FixtureLineupsSubstitutesType[];
+};
+
+export type FixtureLineupsStartPlayerType = {
+  player: StartSquadPlayerType;
 };
 
 type FixtureLineupsTeamType = {
   id: number;
   name: string;
   logo: string;
-  colors: {
-    player: PlayerColors;
-    goalkeeper: PlayerColors;
-  };
+  colors: TeamColors;
+};
+
+export type TeamColors = {
+  player: PlayerColors;
+  goalkeeper: PlayerColors;
 };
 
 type PlayerColors = {
@@ -34,16 +40,10 @@ export type StartSquadPlayerType = {
   id: number;
   name: string;
   number: number;
-  pos: string;
+  pos: FIXTURE_LINEUPS_PLAYER_POSITION;
   grid: string;
 };
 
 type FixtureLineupsSubstitutesType = {
-  player: {
-    id: number;
-    name: string;
-    number: number;
-    pos: string;
-    grid: any;
-  };
+  player: StartSquadPlayerType;
 };

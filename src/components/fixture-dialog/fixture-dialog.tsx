@@ -50,7 +50,7 @@ export function FixtureDialog({
       onOpenChange={onOpenChange}
       open={isOpen}
     >
-      <DialogContent className="bg-white sm:max-w-[500px]">
+      <DialogContent className="bg-white sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle className="flex w-full justify-center">
             <Text

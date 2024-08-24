@@ -49,6 +49,7 @@ export const strings = {
   Trophies: 'Trophies',
   Weight: 'Weight',
   Yellow_Cards: 'Yellow Cards',
+  Formation: 'Formation',
   leagues: {
     Premier_League: 'Premier League',
     La_Liga: 'La Liga',

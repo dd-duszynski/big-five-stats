@@ -1,0 +1,6 @@
+export enum FIXTURE_LINEUPS_PLAYER_POSITION {
+  GOALKEEPER = 'G',
+  DEFENDER = 'D',
+  MIDFIELDER = 'M',
+  FORWARD = 'F',
+}

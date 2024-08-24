@@ -1,8 +1,7 @@
 import { Text } from '@/components/text/text';
-import {
-  FixtureLineupsType,
-  StartSquadPlayerType,
-} from '@/lib/models/fixtures/fixture-lineups.model';
+import { FixtureLineupsType } from '@/lib/models/fixtures/fixture-lineups.model';
+import { strings } from '@/lib/strings';
+import { FixtureDialogLineupsTeam } from './fixture-dialog-lineups-team';
 
 type FixtureDialogLineupsProps = {
   awayTeamData: FixtureLineupsType;
@@ -13,17 +12,8 @@ export const FixtureDialogLineupsDetails = ({
   awayTeamData,
   homeTeamData,
 }: FixtureDialogLineupsProps) => {
-  const homeTeamStartingLineup = homeTeamData.startXI;
-  const awayTeamStartingLineup = awayTeamData.startXI;
-  const getPlayerByPosition = (
-    position: 'G' | 'D' | 'M' | 'F',
-    team: {
-      player: StartSquadPlayerType;
-    }[]
-  ) => {
-    return team.filter((player) => player.player.pos === position);
-  };
-
+  console.log('homeTeamData:', homeTeamData);
+  console.log('awayTeamData:', awayTeamData);
   return (
     <div>
       <div className="flex w-full justify-between rounded-md bg-slate-100 px-2 py-2">
@@ -37,7 +27,7 @@ export const FixtureDialogLineupsDetails = ({
           className="text-xs"
           variant="span"
         >
-          Formation
+          {strings.Formation}
         </Text>
         <Text
           className="text-xs"
@@ -46,15 +36,15 @@ export const FixtureDialogLineupsDetails = ({
           {awayTeamData.formation}
         </Text>
       </div>
-      <div className="flex items-center">
-        {getPlayerByPosition('G', homeTeamStartingLineup).map((player) => (
-          <div key={player.player.id}>{player.player.name}</div>
-        ))}
-        <div className="flex flex-col">
-          {getPlayerByPosition('D', homeTeamStartingLineup).map((player) => (
-            <div key={player.player.id}>{player.player.name}</div>
-          ))}
-        </div>
+      <div className="flex w-full">
+        <FixtureDialogLineupsTeam
+          isAwayTeam={false}
+          teamInfo={homeTeamData}
+        />
+        <FixtureDialogLineupsTeam
+          isAwayTeam
+          teamInfo={awayTeamData}
+        />
       </div>
     </div>
   );
