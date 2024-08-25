@@ -17,6 +17,68 @@ const getPlayerByPosition = (
   return teamStartingLineup.filter((player) => player.player.pos === position);
 };
 
+type PlayersOrganizedByGridType = {
+  [key: string]: FixtureLineupsStartPlayerType[];
+};
+
+const organizePlayersByGridObj = (
+  teamStartingLineup: FixtureLineupsStartPlayerType[],
+  formation: string
+): PlayersOrganizedByGridType => {
+  const formationLength = formation.split('-').length + 1;
+  let formationLengthArray = [];
+  for (let i = 1; i <= formationLength; i++) {
+    formationLengthArray.push(`${i}`);
+  }
+
+  const playersOrganizedByGridType: PlayersOrganizedByGridType =
+    formationLengthArray.reduce((prev, current) => {
+      prev[current] = teamStartingLineup
+        .filter((player) => player.player.grid.charAt(0) === current)
+        .sort((a, b) => {
+          return +a.player.grid.charAt(2) - +b.player.grid.charAt(2);
+        });
+      return prev;
+    }, {} as PlayersOrganizedByGridType);
+
+  return playersOrganizedByGridType;
+};
+
+const organizePlayersByGridArr = (
+  teamStartingLineup: FixtureLineupsStartPlayerType[],
+  formation: string
+): FixtureLineupsStartPlayerType[][] => {
+  const formationLength = formation.split('-').length + 1;
+  let formationLengthArray = [];
+  let playersOrganizedByGridType = [];
+  for (let i = 1; i <= formationLength; i++) {
+    formationLengthArray.push(`${i}`);
+  }
+
+  for (const formationValue of formationLengthArray) {
+    playersOrganizedByGridType.push(
+      teamStartingLineup
+        .filter((player) => player.player.grid.charAt(0) === formationValue)
+        .sort((a, b) => {
+          return +a.player.grid.charAt(2) - +b.player.grid.charAt(2);
+        })
+    );
+  }
+
+  // const playersOrganizedByGridType =
+  //   formationLengthArray.reduce((prev, current) => {
+  //     teamStartingLineup
+  //       .filter((player) => player.player.grid.charAt(0) === current)
+  //       .sort((a, b) => {
+  //         return +a.player.grid.charAt(2) - +b.player.grid.charAt(2);
+  //       });
+  //     return prev;
+  //   }, [];
+  console.log('playersOrganizedByGridTypeArr:', playersOrganizedByGridType);
+
+  return playersOrganizedByGridType;
+};
+
 export function FixtureDialogLineupsTeam({
   teamInfo,
   isAwayTeam,
@@ -48,6 +110,9 @@ export function FixtureDialogLineupsTeam({
       </div>
     );
   });
+  /* TODO_DD: finish organizePlayersByGrid */
+  organizePlayersByGridObj(teamInfo.startXI, teamInfo.formation);
+  organizePlayersByGridArr(teamInfo.startXI, teamInfo.formation);
 
   return <div className="flex flex-row items-center">{renderResult}</div>;
 }

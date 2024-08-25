@@ -25,17 +25,17 @@ export function FixtureDialogLineupsPlayer({
           border: `1px solid #${colors.player.border}`,
           color: `#${colors.player.number}`,
         }}
-        className="flex h-4 w-4 items-center justify-center rounded-full outline-1 outline-slate-300"
+        className="flex h-5 w-5 items-center justify-center rounded-full outline-1 outline-slate-300"
       >
         <Text
-          className="whitespace-nowrap text-[8px]"
+          className="whitespace-nowrap text-[9px]"
           variant="span"
         >
           {player.number}
         </Text>
       </div>
       <Text
-        className="whitespace-nowrap text-[9px]"
+        className="whitespace-nowrap text-[10px]"
         variant="span"
       >
         {player.name}

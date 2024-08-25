@@ -11,8 +11,8 @@ export function Text({ className, children, variant }: TextProps) {
     h2: 'text-2xl font-bold tracking-tight',
     h3: 'text-xl font-bold tracking-tight',
     h4: 'text-lg font-medium tracking-tight',
-    p: 'text-base font-medium font-light',
-    span: 'text-base font-medium font-light',
+    p: 'text-base font-medium tracking-tight',
+    span: 'font-medium tracking-tight',
   };
 
   return (
