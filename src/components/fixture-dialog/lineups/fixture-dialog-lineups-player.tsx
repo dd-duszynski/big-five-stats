@@ -3,16 +3,19 @@ import {
   StartSquadPlayerType,
   TeamColors,
 } from '@/lib/models/fixtures/fixture-lineups.model';
+import { FixturePlayerStatisticsType } from '@/lib/models/fixtures/fixture-player-statistics.model';
 import Link from 'next/link';
 
 type FixtureDialogLineupsPlayerProps = {
   player: StartSquadPlayerType;
   colors: TeamColors;
+  statistics: FixturePlayerStatisticsType[];
 };
 
 export function FixtureDialogLineupsPlayer({
   player,
   colors,
+  statistics,
 }: FixtureDialogLineupsPlayerProps) {
   return (
     <Link
@@ -40,6 +43,10 @@ export function FixtureDialogLineupsPlayer({
       >
         {player.name}
       </Text>
+      {/* TODO_DD: Rating box */}
+      <div className="absolute bg-yellow-800 text-[7px]">
+        {statistics[0].games.rating || ''}
+      </div>
     </Link>
   );
 }

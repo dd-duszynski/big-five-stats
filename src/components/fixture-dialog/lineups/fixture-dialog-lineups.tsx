@@ -10,11 +10,21 @@ export const FixtureDialogLineups = ({ data }: FixtureDialogLineupsProps) => {
   const awayTeamId = data.teams.away.id;
   const homeTeamLineups = data.lineups.find((i) => i.team.id === homeTeamId);
   const awayTeamLineups = data.lineups.find((i) => i.team.id === awayTeamId);
-  if (!homeTeamLineups || !awayTeamLineups) return null;
+  const homeTeamPlayers = data.players.find((i) => i.team.id === homeTeamId);
+  const awayTeamPlayers = data.players.find((i) => i.team.id === awayTeamId);
+
+  if (
+    !homeTeamLineups ||
+    !awayTeamLineups ||
+    !homeTeamPlayers ||
+    !awayTeamPlayers
+  )
+    return null;
+
   return (
     <FixtureDialogLineupsDetails
-      homeTeamData={homeTeamLineups}
-      awayTeamData={awayTeamLineups}
+      homeTeamData={{ lineups: homeTeamLineups, players: homeTeamPlayers }}
+      awayTeamData={{ lineups: awayTeamLineups, players: awayTeamPlayers }}
     />
   );
 };

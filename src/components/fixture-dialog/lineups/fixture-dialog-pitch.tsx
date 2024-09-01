@@ -1,9 +1,9 @@
-import { FixtureLineupsType } from '@/lib/models/fixtures/fixture-lineups.model';
+import { FixtureDialogLineupsTeamData } from './fixture-dialog-lineups-details';
 import { FixtureDialogLineupsTeam } from './fixture-dialog-lineups-team';
 
 type FixtureDialogPitchProps = {
-  awayTeamData: FixtureLineupsType;
-  homeTeamData: FixtureLineupsType;
+  awayTeamData: FixtureDialogLineupsTeamData;
+  homeTeamData: FixtureDialogLineupsTeamData;
 };
 
 export function FixtureDialogPitch({

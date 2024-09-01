@@ -1,10 +1,16 @@
 import { FixtureLineupsType } from '@/lib/models/fixtures/fixture-lineups.model';
+import { FixturesPlayersType } from '@/lib/models/fixtures/fixture-players.model';
 import { FixtureDialogFormationBar } from './fixture-dialog-formation-bar';
 import { FixtureDialogPitch } from './fixture-dialog-pitch';
 
+export type FixtureDialogLineupsTeamData = {
+  lineups: FixtureLineupsType;
+  players: FixturesPlayersType;
+};
+
 type FixtureDialogLineupsProps = {
-  awayTeamData: FixtureLineupsType;
-  homeTeamData: FixtureLineupsType;
+  awayTeamData: FixtureDialogLineupsTeamData;
+  homeTeamData: FixtureDialogLineupsTeamData;
 };
 
 export const FixtureDialogLineupsDetails = ({
@@ -12,10 +18,10 @@ export const FixtureDialogLineupsDetails = ({
   homeTeamData,
 }: FixtureDialogLineupsProps) => {
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <FixtureDialogFormationBar
-        awayTeamText={awayTeamData.formation}
-        homeTeamText={homeTeamData.formation}
+        awayTeamText={awayTeamData.lineups.formation}
+        homeTeamText={homeTeamData.lineups.formation}
       />
       <FixtureDialogPitch
         awayTeamData={awayTeamData}
