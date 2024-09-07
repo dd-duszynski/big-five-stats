@@ -7,6 +7,7 @@ import { TeamResponseType } from '@/lib/models/team/team-response.model';
 import { TeamSquadResponseType } from '@/lib/models/team/team-squad-response.model';
 import { TeamStatisticsResponseType } from '@/lib/models/team/team-statistics-response.model';
 import { strings } from '@/lib/strings';
+import { currentYear } from '@/lib/utils/const/current-year';
 import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
 import { getLeagueIdForTeam } from '@/lib/utils/helpers/get-league-id-for-team';
 import { Metadata } from 'next';
@@ -19,15 +20,18 @@ async function getData(teamId: string) {
   );
   const teamStatistics = await fetchAPISports<
     APIResponseType<TeamStatisticsResponseType>
-  >(`teams/statistics?season=2023&team=${teamId}&league=${leagueId}`, {
-    revalidate: REVALIDATE_TIME.ONE_DAY,
-  });
+  >(
+    `teams/statistics?season=${currentYear}&team=${teamId}&league=${leagueId}`,
+    {
+      revalidate: REVALIDATE_TIME.ONE_DAY,
+    }
+  );
   const teamSquad = await fetchAPISports<
     APIResponseType<TeamSquadResponseType[]>
   >(`players/squads?team=${teamId}`, { revalidate: REVALIDATE_TIME.ONE_DAY });
   const standings = await fetchAPISports<
     APIResponseType<StandingsResponseType[]>
-  >(`standings?league=${leagueId}&season=2023`, {
+  >(`standings?league=${leagueId}&season=${currentYear}`, {
     revalidate: REVALIDATE_TIME.ONE_DAY,
   });
   const coach = await fetchAPISports<APIResponseType<CoachType[]>>(

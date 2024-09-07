@@ -4,22 +4,23 @@ import { APIResponseType } from '@/lib/models/api/api-response.model';
 import { FixturesForRoundResponseType } from '@/lib/models/fixtures/fixtures-for-round.model';
 import { StandingsResponseType } from '@/lib/models/standings/standings-response.model';
 import { strings } from '@/lib/strings';
+import { currentYear } from '@/lib/utils/const/current-year';
 import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
 import { Metadata } from 'next';
 
 async function getData(id: number) {
   const standings = await fetchAPISports<
     APIResponseType<StandingsResponseType[]>
-  >(`standings?league=${id}&season=2023`, {
+  >(`standings?league=${id}&season=${currentYear}`, {
     revalidate: REVALIDATE_TIME.ONE_DAY,
   });
   const rounds = await fetchAPISports<APIResponseType<string[]>>(
-    `fixtures/rounds?league=${id}&season=2023`,
+    `fixtures/rounds?league=${id}&season=${currentYear}`,
     { revalidate: REVALIDATE_TIME.ONE_DAY }
   );
   const fixtures = await fetchAPISports<
     APIResponseType<FixturesForRoundResponseType[]>
-  >(`fixtures?league=${id}&season=2023&round=Regular Season - 1`, {
+  >(`fixtures?league=${id}&season=${currentYear}&round=Regular Season - 1`, {
     revalidate: REVALIDATE_TIME.ONE_DAY,
   });
 

@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/select';
 import { FixturesForRoundResponseType } from '@/lib/models/fixtures/fixtures-for-round.model';
 import { strings } from '@/lib/strings';
+import { currentYear } from '@/lib/utils/const/current-year';
 import { joinClassNames } from '@/lib/utils/helpers/join-class-names';
 import { fixturesForRoundQueryOptions } from '@/lib/utils/query-options/fixtures-for-round-query-options';
 import { useQuery } from '@tanstack/react-query';
@@ -32,7 +33,7 @@ export function Fixtures({ className, data, leagueId, rounds }: FixturesProps) {
   const [selectedRound, setSelectedRound] = useState(rounds[0]);
 
   const { data: leagueFixturesForRound } = useQuery(
-    fixturesForRoundQueryOptions(leagueId, 2023, selectedRound)
+    fixturesForRoundQueryOptions(leagueId, currentYear, selectedRound)
   );
   const leagueFixturesForRoundResponse = leagueFixturesForRound?.response;
 

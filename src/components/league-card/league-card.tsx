@@ -1,9 +1,10 @@
 'use client';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlayerResponseType } from '@/lib/models/player/player-response.model';
 import { StandingsLeagueType } from '@/lib/models/standings/standings.model';
 import { strings } from '@/lib/strings';
+import { currentYear } from '@/lib/utils/const/current-year';
+import { addRankPositionMapper } from '@/lib/utils/mappers';
 import { topAssistsQueryOptions } from '@/lib/utils/query-options/top-assists-query-options';
 import { topScorersQueryOptions } from '@/lib/utils/query-options/top-scorers-query-options';
 import { useQuery } from '@tanstack/react-query';
@@ -17,7 +18,6 @@ import { LeagueCrest } from '../league-crest/league-crest';
 import { Loader } from '../loader/loader';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
-import { addRankPositionMapper } from '@/lib/utils/mappers';
 
 type LeagueCardProps = {
   isInitialyCollapsed?: boolean;
@@ -35,12 +35,12 @@ export function LeagueCard({
     data: topScorers,
     isLoading: isTopScorersLoading,
     isError: isErrorTopScorers,
-  } = useQuery(topScorersQueryOptions(leagueId, 2023, !isCollapsed));
+  } = useQuery(topScorersQueryOptions(leagueId, currentYear, !isCollapsed));
   const {
     data: topAssists,
     isLoading: isTopAssistsLoading,
     isError: isErrorTopAssists,
-  } = useQuery(topAssistsQueryOptions(leagueId, 2023, !isCollapsed));
+  } = useQuery(topAssistsQueryOptions(leagueId, currentYear, !isCollapsed));
 
   const standingsData = standingsLeagueData.standings[0];
   const topAssistsData = addRankPositionMapper(topAssists?.response);

@@ -44,4 +44,4 @@ JSON to TS: https://transform.tools/json-to-typescript
 
 Example fetch url:
 standings:
-https://v3.football.api-sports.io/standings?league=39&season=2023
+https://v3.football.api-sports.io/standings?league=39&season=2024

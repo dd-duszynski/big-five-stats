@@ -11,6 +11,7 @@ import {
 import { FixturesForRoundResponseType } from '@/lib/models/fixtures/fixtures-for-round.model';
 import { StandingsResponseType } from '@/lib/models/standings/standings-response.model';
 import { strings } from '@/lib/strings';
+import { currentYear } from '@/lib/utils/const/current-year';
 import { addRankPositionMapper } from '@/lib/utils/mappers';
 import { topAssistsQueryOptions } from '@/lib/utils/query-options/top-assists-query-options';
 import { topRedCardQueryOptions } from '@/lib/utils/query-options/top-red-card-query-options';
@@ -40,16 +41,16 @@ export function LeaguePageComponent({
   standings,
 }: LeaguePageComponentProps) {
   const { data: topScorers, isFetched: isTopScorersFetched } = useQuery(
-    topScorersQueryOptions(leagueId, 2023, true)
+    topScorersQueryOptions(leagueId, currentYear, true)
   );
   const { data: topAssists, isFetched: isTopAssistsFetched } = useQuery(
-    topAssistsQueryOptions(leagueId, 2023, true)
+    topAssistsQueryOptions(leagueId, currentYear, true)
   );
   const { data: topRedCard, isFetched: isTopRedCardFetched } = useQuery(
-    topRedCardQueryOptions(leagueId, 2023)
+    topRedCardQueryOptions(leagueId, currentYear)
   );
   const { data: topYellowCard, isFetched: isTopYellowCardFetched } = useQuery(
-    topYellowCardQueryOptions(leagueId, 2023)
+    topYellowCardQueryOptions(leagueId, currentYear)
   );
 
   const playerStatisticsSections = [

@@ -6,12 +6,13 @@ import { PlayerResponseType } from '@/lib/models/player/player-response.model';
 import { PlayerSidelinedType } from '@/lib/models/player/player-sidelined.model';
 import { PlayerTransfersType } from '@/lib/models/player/player-transfers.model';
 import { strings } from '@/lib/strings';
+import { currentYear } from '@/lib/utils/const/current-year';
 import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
 import { Metadata } from 'next';
 
 async function getData(playerId: number) {
   const player = await fetchAPISports<APIResponseType<PlayerResponseType[]>>(
-    `players/?id=${playerId}&season=2023`,
+    `players/?id=${playerId}&season=${currentYear}`,
     {
       revalidate: REVALIDATE_TIME.ONE_DAY,
     }
