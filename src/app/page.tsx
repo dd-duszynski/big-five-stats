@@ -4,21 +4,19 @@ import { APIResponseType } from '@/lib/models/api/api-response.model';
 import { StandingsResponseType } from '@/lib/models/standings/standings-response.model';
 import { currentYear } from '@/lib/utils/const/current-year';
 import { fetchAPISports } from '@/lib/utils/helpers/fetch-api-sports';
-import { getAllLeaguesId } from '@/lib/utils/helpers/get-all-leagues-id';
+import { topFiveLeaguesIds } from '@/lib/utils/helpers/get-all-leagues-id';
 import { getQueryClient } from '@/lib/utils/query-options/get-query-client';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { Metadata } from 'next';
 
 async function getData() {
-  const leaguesId = getAllLeaguesId();
-  const standingsPromises = leaguesId.map((league) => {
+  const standingsPromises = topFiveLeaguesIds.map((league) => {
     return fetchAPISports<APIResponseType<StandingsResponseType[]>>(
       `standings?league=${league}&season=${currentYear}`,
       { revalidate: REVALIDATE_TIME.ONE_DAY }
     );
   });
   const standings = await Promise.all(standingsPromises);
-
   return { standings };
 }
 

@@ -23,6 +23,9 @@ async function getData(id: number) {
   >(`fixtures?league=${id}&season=${currentYear}&round=Regular Season - 1`, {
     revalidate: REVALIDATE_TIME.ONE_DAY,
   });
+  console.log('standings: ', standings);
+  console.log('rounds: ', rounds);
+  console.log('fixtures: ', fixtures);
 
   return {
     standings,
